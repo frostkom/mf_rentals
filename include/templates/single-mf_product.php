@@ -1,0 +1,72 @@
+<?php
+
+get_header();
+
+	if(have_posts())
+	{
+		if(!isset($obj_theme_core))
+		{
+			$obj_theme_core = new mf_theme_core();
+		}
+
+		if(!isset($obj_rentals))
+		{
+			$obj_rentals = new mf_rentals();
+		}
+
+		echo "<article".(IS_ADMINISTRATOR ? " class='single-mf_product'" : "").">";
+
+			while(have_posts())
+			{
+				the_post();
+
+				if(is_active_sidebar('widget_after_heading') && $obj_theme_core->is_post_password_protected($post->ID) == false)
+				{
+					ob_start();
+
+					dynamic_sidebar('widget_after_heading');
+
+					$widget_content = ob_get_clean();
+
+					if($widget_content != '')
+					{
+						$obj_rentals->template_shortcodes['after_heading']['html'] .= "<div class='aside after_heading'>"
+							.$widget_content
+						."</div>";
+					}
+				}
+
+				echo $obj_rentals->get_single_info($post);
+
+				$setting_webshop_product_template = get_option('setting_webshop_product_template'.$obj_rentals->option_type);
+
+				if($setting_webshop_product_template > 0)
+				{
+					//$template = mf_get_post_content($setting_webshop_product_template);
+					$template = get_post_field('post_content', $setting_webshop_product_template);
+				}
+
+				else
+				{
+					$template = $obj_rentals->default_template;
+				}
+
+				//This adds a bunch of empty p tags
+				//$template = apply_filters('the_content', $template);
+				$template = str_replace("[product_id]", $post->ID, $template);
+				$template = do_shortcode($template);
+
+				foreach($obj_rentals->template_shortcodes as $key => $value)
+				{
+					$html = ($value['html'] != '' ? str_replace("[html]", $value['html'], $value['formatting']) : '');
+
+					$template = str_replace("[".$key."]", $html, $template);
+				}
+
+				echo $template;
+			}
+
+		echo "</article>";
+	}
+
+get_footer();
