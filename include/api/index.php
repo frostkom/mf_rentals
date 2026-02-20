@@ -188,7 +188,7 @@ switch($type_switch)
 												case 'event':
 													if(!is_plugin_active("mf_calendar/index.php"))
 													{
-														$arr_meta_boxes[$box_id]['fields'][$field_id]['error'] = sprintf(__("You have to install the plugin %s first", 'lang_webshop'), "MF Calendar");
+														$arr_meta_boxes[$box_id]['fields'][$field_id]['error'] = sprintf(__("You have to install the plugin %s first", 'lang_rentals'), "MF Calendar");
 													}
 												break;
 
@@ -220,7 +220,7 @@ switch($type_switch)
 
 													else
 													{
-														$arr_meta_boxes[$box_id]['fields'][$field_id]['error'] = sprintf(__("You have to install the plugin %s first", 'lang_webshop'), "MF Social Feed");
+														$arr_meta_boxes[$box_id]['fields'][$field_id]['error'] = sprintf(__("You have to install the plugin %s first", 'lang_rentals'), "MF Social Feed");
 													}
 												break;
 											}
@@ -384,7 +384,7 @@ switch($type_switch)
 					}
 
 					$json_output['admin_webshop_response']['option_type'] = $obj_rentals->option_type;
-					$json_output['admin_webshop_response']['name_product'] = get_option_or_default('setting_webshop_replace_product'.$obj_rentals->option_type, __("Product", 'lang_webshop'));
+					$json_output['admin_webshop_response']['name_product'] = get_option_or_default('setting_webshop_replace_product'.$obj_rentals->option_type, __("Product", 'lang_rentals'));
 				break;
 
 				case 'webshop/save':
@@ -527,13 +527,13 @@ switch($type_switch)
 																		if($event_start > $event_end)
 																		{
 																			$error = true;
-																			$json_output['message'] = __("The end date must be later than the start date", 'lang_webshop')." (".$event_start." -> ".$event_end.")";
+																			$json_output['message'] = __("The end date must be later than the start date", 'lang_rentals')." (".$event_start." -> ".$event_end.")";
 																		}
 
 																		else if($event_end > date("Y-m-d H:i", strtotime($event_start." +".($obj_rentals->event_max_length - 1)." day")))
 																		{
 																			$error = true;
-																			$json_output['message'] = sprintf(__("The end date must be within %d days from the start date", 'lang_webshop'), $obj_rentals->event_max_length)." (".$event_start." -> ".$event_end.")";
+																			$json_output['message'] = sprintf(__("The end date must be within %d days from the start date", 'lang_rentals'), $obj_rentals->event_max_length)." (".$event_start." -> ".$event_end.")";
 																		}
 
 																		else
@@ -590,13 +590,13 @@ switch($type_switch)
 																	if($event_start > $event_end)
 																	{
 																		$error = true;
-																		$json_output['message'] = __("The end date must be later than the start date", 'lang_webshop')." (".$event_start." -> ".$event_end.")";
+																		$json_output['message'] = __("The end date must be later than the start date", 'lang_rentals')." (".$event_start." -> ".$event_end.")";
 																	}
 
 																	else if($event_end > date("Y-m-d H:i", strtotime($event_start." +".($obj_rentals->event_max_length - 1)." day")))
 																	{
 																		$error = true;
-																		$json_output['message'] = sprintf(__("The end date must be within %d days from the start date", 'lang_webshop'), $obj_rentals->event_max_length)." (".$event_start." -> ".$event_end.")";
+																		$json_output['message'] = sprintf(__("The end date must be within %d days from the start date", 'lang_rentals'), $obj_rentals->event_max_length)." (".$event_start." -> ".$event_end.")";
 																	}
 
 																	else
@@ -720,7 +720,7 @@ switch($type_switch)
 									do_action('rwmb_after_save_post', $post_id);
 
 									$json_output['success'] = true;
-									$json_output['message'] = sprintf(__("I have saved the information for you. %sView the page here%s", 'lang_webshop'), "<a href='".get_permalink($post_id)."'>", "</a>");
+									$json_output['message'] = sprintf(__("I have saved the information for you. %sView the page here%s", 'lang_rentals'), "<a href='".get_permalink($post_id)."'>", "</a>");
 
 									if($reload == true)
 									{
@@ -730,13 +730,13 @@ switch($type_switch)
 
 								else
 								{
-									$json_output['message'] = __("I could not update the information for you", 'lang_webshop');
+									$json_output['message'] = __("I could not update the information for you", 'lang_rentals');
 								}
 							}
 
 							/*else
 							{
-								$json_output['message'] = __("It does not look like you changed anything, so nothing was saved", 'lang_webshop');
+								$json_output['message'] = __("It does not look like you changed anything, so nothing was saved", 'lang_rentals');
 							}*/
 						}
 					}
@@ -762,20 +762,20 @@ switch($type_switch)
 								do_action('rwmb_after_save_post', $post_id);
 
 								$json_output['success'] = true;
-								$json_output['message'] = sprintf(__("I have saved the information for you. %sView the page here%s", 'lang_webshop'), "<a href='".get_permalink($post_id)."'>", "</a>");
+								$json_output['message'] = sprintf(__("I have saved the information for you. %sView the page here%s", 'lang_rentals'), "<a href='".get_permalink($post_id)."'>", "</a>");
 								$json_output['next_request'] = "admin/webshop/edit/".$post_id;
 								//$json_output['debug'] = "Created: ".$wpdb->last_query;
 							}
 
 							else
 							{
-								$json_output['message'] = __("I could not save the information for you", 'lang_webshop');
+								$json_output['message'] = __("I could not save the information for you", 'lang_rentals');
 							}
 						}
 
 						else
 						{
-							$json_output['message'] = __("One with that title already exists", 'lang_webshop');
+							$json_output['message'] = __("One with that title already exists", 'lang_rentals');
 						}
 					}
 				break;

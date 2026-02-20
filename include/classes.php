@@ -130,9 +130,6 @@ class mf_rentals
 		$this->option_type = '';
 
 		$this->event_max_length = 10;
-
-		$this->user_updated_notification_subject_placeholder = __("A reminder to update your information", 'lang_webshop');
-		$this->user_updated_notification_content_placeholder = "[link_start]".sprintf(__("You have not updated your information since %s which is more than %s months ago. Please do so.", 'lang_webshop'), "[post_modified]", "[month_amount]")."[link_end]";
 	}
 
 	function get_type_id($post)
@@ -297,7 +294,7 @@ class mf_rentals
 
 		if($data['add_choose_here'] == true)
 		{
-			$arr_data[''] = "-- ".__("Choose Here", 'lang_webshop')." --";
+			$arr_data[''] = "-- ".__("Choose Here", 'lang_rentals')." --";
 		}
 
 		$result = $this->get_document_types(array(
@@ -321,32 +318,32 @@ class mf_rentals
 
 		if(!is_array($include) || count($include) == 0 || in_array('alphabetical', $include))
 		{
-			$arr_data['alphabetical'] = __("A-Z", 'lang_webshop');
+			$arr_data['alphabetical'] = __("A-Z", 'lang_rentals');
 		}
 
 		if(!is_array($include) || count($include) == 0 || in_array('newest', $include) || in_array('latest', $include))
 		{
-			$arr_data['latest'] = __("Latest", 'lang_webshop');
+			$arr_data['latest'] = __("Latest", 'lang_rentals');
 		}
 
 		if(!is_array($include) || count($include) == 0 || in_array('popular', $include))
 		{
 			if(is_plugin_active("mf_form/index.php"))
 			{
-				$arr_data['popular'] = __("Popularity", 'lang_webshop');
+				$arr_data['popular'] = __("Popularity", 'lang_rentals');
 			}
 		}
 
 		if(!is_array($include) || count($include) == 0 || in_array('random', $include))
 		{
-			$arr_data['random'] = __("Random", 'lang_webshop');
+			$arr_data['random'] = __("Random", 'lang_rentals');
 		}
 
 		if(!is_array($include) || count($include) == 0 || in_array('size', $include))
 		{
 			if($this->get_post_name_for_type('size') != '')
 			{
-				$arr_data['size'] = __("Size", 'lang_webshop');
+				$arr_data['size'] = __("Size", 'lang_rentals');
 			}
 		}
 
@@ -356,53 +353,53 @@ class mf_rentals
 	function get_types_for_select()
 	{
 		$arr_data = array(
-			'group_information' => "-- ".__("Information", 'lang_webshop')." --",
-				'description' => __("Description", 'lang_webshop'),
-				'heading' => __("Heading", 'lang_webshop'),
-				'content' => __("Content", 'lang_webshop'),
-				'label' => __("Label", 'lang_webshop'),
-			'group_input' => "-- ".__("Input", 'lang_webshop')." --",
-				'text' => __("Text", 'lang_webshop'),
-				'textarea' => __("Textarea", 'lang_webshop'),
-				'date' => __("Date", 'lang_webshop'),
-				'email' => __("E-mail", 'lang_webshop'),
-				'phone' => __("Phone Number", 'lang_webshop'),
-				'url' => __("URL", 'lang_webshop'),
-				'clock' => __("Clock", 'lang_webshop'),
-				'checkbox' => __("Checkbox", 'lang_webshop'),
-			'group_special_input' => "-- ".__("Special Input", 'lang_webshop')." --",
-				'color' => __("Color Picker", 'lang_webshop'),
-				'event' => __("Event", 'lang_webshop'),
-				'page' => __("Page", 'lang_webshop'),
-				'file_advanced' => __("File", 'lang_webshop'),
-				'categories' => get_option_or_default('setting_webshop_replace_categories', __("Categories", 'lang_webshop')),
-				'categories_v2' => get_option_or_default('setting_webshop_replace_categories', __("Categories", 'lang_webshop'))." (v2)",
-				'custom_categories' => __("Custom Categories", 'lang_webshop'),
-				'social' => __("Social Feed", 'lang_webshop'),
-				'overlay' => __("Overlay", 'lang_webshop'),
-			'group_numbers' => "-- ".__("Numbers", 'lang_webshop')." --",
-				'number' => __("Number", 'lang_webshop'),
-				'price' => __("Number", 'lang_webshop')." (".__("Price", 'lang_webshop').")",
-				'size' => __("Number", 'lang_webshop')." (".__("Size", 'lang_webshop').")",
-				'stock' => __("Number", 'lang_webshop')." (".__("Stock", 'lang_webshop').")",
-				'interval' => __("Interval", 'lang_webshop'),
-			'group_location' => "-- ".__("Location", 'lang_webshop')." --",
-				'city' => __("City", 'lang_webshop'),
-				'location' => __("Location", 'lang_webshop'),
-				'address' => __("Address", 'lang_webshop'),
-				'local_address' => __("Local Address", 'lang_webshop'),
-				'coordinates' => __("Coordinates", 'lang_webshop'),
-				'gps' => __("Map", 'lang_webshop'),
-				//'map' => __("Map", 'lang_webshop'),
-			'group_formatting' => "-- ".__("Formatting", 'lang_webshop')." --",
-				'divider' => __("Divider", 'lang_webshop'),
-				'contact_button' => __("Contact Button", 'lang_webshop'),
-				'read_more_button' => __("Read More Button", 'lang_webshop'),
-				'container_start' => __("Start of Container", 'lang_webshop'),
-				'container_end' => __("End of Container", 'lang_webshop'),
-			'group_settings' => "-- ".__("Settings", 'lang_webshop')." --",
-				'ghost' => __("Hide Information", 'lang_webshop'),
-				'global_code' => __("Global Code", 'lang_webshop'),
+			'group_information' => "-- ".__("Information", 'lang_rentals')." --",
+				'description' => __("Description", 'lang_rentals'),
+				'heading' => __("Heading", 'lang_rentals'),
+				'content' => __("Content", 'lang_rentals'),
+				'label' => __("Label", 'lang_rentals'),
+			'group_input' => "-- ".__("Input", 'lang_rentals')." --",
+				'text' => __("Text", 'lang_rentals'),
+				'textarea' => __("Textarea", 'lang_rentals'),
+				'date' => __("Date", 'lang_rentals'),
+				'email' => __("E-mail", 'lang_rentals'),
+				'phone' => __("Phone Number", 'lang_rentals'),
+				'url' => __("URL", 'lang_rentals'),
+				'clock' => __("Clock", 'lang_rentals'),
+				'checkbox' => __("Checkbox", 'lang_rentals'),
+			'group_special_input' => "-- ".__("Special Input", 'lang_rentals')." --",
+				'color' => __("Color Picker", 'lang_rentals'),
+				'event' => __("Event", 'lang_rentals'),
+				'page' => __("Page", 'lang_rentals'),
+				'file_advanced' => __("File", 'lang_rentals'),
+				'categories' => get_option_or_default('setting_webshop_replace_categories', __("Categories", 'lang_rentals')),
+				'categories_v2' => get_option_or_default('setting_webshop_replace_categories', __("Categories", 'lang_rentals'))." (v2)",
+				'custom_categories' => __("Custom Categories", 'lang_rentals'),
+				'social' => __("Social Feed", 'lang_rentals'),
+				'overlay' => __("Overlay", 'lang_rentals'),
+			'group_numbers' => "-- ".__("Numbers", 'lang_rentals')." --",
+				'number' => __("Number", 'lang_rentals'),
+				'price' => __("Number", 'lang_rentals')." (".__("Price", 'lang_rentals').")",
+				'size' => __("Number", 'lang_rentals')." (".__("Size", 'lang_rentals').")",
+				'stock' => __("Number", 'lang_rentals')." (".__("Stock", 'lang_rentals').")",
+				'interval' => __("Interval", 'lang_rentals'),
+			'group_location' => "-- ".__("Location", 'lang_rentals')." --",
+				'city' => __("City", 'lang_rentals'),
+				'location' => __("Location", 'lang_rentals'),
+				'address' => __("Address", 'lang_rentals'),
+				'local_address' => __("Local Address", 'lang_rentals'),
+				'coordinates' => __("Coordinates", 'lang_rentals'),
+				'gps' => __("Map", 'lang_rentals'),
+				//'map' => __("Map", 'lang_rentals'),
+			'group_formatting' => "-- ".__("Formatting", 'lang_rentals')." --",
+				'divider' => __("Divider", 'lang_rentals'),
+				'contact_button' => __("Contact Button", 'lang_rentals'),
+				'read_more_button' => __("Read More Button", 'lang_rentals'),
+				'container_start' => __("Start of Container", 'lang_rentals'),
+				'container_end' => __("End of Container", 'lang_rentals'),
+			'group_settings' => "-- ".__("Settings", 'lang_rentals')." --",
+				'ghost' => __("Hide Information", 'lang_rentals'),
+				'global_code' => __("Global Code", 'lang_rentals'),
 		);
 
 		$arr_data = apply_filters('get_webshop_filters_for_select', $arr_data);
@@ -415,15 +412,15 @@ class mf_rentals
 		if(!isset($data['allow_disable'])){		$data['allow_disable'] = false;}
 
 		$arr_data = array(
-			'everywhere' => __("Everywhere", 'lang_webshop'),
-			'search' => __("Only in search view", 'lang_webshop'),
-			'single' => __("Only on single page", 'lang_webshop'),
-			'nowhere' => __("Nowhere", 'lang_webshop'),
+			'everywhere' => __("Everywhere", 'lang_rentals'),
+			'search' => __("Only in search view", 'lang_rentals'),
+			'single' => __("Only on single page", 'lang_rentals'),
+			'nowhere' => __("Nowhere", 'lang_rentals'),
 		);
 
 		/*if($data['allow_disable'] == true)
 		{
-			$arr_data['disable'] = __("Disable", 'lang_webshop');
+			$arr_data['disable'] = __("Disable", 'lang_rentals');
 		}*/
 
 		return $arr_data;
@@ -432,8 +429,8 @@ class mf_rentals
 	function get_map_placement_for_select($data = array())
 	{
 		$arr_data = array(
-			'above_filter' => __("Above Filter", 'lang_webshop'),
-			'below_filter' => __("Below Filter", 'lang_webshop'),
+			'above_filter' => __("Above Filter", 'lang_rentals'),
+			'below_filter' => __("Below Filter", 'lang_rentals'),
 		);
 
 		return $arr_data;
@@ -442,8 +439,8 @@ class mf_rentals
 	function get_map_button_placement_for_select($data = array())
 	{
 		$arr_data = array(
-			'above_map' => __("Above Map", 'lang_webshop'),
-			'page_bottom' => __("Page Bottom", 'lang_webshop'),
+			'above_map' => __("Above Map", 'lang_rentals'),
+			'page_bottom' => __("Page Bottom", 'lang_rentals'),
 		);
 
 		return $arr_data;
@@ -459,7 +456,7 @@ class mf_rentals
 		}
 
 		$arr_data = array(
-			'' => "-- ".__("Choose Here", 'lang_webshop')." --",
+			'' => "-- ".__("Choose Here", 'lang_rentals')." --",
 		);
 
 		foreach($obj_font_icons->get_array(array('allow_optgroup' => false)) as $icon)
@@ -473,8 +470,8 @@ class mf_rentals
 	function get_include_on_for_select()
 	{
 		return array(
-			'products' => get_option_or_default('setting_webshop_replace_products'.$this->option_type, __("Products", 'lang_webshop')),
-			'events' => __("Events", 'lang_webshop'),
+			'products' => get_option_or_default('setting_webshop_replace_products'.$this->option_type, __("Products", 'lang_rentals')),
+			'events' => __("Events", 'lang_rentals'),
 		);
 	}
 
@@ -505,7 +502,7 @@ class mf_rentals
 
 		if($data['add_choose_here'])
 		{
-			$arr_data[''] = "-- ".__("Choose Category Here", 'lang_webshop')." --";
+			$arr_data[''] = "-- ".__("Choose Category Here", 'lang_rentals')." --";
 		}
 
 		$result = $this->get_categories_result($data);
@@ -578,7 +575,7 @@ class mf_rentals
 		{
 			$option_type_temp = ($option_type != '' ? "_".$option_type : '');
 
-			$arr_data[$option_type] = get_option_or_default('setting_webshop_replace_webshop'.$option_type_temp, __("Webshop", 'lang_webshop'));
+			$arr_data[$option_type] = get_option_or_default('setting_webshop_replace_webshop'.$option_type_temp, __("Webshop", 'lang_rentals'));
 		}
 
 		return $arr_data;
@@ -587,9 +584,9 @@ class mf_rentals
 	function get_image_alt_for_select($data = array())
 	{
 		return array(
-			'yes' => __("Yes", 'lang_webshop'),
-			'single' => __("Yes", 'lang_webshop')." (".__("but not on Search", 'lang_webshop').")",
-			'no' => __("No", 'lang_webshop'),
+			'yes' => __("Yes", 'lang_rentals'),
+			'single' => __("Yes", 'lang_rentals')." (".__("but not on Search", 'lang_rentals').")",
+			'no' => __("No", 'lang_rentals'),
 		);
 	}
 
@@ -601,18 +598,18 @@ class mf_rentals
 
 		if($data['add_choose_here'])
 		{
-			$arr_data[''] = "-- ".__("Choose Here", 'lang_webshop')." --";
+			$arr_data[''] = "-- ".__("Choose Here", 'lang_rentals')." --";
 		}
 
-		$arr_data['searchable'] = __("Searchable", 'lang_webshop');
-		$arr_data['public'] = __("Results", 'lang_webshop');
-		$arr_data['public_single'] = get_option_or_default('setting_webshop_replace_title_contact_info'.$this->option_type, __("Contact Info", 'lang_webshop'));
-		$arr_data['quick'] = get_option_or_default('setting_webshop_replace_title_quic_info'.$this->option_type, __("Quick Info", 'lang_webshop'));
-		$arr_data['property'] = get_option_or_default('setting_webshop_replace_title_properties'.$this->option_type, __("Properties", 'lang_webshop'));
+		$arr_data['searchable'] = __("Searchable", 'lang_rentals');
+		$arr_data['public'] = __("Results", 'lang_rentals');
+		$arr_data['public_single'] = get_option_or_default('setting_webshop_replace_title_contact_info'.$this->option_type, __("Contact Info", 'lang_rentals'));
+		$arr_data['quick'] = get_option_or_default('setting_webshop_replace_title_quic_info'.$this->option_type, __("Quick Info", 'lang_rentals'));
+		$arr_data['property'] = get_option_or_default('setting_webshop_replace_title_properties'.$this->option_type, __("Properties", 'lang_rentals'));
 
 		if(is_plugin_active("mf_calendar/index.php"))
 		{
-			$arr_data['events'] = __("Events", 'lang_webshop');
+			$arr_data['events'] = __("Events", 'lang_rentals');
 		}
 
 		return $arr_data;
@@ -761,6 +758,11 @@ class mf_rentals
 
 	function init()
 	{
+		load_plugin_textdomain('lang_rentals', false, str_replace("/include", "", dirname(plugin_basename(__FILE__)))."/lang/");
+
+		$this->user_updated_notification_subject_placeholder = __("A reminder to update your information", 'lang_rentals');
+		$this->user_updated_notification_content_placeholder = "[link_start]".sprintf(__("You have not updated your information since %s which is more than %s months ago. Please do so.", 'lang_rentals'), "[post_modified]", "[month_amount]")."[link_end]";
+
 		/*if(!session_id())
 		{
 			@session_start();
@@ -772,7 +774,7 @@ class mf_rentals
 		{
 			$this->option_type = ($option_type != '' ? "_".$option_type : '');
 
-			$name_categories = get_option_or_default('setting_webshop_replace_categories'.$this->option_type, __("Categories", 'lang_webshop'));
+			$name_categories = get_option_or_default('setting_webshop_replace_categories'.$this->option_type, __("Categories", 'lang_rentals'));
 
 			$labels = array(
 				'name' => _x($name_categories, 'post type general name'),
@@ -796,7 +798,7 @@ class mf_rentals
 
 			register_post_type($this->post_type_categories.$this->option_type, $args);
 
-			$name_products = get_option_or_default('setting_webshop_replace_products'.$this->option_type, __("Products", 'lang_webshop'));
+			$name_products = get_option_or_default('setting_webshop_replace_products'.$this->option_type, __("Products", 'lang_rentals'));
 
 			$arr_supports = array('title', 'excerpt', 'revisions', 'author');
 
@@ -825,7 +827,7 @@ class mf_rentals
 
 			register_post_type($this->post_type_products.$this->option_type, $args);
 
-			$name_custom_categories = __("Custom Categories", 'lang_webshop');
+			$name_custom_categories = __("Custom Categories", 'lang_rentals');
 
 			$labels = array(
 				'name' => _x($name_custom_categories, 'post type general name'),
@@ -846,7 +848,7 @@ class mf_rentals
 
 			register_post_type($this->post_type_custom_categories.$this->option_type, $args);
 
-			$name_doc_types = get_option_or_default('setting_webshop_replace_doc_types'.$this->option_type, __("Filters", 'lang_webshop'));
+			$name_doc_types = get_option_or_default('setting_webshop_replace_doc_types'.$this->option_type, __("Filters", 'lang_rentals'));
 
 			$labels = array(
 				'name' => _x($name_doc_types, 'post type general name'),
@@ -867,7 +869,7 @@ class mf_rentals
 
 			register_post_type($this->post_type_document_type.$this->option_type, $args);
 
-			$name_location = __("Location", 'lang_webshop');
+			$name_location = __("Location", 'lang_rentals');
 
 			$labels = array(
 				'name' => _x($name_location, 'post type general name'),
@@ -888,7 +890,7 @@ class mf_rentals
 
 			register_post_type($this->post_type_location.$this->option_type, $args);
 
-			$name_customers = __("Customers", 'lang_webshop');
+			$name_customers = __("Customers", 'lang_rentals');
 
 			$labels = array(
 				'name' => _x($name_customers, 'post type general name'),
@@ -907,7 +909,7 @@ class mf_rentals
 
 			register_post_type($this->post_type_customers.$this->option_type, $args);
 
-			$name_delivery_type = __("Delivery Type", 'lang_webshop');
+			$name_delivery_type = __("Delivery Type", 'lang_rentals');
 
 			$labels = array(
 				'name' => _x($name_delivery_type, 'post type general name'),
@@ -943,21 +945,21 @@ class mf_rentals
 		add_settings_section($options_area, "", array($this, $options_area."_callback"), BASE_OPTIONS_PAGE);
 
 		$arr_settings = array(
-			'setting_webshop_option_types' => __("Types", 'lang_webshop'),
+			'setting_webshop_option_types' => __("Types", 'lang_rentals'),
 		);
 
 		$template_admin_id = apply_filters('get_front_end_admin_id', 0);
 
 		foreach($this->arr_option_types as $option_type)
 		{
-			$option_type_name = ($option_type != '' ? $option_type : __("default", 'lang_webshop'));
+			$option_type_name = ($option_type != '' ? $option_type : __("default", 'lang_rentals'));
 
 			if($template_admin_id > 0)
 			{
-				$arr_settings['setting_webshop_icon|'.$option_type] = sprintf(__("Icon for %s", 'lang_webshop'), $option_type_name);
+				$arr_settings['setting_webshop_icon|'.$option_type] = sprintf(__("Icon for %s", 'lang_rentals'), $option_type_name);
 			}
 
-			$arr_settings['setting_webshop_replace_webshop|'.$option_type] = sprintf(__("Title for %s", 'lang_webshop'), $option_type_name);
+			$arr_settings['setting_webshop_replace_webshop|'.$option_type] = sprintf(__("Title for %s", 'lang_rentals'), $option_type_name);
 		}
 
 		$arr_settings['setting_webshop_local_storage'] = "Local Storage";
@@ -972,9 +974,9 @@ class mf_rentals
 		add_settings_section($options_area, "", array($this, $options_area."_callback"), BASE_OPTIONS_PAGE);
 
 		$arr_settings = array(
-			'setting_webshop_display_sort' => __("Display Sort", 'lang_webshop'),
-			'setting_webshop_sort_default' => __("Sort Default", 'lang_webshop'),
-			'setting_webshop_display_filter' => __("Display Filter", 'lang_webshop'),
+			'setting_webshop_display_sort' => __("Display Sort", 'lang_rentals'),
+			'setting_webshop_sort_default' => __("Sort Default", 'lang_rentals'),
+			'setting_webshop_display_filter' => __("Display Filter", 'lang_rentals'),
 		);
 
 		show_settings_fields(array('area' => $options_area, 'object' => $this, 'settings' => $arr_settings));
@@ -987,21 +989,21 @@ class mf_rentals
 		add_settings_section($options_area, "", array($this, $options_area."_callback"), BASE_OPTIONS_PAGE);
 
 		$arr_settings = array(
-			'setting_map_visibility' => __("Map visibility", 'lang_webshop'),
-			'setting_map_visibility_mobile' => __("Map visibility", 'lang_webshop')." (".__("Mobile", 'lang_webshop').")",
-			'setting_webshop_map_placement' => __("Map Placement", 'lang_webshop'),
-			'setting_webshop_map_button_placement' => __("Map Button Placement", 'lang_webshop'),
-			'setting_webshop_color_info' => __("Info color", 'lang_webshop'),
-			'setting_webshop_text_color_info' => __("Info text color", 'lang_webshop'),
+			'setting_map_visibility' => __("Map visibility", 'lang_rentals'),
+			'setting_map_visibility_mobile' => __("Map visibility", 'lang_rentals')." (".__("Mobile", 'lang_rentals').")",
+			'setting_webshop_map_placement' => __("Map Placement", 'lang_rentals'),
+			'setting_webshop_map_button_placement' => __("Map Button Placement", 'lang_rentals'),
+			'setting_webshop_color_info' => __("Info color", 'lang_rentals'),
+			'setting_webshop_text_color_info' => __("Info text color", 'lang_rentals'),
 		);
 
 		if(!is_plugin_active("mf_maps/index.php"))
 		{
-			$arr_settings['setting_gmaps_api'] = __("API key", 'lang_webshop');
+			$arr_settings['setting_gmaps_api'] = __("API key", 'lang_rentals');
 		}
 
-		$arr_settings['setting_webshop_replace_show_map'] = __("Replace Text", 'lang_webshop');
-		$arr_settings['setting_webshop_replace_hide_map'] = __("Replace Text", 'lang_webshop');
+		$arr_settings['setting_webshop_replace_show_map'] = __("Replace Text", 'lang_rentals');
+		$arr_settings['setting_webshop_replace_hide_map'] = __("Replace Text", 'lang_rentals');
 
 		show_settings_fields(array('area' => $options_area, 'object' => $this, 'settings' => $arr_settings));
 		############################
@@ -1012,7 +1014,7 @@ class mf_rentals
 
 			$ghost_post_name = $this->get_post_name_for_type('ghost');
 
-			$name_product = get_option_or_default('setting_webshop_replace_product'.$this->option_type, __("Product", 'lang_webshop'));
+			$name_product = get_option_or_default('setting_webshop_replace_product'.$this->option_type, __("Product", 'lang_rentals'));
 
 			// Generic
 			############################
@@ -1021,26 +1023,26 @@ class mf_rentals
 			add_settings_section($options_area.'|'.$option_type, "", array($this, $options_area."_callback"), BASE_OPTIONS_PAGE);
 
 			$arr_settings = array(
-				'setting_webshop_replace_product|'.$option_type => __("Replace Text", 'lang_webshop'),
-				'setting_webshop_replace_products|'.$option_type => __("Replace Text", 'lang_webshop'),
-				'setting_webshop_replace_enter_title_here|'.$option_type => __("Replace Text", 'lang_webshop'),
-				'setting_webshop_replace_categories|'.$option_type => __("Replace Text", 'lang_webshop'),
-				'setting_webshop_replace_doc_types|'.$option_type => __("Replace Text", 'lang_webshop'),
-				'setting_webshop_replace_products_slug|'.$option_type => sprintf(__("Replace %s slug with", 'lang_webshop'), strtolower($name_product)),
+				'setting_webshop_replace_product|'.$option_type => __("Replace Text", 'lang_rentals'),
+				'setting_webshop_replace_products|'.$option_type => __("Replace Text", 'lang_rentals'),
+				'setting_webshop_replace_enter_title_here|'.$option_type => __("Replace Text", 'lang_rentals'),
+				'setting_webshop_replace_categories|'.$option_type => __("Replace Text", 'lang_rentals'),
+				'setting_webshop_replace_doc_types|'.$option_type => __("Replace Text", 'lang_rentals'),
+				'setting_webshop_replace_products_slug|'.$option_type => sprintf(__("Replace %s slug with", 'lang_rentals'), strtolower($name_product)),
 			);
 
-			//$arr_settings['setting_webshop_activate_frontend_admin|'.$option_type] = __("Activate on Front-End Admin", 'lang_webshop');
+			//$arr_settings['setting_webshop_activate_frontend_admin|'.$option_type] = __("Activate on Front-End Admin", 'lang_rentals');
 
 			if($this->has_categories(array('include_on' => 'products')) > 0)
 			{
-				$name_categories = get_option_or_default('setting_webshop_replace_categories'.$this->option_type, __("Categories", 'lang_webshop'));
+				$name_categories = get_option_or_default('setting_webshop_replace_categories'.$this->option_type, __("Categories", 'lang_rentals'));
 
-				$arr_settings['setting_webshop_replace_categories_slug|'.$option_type] = sprintf(__("Replace %s slug with", 'lang_webshop'), strtolower($name_categories));
+				$arr_settings['setting_webshop_replace_categories_slug|'.$option_type] = sprintf(__("Replace %s slug with", 'lang_rentals'), strtolower($name_categories));
 			}
 
 			if(is_plugin_active("mf_form/index.php") && $option_type == '')
 			{
-				$arr_settings['setting_webshop_payment_form|'.$option_type] = __("Payment Form", 'lang_webshop');
+				$arr_settings['setting_webshop_payment_form|'.$option_type] = __("Payment Form", 'lang_rentals');
 			}
 
 			show_settings_fields(array('area' => $options_area.'|'.$option_type, 'object' => $this, 'settings' => $arr_settings));
@@ -1054,44 +1056,44 @@ class mf_rentals
 
 			$arr_settings = array();
 
-			$arr_settings['setting_show_all_min|'.$option_type] = __("Min results to show number", 'lang_webshop');
-			$arr_settings['setting_webshop_replace_filter_products|'.$option_type] = __("Replace Text", 'lang_webshop');
-			$arr_settings['setting_replace_search_result_info|'.$option_type] = __("Replace Text", 'lang_webshop');
+			$arr_settings['setting_show_all_min|'.$option_type] = __("Min results to show number", 'lang_rentals');
+			$arr_settings['setting_webshop_replace_filter_products|'.$option_type] = __("Replace Text", 'lang_rentals');
+			$arr_settings['setting_replace_search_result_info|'.$option_type] = __("Replace Text", 'lang_rentals');
 
-			$arr_settings['setting_webshop_display_images|'.$option_type] = __("Display Images", 'lang_webshop');
+			$arr_settings['setting_webshop_display_images|'.$option_type] = __("Display Images", 'lang_rentals');
 
 			if(get_option('setting_webshop_display_images'.$this->option_type) != 'no')
 			{
-				$arr_settings['setting_webshop_max_file_uploads|'.$option_type] = __("Amount of Images", 'lang_webshop');
+				$arr_settings['setting_webshop_max_file_uploads|'.$option_type] = __("Amount of Images", 'lang_rentals');
 			}
 
 			if(is_plugin_active("mf_form/index.php"))
 			{
-				$arr_settings['setting_quote_form|'.$option_type] = __("Form for quote request", 'lang_webshop');
+				$arr_settings['setting_quote_form|'.$option_type] = __("Form for quote request", 'lang_rentals');
 
 				if(get_option('setting_quote_form'.$this->option_type) > 0)
 				{
-					$arr_settings['setting_search_max|'.$option_type] = __("Max results to send quote", 'lang_webshop');
-					$arr_settings['setting_webshop_replace_choose_product|'.$option_type] = __("Replace Text", 'lang_webshop');
-					$arr_settings['setting_webshop_switch_icon_on|'.$option_type] = __("Switch Icon", 'lang_webshop')." (".__("On", 'lang_webshop').")";
-					$arr_settings['setting_webshop_switch_icon_off|'.$option_type] = __("Switch Icon", 'lang_webshop')." (".__("Off", 'lang_webshop').")";
+					$arr_settings['setting_search_max|'.$option_type] = __("Max results to send quote", 'lang_rentals');
+					$arr_settings['setting_webshop_replace_choose_product|'.$option_type] = __("Replace Text", 'lang_rentals');
+					$arr_settings['setting_webshop_switch_icon_on|'.$option_type] = __("Switch Icon", 'lang_rentals')." (".__("On", 'lang_rentals').")";
+					$arr_settings['setting_webshop_switch_icon_off|'.$option_type] = __("Switch Icon", 'lang_rentals')." (".__("Off", 'lang_rentals').")";
 
-					$arr_settings['setting_require_search|'.$option_type] = __("Require user to make some kind of search", 'lang_webshop');
+					$arr_settings['setting_require_search|'.$option_type] = __("Require user to make some kind of search", 'lang_rentals');
 
 					if(get_option('setting_require_search'.$this->option_type) == 'yes')
 					{
-						$arr_settings['setting_webshop_replace_too_many|'.$option_type] = __("Replace Text", 'lang_webshop');
+						$arr_settings['setting_webshop_replace_too_many|'.$option_type] = __("Replace Text", 'lang_rentals');
 					}
 
-					$arr_settings['setting_webshop_replace_none_checked|'.$option_type] = __("Replace Text", 'lang_webshop');
-					$arr_settings['setting_replace_quote_request|'.$option_type] = __("Replace Text", 'lang_webshop');
+					$arr_settings['setting_webshop_replace_none_checked|'.$option_type] = __("Replace Text", 'lang_rentals');
+					$arr_settings['setting_replace_quote_request|'.$option_type] = __("Replace Text", 'lang_rentals');
 				}
 			}
 
 			if($this->get_post_name_for_type('interval') != '')
 			{
-				$arr_settings['setting_range_min_default|'.$option_type] = __("Default range minimum", 'lang_webshop');
-				$arr_settings['setting_range_choices|'.$option_type] = __("Custom range choices", 'lang_webshop');
+				$arr_settings['setting_range_min_default|'.$option_type] = __("Default range minimum", 'lang_rentals');
+				$arr_settings['setting_range_choices|'.$option_type] = __("Custom range choices", 'lang_rentals');
 			}
 
 			show_settings_fields(array('area' => $options_area.'|'.$option_type, 'object' => $this, 'settings' => $arr_settings));
@@ -1106,10 +1108,10 @@ class mf_rentals
 				add_settings_section($options_area.'|'.$option_type, "", array($this, $options_area."_callback"), BASE_OPTIONS_PAGE);
 
 				$arr_settings = array(
-					'setting_webshop_replace_favorites_info|'.$option_type => __("Replace Text", 'lang_webshop'),
-					'setting_webshop_replace_email_favorites|'.$option_type => __("Replace Text", 'lang_webshop'),
-					'setting_webshop_share_email_subject|'.$option_type => __("Email Subject", 'lang_webshop'),
-					'setting_webshop_share_email_content|'.$option_type => __("Email Content", 'lang_webshop'),
+					'setting_webshop_replace_favorites_info|'.$option_type => __("Replace Text", 'lang_rentals'),
+					'setting_webshop_replace_email_favorites|'.$option_type => __("Replace Text", 'lang_rentals'),
+					'setting_webshop_share_email_subject|'.$option_type => __("Email Subject", 'lang_rentals'),
+					'setting_webshop_share_email_content|'.$option_type => __("Email Content", 'lang_rentals'),
 				);
 
 				show_settings_fields(array('area' => $options_area.'|'.$option_type, 'object' => $this, 'settings' => $arr_settings));
@@ -1123,55 +1125,55 @@ class mf_rentals
 			add_settings_section($options_area.'|'.$option_type, "", array($this, $options_area."_callback"), BASE_OPTIONS_PAGE);
 
 			$arr_settings = array(
-				'setting_webshop_product_template|'.$option_type => __("Template for Presentation", 'lang_webshop'),
+				'setting_webshop_product_template|'.$option_type => __("Template for Presentation", 'lang_rentals'),
 			);
 
 			if(!(get_option('setting_webshop_product_template'.$this->option_type) > 0))
 			{
-				$arr_settings['setting_webshop_display_breadcrumbs|'.$option_type] = __("Display Breadcrumbs", 'lang_webshop');
+				$arr_settings['setting_webshop_display_breadcrumbs|'.$option_type] = __("Display Breadcrumbs", 'lang_rentals');
 			}
 
 			if(is_plugin_active("mf_form/index.php"))
 			{
 				if($this->has_categories(array('include_on' => 'products')) > 0)
 				{
-					$arr_settings['setting_webshop_allow_multiple_categories|'.$option_type] = __("Allow Multiple Categories", 'lang_webshop');
+					$arr_settings['setting_webshop_allow_multiple_categories|'.$option_type] = __("Allow Multiple Categories", 'lang_rentals');
 				}
 
 				if(get_option('setting_quote_form'.$this->option_type) > 0)
 				{
-					$arr_settings['setting_replace_add_to_search|'.$option_type] = __("Replace Text", 'lang_webshop');
-					$arr_settings['setting_replace_remove_from_search|'.$option_type] = __("Replace Text", 'lang_webshop');
-					$arr_settings['setting_replace_return_to_search|'.$option_type] = __("Replace Text", 'lang_webshop');
-					$arr_settings['setting_replace_search_for_another|'.$option_type] = __("Replace Text", 'lang_webshop');
+					$arr_settings['setting_replace_add_to_search|'.$option_type] = __("Replace Text", 'lang_rentals');
+					$arr_settings['setting_replace_remove_from_search|'.$option_type] = __("Replace Text", 'lang_rentals');
+					$arr_settings['setting_replace_return_to_search|'.$option_type] = __("Replace Text", 'lang_rentals');
+					$arr_settings['setting_replace_search_for_another|'.$option_type] = __("Replace Text", 'lang_rentals');
 				}
 
-				$arr_settings['setting_webshop_user_updated_notification|'.$option_type] = __("Reminder if not updated", 'lang_webshop');
+				$arr_settings['setting_webshop_user_updated_notification|'.$option_type] = __("Reminder if not updated", 'lang_rentals');
 
 				if(get_option('setting_webshop_user_updated_notification'.$this->option_type) > 0)
 				{
-					$arr_settings['setting_webshop_user_updated_notification_subject|'.$option_type] = __("E-mail Subject", 'lang_webshop');
-					$arr_settings['setting_webshop_user_updated_notification_content|'.$option_type] = __("E-mail Content", 'lang_webshop');
+					$arr_settings['setting_webshop_user_updated_notification_subject|'.$option_type] = __("E-mail Subject", 'lang_rentals');
+					$arr_settings['setting_webshop_user_updated_notification_content|'.$option_type] = __("E-mail Content", 'lang_rentals');
 				}
 
-				$arr_settings['setting_quote_form_single|'.$option_type] = __("Form for quote request", 'lang_webshop')." (".__("single", 'lang_webshop').")";
+				$arr_settings['setting_quote_form_single|'.$option_type] = __("Form for quote request", 'lang_rentals')." (".__("single", 'lang_rentals').")";
 
 				if(get_option('setting_quote_form_single'.$this->option_type) > 0)
 				{
-					$arr_settings['setting_replace_send_request_for_quote|'.$option_type] = __("Replace Text", 'lang_webshop');
+					$arr_settings['setting_replace_send_request_for_quote|'.$option_type] = __("Replace Text", 'lang_rentals');
 
-					$arr_settings['setting_webshop_force_individual_contact|'.$option_type] = __("Force Individual Contact", 'lang_webshop');
+					$arr_settings['setting_webshop_force_individual_contact|'.$option_type] = __("Force Individual Contact", 'lang_rentals');
 				}
 
-				$arr_settings['setting_webshop_title_fields_amount|'.$option_type] = __("Amount of Fields for Title", 'lang_webshop');
-				$arr_settings['setting_webshop_replace_product_title|'.$option_type] = __("Title Label", 'lang_webshop');
-				$arr_settings['setting_webshop_replace_product_description|'.$option_type] = __("Title Description", 'lang_webshop');
+				$arr_settings['setting_webshop_title_fields_amount|'.$option_type] = __("Amount of Fields for Title", 'lang_rentals');
+				$arr_settings['setting_webshop_replace_product_title|'.$option_type] = __("Title Label", 'lang_rentals');
+				$arr_settings['setting_webshop_replace_product_description|'.$option_type] = __("Title Description", 'lang_rentals');
 
-				$arr_settings['setting_webshop_replace_title_information|'.$option_type] = __("Replace Text", 'lang_webshop');
-				$arr_settings['setting_webshop_replace_title_settings|'.$option_type] = __("Replace Text", 'lang_webshop');
-				$arr_settings['setting_webshop_replace_title_contact_info|'.$option_type] = __("Replace Text", 'lang_webshop');
-				$arr_settings['setting_webshop_replace_title_quick_info|'.$option_type] = __("Replace Text", 'lang_webshop');
-				$arr_settings['setting_webshop_replace_title_properties|'.$option_type] = __("Replace Text", 'lang_webshop');
+				$arr_settings['setting_webshop_replace_title_information|'.$option_type] = __("Replace Text", 'lang_rentals');
+				$arr_settings['setting_webshop_replace_title_settings|'.$option_type] = __("Replace Text", 'lang_rentals');
+				$arr_settings['setting_webshop_replace_title_contact_info|'.$option_type] = __("Replace Text", 'lang_rentals');
+				$arr_settings['setting_webshop_replace_title_quick_info|'.$option_type] = __("Replace Text", 'lang_rentals');
+				$arr_settings['setting_webshop_replace_title_properties|'.$option_type] = __("Replace Text", 'lang_rentals');
 			}
 
 			show_settings_fields(array('area' => $options_area.'|'.$option_type, 'object' => $this, 'settings' => $arr_settings));
@@ -1187,22 +1189,22 @@ class mf_rentals
 
 				$arr_settings = array();
 
-				$arr_settings['setting_webshop_symbol_inactive_image|'.$option_type] = __("Symbol inactive image", 'lang_webshop');
-				$arr_settings['setting_webshop_symbol_active_image|'.$option_type] = __("Symbol active image", 'lang_webshop');
+				$arr_settings['setting_webshop_symbol_inactive_image|'.$option_type] = __("Symbol inactive image", 'lang_rentals');
+				$arr_settings['setting_webshop_symbol_active_image|'.$option_type] = __("Symbol active image", 'lang_rentals');
 
 				if($ghost_post_name != '')
 				{
-					$arr_settings['setting_ghost_inactive_image|'.$option_type] = __("Ghost symbol inactive image", 'lang_webshop');
-					$arr_settings['setting_ghost_active_image|'.$option_type] = __("Ghost symbol active image", 'lang_webshop');
+					$arr_settings['setting_ghost_inactive_image|'.$option_type] = __("Ghost symbol inactive image", 'lang_rentals');
+					$arr_settings['setting_ghost_active_image|'.$option_type] = __("Ghost symbol active image", 'lang_rentals');
 				}
 
 				if(get_option('setting_webshop_symbol_active_image'.$this->option_type) == '')
 				{
-					$arr_settings['setting_webshop_symbol_inactive|'.$option_type] = __("Symbol inactive color", 'lang_webshop');
-					$arr_settings['setting_webshop_symbol_active|'.$option_type] = __("Symbol active color", 'lang_webshop');
+					$arr_settings['setting_webshop_symbol_inactive|'.$option_type] = __("Symbol inactive color", 'lang_rentals');
+					$arr_settings['setting_webshop_symbol_active|'.$option_type] = __("Symbol active color", 'lang_rentals');
 				}
 
-				$arr_settings['setting_map_info|'.$option_type] = __("Map Information", 'lang_webshop');
+				$arr_settings['setting_map_info|'.$option_type] = __("Map Information", 'lang_rentals');
 
 				show_settings_fields(array('area' => $options_area.'|'.$option_type, 'object' => $this, 'settings' => $arr_settings));
 			//}
@@ -1215,7 +1217,7 @@ class mf_rentals
 	function settings_webshop_parent_callback()
 	{
 		$setting_key = get_setting_key(__FUNCTION__);
-		$setting_webshop_replace_webshop = __("Webshop", 'lang_webshop');
+		$setting_webshop_replace_webshop = __("Webshop", 'lang_rentals');
 
 		echo settings_header($setting_key, $setting_webshop_replace_webshop);
 	}
@@ -1257,12 +1259,12 @@ class mf_rentals
 			$setting_key = get_setting_key(__FUNCTION__, $args);
 			$option = get_option($setting_key);
 
-			echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Webshop", 'lang_webshop')));
+			echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Webshop", 'lang_rentals')));
 		}
 
 		function setting_webshop_local_storage_callback()
 		{
-			echo show_button(array('type' => 'button', 'name' => 'btnLocalStorageClear', 'text' => __("Clear", 'lang_webshop'), 'class' => 'button'))
+			echo show_button(array('type' => 'button', 'name' => 'btnLocalStorageClear', 'text' => __("Clear", 'lang_rentals'), 'class' => 'button'))
 			."<div id='storage_response'></div>";
 		}
 
@@ -1270,7 +1272,7 @@ class mf_rentals
 	{
 		$setting_key = get_setting_key(__FUNCTION__);
 
-		echo settings_header($setting_key, __("Webshop", 'lang_webshop')." - ".__("Search", 'lang_webshop'));
+		echo settings_header($setting_key, __("Webshop", 'lang_rentals')." - ".__("Search", 'lang_rentals'));
 	}
 
 		function setting_webshop_display_sort_callback($args = array())
@@ -1300,9 +1302,9 @@ class mf_rentals
 			$option = get_option_or_default($setting_key, 'yes');
 
 			$arr_data = array(
-				'yes' => __("Yes", 'lang_webshop'),
-				'button' => __("Yes", 'lang_webshop')." (".__("Hidden behind a button", 'lang_webshop').")",
-				'no' => __("No", 'lang_webshop'),
+				'yes' => __("Yes", 'lang_rentals'),
+				'button' => __("Yes", 'lang_rentals')." (".__("Hidden behind a button", 'lang_rentals').")",
+				'no' => __("No", 'lang_rentals'),
 			);
 
 			echo show_select(array('data' => $arr_data, 'name' => $setting_key, 'value' => $option));
@@ -1312,7 +1314,7 @@ class mf_rentals
 	{
 		$setting_key = get_setting_key(__FUNCTION__);
 
-		echo settings_header($setting_key, __("Webshop", 'lang_webshop')." - ".__("Map", 'lang_webshop'));
+		echo settings_header($setting_key, __("Webshop", 'lang_rentals')." - ".__("Map", 'lang_rentals'));
 	}
 
 		function setting_map_visibility_callback($args = array())
@@ -1383,7 +1385,7 @@ class mf_rentals
 		$option_type = $this->get_settings_header_type($args);
 
 		$setting_key = get_setting_key(__FUNCTION__, array('child' => $option_type));
-		$setting_webshop_replace_webshop = get_option_or_default('setting_webshop_replace_webshop'.($option_type != '' ? "_".$option_type : ''), __("Webshop", 'lang_webshop'));
+		$setting_webshop_replace_webshop = get_option_or_default('setting_webshop_replace_webshop'.($option_type != '' ? "_".$option_type : ''), __("Webshop", 'lang_rentals'));
 
 		echo settings_header($setting_key, $setting_webshop_replace_webshop);
 	}
@@ -1393,9 +1395,9 @@ class mf_rentals
 		$option_type = $this->get_settings_header_type($args);
 
 		$setting_key = get_setting_key(__FUNCTION__, array('child' => $option_type));
-		$setting_webshop_replace_webshop = get_option_or_default('setting_webshop_replace_webshop'.($option_type != '' ? "_".$option_type : ''), __("Webshop", 'lang_webshop'));
+		$setting_webshop_replace_webshop = get_option_or_default('setting_webshop_replace_webshop'.($option_type != '' ? "_".$option_type : ''), __("Webshop", 'lang_rentals'));
 
-		echo settings_header($setting_key, $setting_webshop_replace_webshop." - ".__("Map", 'lang_webshop'));
+		echo settings_header($setting_key, $setting_webshop_replace_webshop." - ".__("Map", 'lang_rentals'));
 	}
 
 	function settings_webshop_favorites_callback($args = array())
@@ -1403,9 +1405,9 @@ class mf_rentals
 		$option_type = $this->get_settings_header_type($args);
 
 		$setting_key = get_setting_key(__FUNCTION__, array('child' => $option_type));
-		$setting_webshop_replace_webshop = get_option_or_default('setting_webshop_replace_webshop'.($option_type != '' ? "_".$option_type : ''), __("Webshop", 'lang_webshop'));
+		$setting_webshop_replace_webshop = get_option_or_default('setting_webshop_replace_webshop'.($option_type != '' ? "_".$option_type : ''), __("Webshop", 'lang_rentals'));
 
-		echo settings_header($setting_key, $setting_webshop_replace_webshop." - ".__("Favorites", 'lang_webshop'));
+		echo settings_header($setting_key, $setting_webshop_replace_webshop." - ".__("Favorites", 'lang_rentals'));
 	}
 
 	function settings_webshop_product_callback($args = array())
@@ -1413,8 +1415,8 @@ class mf_rentals
 		$option_type = $this->get_settings_header_type($args);
 
 		$setting_key = get_setting_key(__FUNCTION__, array('child' => $option_type));
-		$setting_webshop_replace_webshop = get_option_or_default('setting_webshop_replace_webshop'.($option_type != '' ? "_".$option_type : ''), __("Webshop", 'lang_webshop'));
-		$setting_webshop_replace_product = get_option_or_default('setting_webshop_replace_product'.($option_type != '' ? "_".$option_type : ''), __("Product", 'lang_webshop'));
+		$setting_webshop_replace_webshop = get_option_or_default('setting_webshop_replace_webshop'.($option_type != '' ? "_".$option_type : ''), __("Webshop", 'lang_rentals'));
+		$setting_webshop_replace_product = get_option_or_default('setting_webshop_replace_product'.($option_type != '' ? "_".$option_type : ''), __("Product", 'lang_rentals'));
 
 		echo settings_header($setting_key, $setting_webshop_replace_webshop." - ".$setting_webshop_replace_product);
 	}
@@ -1424,9 +1426,9 @@ class mf_rentals
 		$option_type = $this->get_settings_header_type($args);
 
 		$setting_key = get_setting_key(__FUNCTION__, array('child' => $option_type));
-		$setting_webshop_replace_webshop = get_option_or_default('setting_webshop_replace_webshop'.($option_type != '' ? "_".$option_type : ''), __("Webshop", 'lang_webshop'));
+		$setting_webshop_replace_webshop = get_option_or_default('setting_webshop_replace_webshop'.($option_type != '' ? "_".$option_type : ''), __("Webshop", 'lang_rentals'));
 
-		echo settings_header($setting_key, $setting_webshop_replace_webshop." - ".__("Search", 'lang_webshop'));
+		echo settings_header($setting_key, $setting_webshop_replace_webshop." - ".__("Search", 'lang_rentals'));
 	}
 
 	function setting_webshop_replace_product_callback($args = array())
@@ -1434,7 +1436,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key);
 
-		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Product", 'lang_webshop')));
+		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Product", 'lang_rentals')));
 	}
 
 	function setting_webshop_replace_products_callback($args = array())
@@ -1442,7 +1444,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key);
 
-		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Products", 'lang_webshop')));
+		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Products", 'lang_rentals')));
 	}
 
 	function setting_webshop_replace_enter_title_here_callback($args = array())
@@ -1450,7 +1452,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key);
 
-		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Enter title here", 'lang_webshop')));
+		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Enter title here", 'lang_rentals')));
 	}
 
 	function setting_webshop_replace_products_slug_callback($args = array())
@@ -1482,7 +1484,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key);
 
-		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Categories", 'lang_webshop')));
+		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Categories", 'lang_rentals')));
 	}
 
 	function setting_webshop_replace_doc_types_callback($args = array())
@@ -1490,7 +1492,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key);
 
-		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Filters", 'lang_webshop')));
+		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Filters", 'lang_rentals')));
 	}
 
 	function setting_webshop_replace_filter_products_callback($args = array())
@@ -1498,7 +1500,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key);
 
-		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Filter amongst %s products", 'lang_webshop'), 'description' => __("Disable by adding any single character", 'lang_webshop')));
+		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Filter amongst %s products", 'lang_rentals'), 'description' => __("Disable by adding any single character", 'lang_rentals')));
 	}
 
 	function setting_replace_search_result_info_callback($args = array())
@@ -1506,7 +1508,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key);
 
-		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Your search matches %s products", 'lang_webshop'), 'description' => __("Disable by adding any single character", 'lang_webshop')));
+		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Your search matches %s products", 'lang_rentals'), 'description' => __("Disable by adding any single character", 'lang_rentals')));
 	}
 
 	function setting_webshop_replace_favorites_info_callback($args = array())
@@ -1514,7 +1516,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key);
 
-		echo show_textarea(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Here are your %s saved products", 'lang_webshop'), 'description' => __("Disable by adding any single character", 'lang_webshop')));
+		echo show_textarea(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Here are your %s saved products", 'lang_rentals'), 'description' => __("Disable by adding any single character", 'lang_rentals')));
 	}
 
 	function setting_replace_send_request_for_quote_callback($args = array())
@@ -1522,7 +1524,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key);
 
-		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Send request for quote", 'lang_webshop')));
+		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Send request for quote", 'lang_rentals')));
 	}
 
 	function setting_webshop_title_fields_amount_callback($args = array())
@@ -1530,7 +1532,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key, 1);
 
-		echo show_select(array('data' =>  array(1 => __("One Field", 'lang_webshop'), 2 => __("Two Fields", 'lang_webshop')), 'name' => $setting_key, 'value' => $option));
+		echo show_select(array('data' =>  array(1 => __("One Field", 'lang_rentals'), 2 => __("Two Fields", 'lang_rentals')), 'name' => $setting_key, 'value' => $option));
 	}
 
 	function setting_webshop_replace_product_title_callback($args = array())
@@ -1538,7 +1540,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key);
 
-		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Title", 'lang_webshop')));
+		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Title", 'lang_rentals')));
 	}
 
 	function setting_webshop_replace_product_description_callback($args = array())
@@ -1547,9 +1549,9 @@ class mf_rentals
 		$option = get_option($setting_key);
 
 		$option_type = $this->get_settings_header_type($args);
-		$name_product = get_option_or_default('setting_webshop_replace_product'.($option_type != '' ? "_".$option_type : ''), __("Product", 'lang_webshop'));
+		$name_product = get_option_or_default('setting_webshop_replace_product'.($option_type != '' ? "_".$option_type : ''), __("Product", 'lang_rentals'));
 
-		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => sprintf(__("Your name or the name of the %s", 'lang_webshop'), $name_product)));
+		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => sprintf(__("Your name or the name of the %s", 'lang_rentals'), $name_product)));
 	}
 
 	function setting_webshop_replace_title_information_callback($args = array())
@@ -1557,7 +1559,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key);
 
-		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Information", 'lang_webshop')));
+		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Information", 'lang_rentals')));
 	}
 
 	function setting_webshop_replace_title_settings_callback($args = array())
@@ -1565,7 +1567,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key);
 
-		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Settings", 'lang_webshop')));
+		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Settings", 'lang_rentals')));
 	}
 
 	function setting_webshop_replace_title_contact_info_callback($args = array())
@@ -1573,7 +1575,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key);
 
-		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Contact Info", 'lang_webshop')));
+		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Contact Info", 'lang_rentals')));
 	}
 
 	function setting_webshop_replace_title_quick_info_callback($args = array())
@@ -1581,7 +1583,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key);
 
-		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Quick Info", 'lang_webshop')));
+		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Quick Info", 'lang_rentals')));
 	}
 
 	function setting_webshop_replace_title_properties_callback($args = array())
@@ -1589,7 +1591,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key);
 
-		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Properties", 'lang_webshop')));
+		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Properties", 'lang_rentals')));
 	}
 
 	function setting_webshop_replace_choose_product_callback($args = array())
@@ -1597,7 +1599,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key);
 
-		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Choose", 'lang_webshop')));
+		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Choose", 'lang_rentals')));
 	}
 
 	function setting_webshop_display_images_callback($args = array())
@@ -1645,7 +1647,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key);
 
-		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Add to Search", 'lang_webshop')));
+		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Add to Search", 'lang_rentals')));
 	}
 
 	function setting_replace_remove_from_search_callback($args = array())
@@ -1653,7 +1655,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key);
 
-		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Remove from Search", 'lang_webshop')));
+		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Remove from Search", 'lang_rentals')));
 	}
 
 	function setting_replace_return_to_search_callback($args = array())
@@ -1661,7 +1663,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key);
 
-		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Return to Search", 'lang_webshop')));
+		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Return to Search", 'lang_rentals')));
 	}
 
 	function setting_replace_search_for_another_callback($args = array())
@@ -1669,7 +1671,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key);
 
-		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Search for Another", 'lang_webshop')));
+		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Search for Another", 'lang_rentals')));
 	}
 
 	function setting_replace_quote_request_callback($args = array())
@@ -1677,9 +1679,9 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key);
 
-		$name_products = get_option_or_default('setting_webshop_replace_products', __("Products", 'lang_webshop'));
+		$name_products = get_option_or_default('setting_webshop_replace_products', __("Products", 'lang_rentals'));
 
-		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Send request for quote to", 'lang_webshop')." %s ".strtolower($name_products)));
+		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Send request for quote to", 'lang_rentals')." %s ".strtolower($name_products)));
 	}
 
 	function setting_webshop_replace_none_checked_callback($args = array())
@@ -1687,7 +1689,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key);
 
-		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("You have to choose at least one product to proceed", 'lang_webshop')));
+		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("You have to choose at least one product to proceed", 'lang_rentals')));
 	}
 
 	function setting_webshop_replace_email_favorites_callback($args = array())
@@ -1695,7 +1697,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key);
 
-		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Email Your Products", 'lang_webshop')));
+		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Email Your Products", 'lang_rentals')));
 	}
 
 	function setting_webshop_replace_too_many_callback($args = array())
@@ -1703,13 +1705,13 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key);
 
-		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("In order to send a quote you have to be specific what you want by filtering", 'lang_webshop')));
+		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("In order to send a quote you have to be specific what you want by filtering", 'lang_rentals')));
 	}
 
 	function setting_webshop_share_email_subject_callback($args = array())
 	{
 		$setting_key = get_setting_key(__FUNCTION__, $args);
-		$option = get_option($setting_key, __("I would like to share these products that I like", 'lang_webshop'));
+		$option = get_option($setting_key, __("I would like to share these products that I like", 'lang_rentals'));
 
 		echo show_textfield(array('name' => $setting_key, 'value' => $option));
 	}
@@ -1717,7 +1719,7 @@ class mf_rentals
 	function setting_webshop_share_email_content_callback($args = array())
 	{
 		$setting_key = get_setting_key(__FUNCTION__, $args);
-		$option = get_option($setting_key, sprintf(__("Here are my favorites (%s)", 'lang_webshop'), "[url]"));
+		$option = get_option($setting_key, sprintf(__("Here are my favorites (%s)", 'lang_rentals'), "[url]"));
 
 		echo show_wp_editor(array('name' => $setting_key, 'value' => $option,
 			'class' => "hide_media_button hide_tabs",
@@ -1731,7 +1733,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key);
 
-		$suffix = ($option == '' ? "<a href='//developers.google.com/maps/get-started'>".__("Get yours here", 'lang_webshop')."</a>" : "");
+		$suffix = ($option == '' ? "<a href='//developers.google.com/maps/get-started'>".__("Get yours here", 'lang_rentals')."</a>" : "");
 
 		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'suffix' => $suffix));
 	}
@@ -1741,7 +1743,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key);
 
-		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Show Map", 'lang_webshop')));
+		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Show Map", 'lang_rentals')));
 	}
 
 	function setting_webshop_replace_hide_map_callback($args = array())
@@ -1749,7 +1751,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key);
 
-		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Hide Map", 'lang_webshop')));
+		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => __("Hide Map", 'lang_rentals')));
 	}
 
 	function setting_map_info_callback($args = array())
@@ -1769,7 +1771,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key, 10);
 
-		echo show_textfield(array('type' => 'number', 'name' => $setting_key, 'value' => $option, 'xtra' => "min='0' max='100'", 'suffix' => "%", 'description' => __("If no lower value is entered in a range, this percentage is used to calculate the lower end of the range", 'lang_webshop')));
+		echo show_textfield(array('type' => 'number', 'name' => $setting_key, 'value' => $option, 'xtra' => "min='0' max='100'", 'suffix' => "%", 'description' => __("If no lower value is entered in a range, this percentage is used to calculate the lower end of the range", 'lang_rentals')));
 	}
 
 	function setting_range_choices_callback($args = array())
@@ -1793,7 +1795,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option_or_default($setting_key, 30);
 
-		echo show_textfield(array('type' => 'number', 'name' => $setting_key, 'value' => $option, 'xtra' => "min='0' max='100'", 'suffix' => sprintf(__("%d will hide the link in the form", 'lang_webshop'), 0)));
+		echo show_textfield(array('type' => 'number', 'name' => $setting_key, 'value' => $option, 'xtra' => "min='0' max='100'", 'suffix' => sprintf(__("%d will hide the link in the form", 'lang_rentals'), 0)));
 	}
 
 	function setting_require_search_callback($args = array())
@@ -1887,7 +1889,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key);
 
-		echo show_textfield(array('type' => 'number', 'name' => $setting_key, 'value' => $option, 'xtra' => "min='0' max='12'", 'suffix' => __("months", 'lang_webshop'), 'description' => __("This will send a message to every user that has not updated their information within the amount of months chosen", 'lang_webshop')));
+		echo show_textfield(array('type' => 'number', 'name' => $setting_key, 'value' => $option, 'xtra' => "min='0' max='12'", 'suffix' => __("months", 'lang_rentals'), 'description' => __("This will send a message to every user that has not updated their information within the amount of months chosen", 'lang_rentals')));
 	}
 
 	function setting_webshop_user_updated_notification_subject_callback($args = array())
@@ -1942,7 +1944,7 @@ class mf_rentals
 		$setting_key = get_setting_key(__FUNCTION__, $args);
 		$option = get_option($setting_key, 'yes');
 
-		echo show_select(array('data' => get_yes_no_for_select(), 'name' => $setting_key, 'value' => $option, 'description' => __("This will allow visitors to send individual quote requests all the time, otherwise it is only for first time visitors coming directly to the page that have this option", 'lang_webshop')));
+		echo show_select(array('data' => get_yes_no_for_select(), 'name' => $setting_key, 'value' => $option, 'description' => __("This will allow visitors to send individual quote requests all the time, otherwise it is only for first time visitors coming directly to the page that have this option", 'lang_rentals')));
 	}
 
 	function setting_webshop_payment_form_callback($args = array())
@@ -2000,11 +2002,11 @@ class mf_rentals
 
 		mf_enqueue_script('script_webshop', $plugin_include_url."script.js", array(
 			'plugins_url' => $plugin_base_url,
-			//'read_more' => __("Read More", 'lang_webshop'),
+			//'read_more' => __("Read More", 'lang_rentals'),
 			'symbol_active_image' => $symbol_active_image,
 			'symbol_active' => trim($symbol_active, "#"),
 			'mobile_breakpoint' => $setting_mobile_breakpoint,
-			'product_missing' => get_option_or_default('setting_webshop_replace_none_checked', __("You have to choose at least one product to proceed", 'lang_webshop')),
+			'product_missing' => get_option_or_default('setting_webshop_replace_none_checked', __("You have to choose at least one product to proceed", 'lang_rentals')),
 		));
 	}
 
@@ -2023,7 +2025,7 @@ class mf_rentals
 				if(check_var('page') == 'settings_mf_base')
 				{
 					mf_enqueue_script('script_storage', $plugin_base_include_url."jquery.Storage.js");
-					mf_enqueue_script('script_webshop_wp', $plugin_include_url."script_wp.js", array('cleared_message' => sprintf(__("%s was successfully cleared on this device", 'lang_webshop'), "Local Storage")));
+					mf_enqueue_script('script_webshop_wp', $plugin_include_url."script_wp.js", array('cleared_message' => sprintf(__("%s was successfully cleared on this device", 'lang_rentals'), "Local Storage")));
 				}
 			break;
 
@@ -2037,9 +2039,9 @@ class mf_rentals
 
 		if(function_exists('wp_add_privacy_policy_content'))
 		{
-			$content = sprintf(__("When searching we store information in the so called %s in the visiting browser. This data is only used on the site to remember what was last saved and not sent forward to the server unless the visitor fullfills an inquiry. Then the information is sent along with the form to distribute the inquiry to the correct recipients.", 'lang_webshop'), 'localStorage');
+			$content = sprintf(__("When searching we store information in the so called %s in the visiting browser. This data is only used on the site to remember what was last saved and not sent forward to the server unless the visitor fullfills an inquiry. Then the information is sent along with the form to distribute the inquiry to the correct recipients.", 'lang_rentals'), 'localStorage');
 
-			wp_add_privacy_policy_content(get_option_or_default('setting_webshop_replace_webshop', __("Webshop", 'lang_webshop')), $content);
+			wp_add_privacy_policy_content(get_option_or_default('setting_webshop_replace_webshop', __("Webshop", 'lang_rentals')), $content);
 		}
 	}
 
@@ -2108,19 +2110,19 @@ class mf_rentals
 				mf_enqueue_script('script_webshop_admin_views', $plugin_include_url."backbone/bb.admin.views.js", array(
 					'event_max_length' => $this->event_max_length,
 					'calendar_meta_prefix' => $obj_calendar->meta_prefix,
-					'confirm_question' => __("Are you sure?", 'lang_webshop'),
+					'confirm_question' => __("Are you sure?", 'lang_rentals'),
 				));
 
 				$setting_webshop_title_fields_amount = get_option_or_default('setting_webshop_title_fields_amount'.$this->option_type, 1);
-				$name_title = get_option_or_default('setting_webshop_replace_product_title'.$this->option_type, __("Title", 'lang_webshop'));
-				$name_description = get_option_or_default('setting_webshop_replace_product_description'.$this->option_type, sprintf(__("Your name or the name of the %s", 'lang_webshop'), "<%= name_product %>"));
+				$name_title = get_option_or_default('setting_webshop_replace_product_title'.$this->option_type, __("Title", 'lang_rentals'));
+				$name_description = get_option_or_default('setting_webshop_replace_product_description'.$this->option_type, sprintf(__("Your name or the name of the %s", 'lang_rentals'), "<%= name_product %>"));
 
 				$templates .= "<script type='text/template' id='template_admin_webshop_list'>
 					<table class='widefat striped'>
 						<thead>
 							<tr>
-								<th>".__("Name", 'lang_webshop')."</th>
-								<th>".__("Updated", 'lang_webshop')."</th>
+								<th>".__("Name", 'lang_rentals')."</th>
+								<th>".__("Updated", 'lang_rentals')."</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -2132,9 +2134,9 @@ class mf_rentals
 										<td>
 											<%= product.post_title %>
 											<div class='row-actions'>"
-												."<a href='#admin/webshop/edit/<%= product.post_id %>'>".__("Edit", 'lang_webshop')."</a>"
-												.(IS_ADMINISTRATOR ? "<a href='".admin_url("post.php?post=<%= product.post_id %>&action=edit")."'>".__("Edit in Admin", 'lang_webshop')."</a>" : "")
-												."<a href='<%= product.post_url %>'>".__("View", 'lang_webshop')."</a>"
+												."<a href='#admin/webshop/edit/<%= product.post_id %>'>".__("Edit", 'lang_rentals')."</a>"
+												.(IS_ADMINISTRATOR ? "<a href='".admin_url("post.php?post=<%= product.post_id %>&action=edit")."'>".__("Edit in Admin", 'lang_rentals')."</a>" : "")
+												."<a href='<%= product.post_url %>'>".__("View", 'lang_rentals')."</a>"
 											."</div>
 										</td>
 										<td><%= product.post_modified %></td>
@@ -2144,7 +2146,7 @@ class mf_rentals
 
 							else
 							{ %>
-								<tr><td colspan='2'>".__("There is nothing to show", 'lang_webshop')."</td></tr>
+								<tr><td colspan='2'>".__("There is nothing to show", 'lang_rentals')."</td></tr>
 							<% } %>
 						</tbody>
 					</table>
@@ -2176,7 +2178,7 @@ class mf_rentals
 							break;
 						}
 
-						//.show_textfield(array('name' => 'post_name', 'text' => __("URL", 'lang_webshop'), 'value' => "<%= post_name %>"))
+						//.show_textfield(array('name' => 'post_name', 'text' => __("URL", 'lang_rentals'), 'value' => "<%= post_name %>"))
 
 						$templates .= "<% _.each(meta_boxes, function(meta_box)
 						{ %>
@@ -2281,11 +2283,11 @@ class mf_rentals
 																	<% _.each(meta_field.children, function(meta_child_value, meta_child_key)
 																	{ %>
 																		<li>
-																			<h3>".__("Add New", 'lang_webshop')."</h3>
+																			<h3>".__("Add New", 'lang_rentals')."</h3>
 																			<div".apply_filters('get_flex_flow', "").">"
-																				.show_textfield(array('name' => '<%= meta_field.id %>_name[]', 'value' => "<%= meta_child_value.name %>", 'xtra_class' => "event_name", 'maxlength' => 50, 'placeholder' => __("Title", 'lang_webshop'), 'suffix' => "<i class='fa fa-trash fa-lg red' title='".__("Delete", 'lang_webshop')." <%= meta_field.name %>'></i>"))
+																				.show_textfield(array('name' => '<%= meta_field.id %>_name[]', 'value' => "<%= meta_child_value.name %>", 'xtra_class' => "event_name", 'maxlength' => 50, 'placeholder' => __("Title", 'lang_rentals'), 'suffix' => "<i class='fa fa-trash fa-lg red' title='".__("Delete", 'lang_rentals')." <%= meta_field.name %>'></i>"))
 																				.input_hidden(array('name' => '<%= meta_field.id %>_coordinates[]', 'value' => "<%= meta_child_value.coordinates %>", 'xtra' => "class='maps_coordinates'"))
-																				.show_textfield(array('name' => '<%= meta_field.id %>_location[]', 'value' => "<%= meta_child_value.location %>", 'xtra_class' => "maps_location", 'maxlength' => 50, 'placeholder' => __("Street 123, City", 'lang_webshop')))
+																				.show_textfield(array('name' => '<%= meta_field.id %>_location[]', 'value' => "<%= meta_child_value.location %>", 'xtra_class' => "maps_location", 'maxlength' => 50, 'placeholder' => __("Street 123, City", 'lang_rentals')))
 																			."</div>
 																			<% if(Object.keys(meta_child_value.fields).length > 0)
 																			{
@@ -2303,11 +2305,11 @@ class mf_rentals
 
 																						case 'date': %>
 																							<div class='flex_flow tight'>"
-																								.show_textfield(array('type' => 'date', 'name' => '<%= meta_field.id %>_start_date[]', 'text' => __("Start Date", 'lang_webshop'), 'value' => "<%= meta_child_value.start_date %>", 'xtra_class' => "start_date", 'placeholder' => date("Y-m-d")))
-																								.show_textfield(array('type' => 'time', 'name' => '<%= meta_field.id %>_start_time[]', 'text' => __("Time", 'lang_webshop'), 'value' => "<%= meta_child_value.start_time %>", 'xtra_class' => "start_time", 'placeholder' => date("H:00")))
+																								.show_textfield(array('type' => 'date', 'name' => '<%= meta_field.id %>_start_date[]', 'text' => __("Start Date", 'lang_rentals'), 'value' => "<%= meta_child_value.start_date %>", 'xtra_class' => "start_date", 'placeholder' => date("Y-m-d")))
+																								.show_textfield(array('type' => 'time', 'name' => '<%= meta_field.id %>_start_time[]', 'text' => __("Time", 'lang_rentals'), 'value' => "<%= meta_child_value.start_time %>", 'xtra_class' => "start_time", 'placeholder' => date("H:00")))
 																								//."<h3>-</h3>"
-																								.show_textfield(array('type' => 'date', 'name' => '<%= meta_field.id %>_end_date[]', 'text' => __("End Date", 'lang_webshop'), 'value' => "<%= meta_child_value.end_date %>", 'placeholder' => date("Y-m-d")))
-																								.show_textfield(array('type' => 'time', 'name' => '<%= meta_field.id %>_end_time[]', 'text' => __("Time", 'lang_webshop'), 'value' => "<%= meta_child_value.end_time %>", 'placeholder' => date("H:00")))
+																								.show_textfield(array('type' => 'date', 'name' => '<%= meta_field.id %>_end_date[]', 'text' => __("End Date", 'lang_rentals'), 'value' => "<%= meta_child_value.end_date %>", 'placeholder' => date("Y-m-d")))
+																								.show_textfield(array('type' => 'time', 'name' => '<%= meta_field.id %>_end_time[]', 'text' => __("Time", 'lang_rentals'), 'value' => "<%= meta_child_value.end_time %>", 'placeholder' => date("H:00")))
 																								.input_hidden(array('name' => '<%= meta_field.id %>_id[]', 'value' => "<%= meta_child_key %>"))
 																							."</div>
 																						<% break;
@@ -2343,7 +2345,7 @@ class mf_rentals
 																					}
 																				});
 																			} %>"
-																			.show_textarea(array('name' => '<%= meta_field.id %>_text[]', 'text' => sprintf(__("Information about %s", 'lang_webshop'), "<%= meta_field.name %>"), 'value' => "<%= meta_child_value.text %>", 'xtra' => " maxlength='250'", 'placeholder' => __("Add important information here", 'lang_webshop')))
+																			.show_textarea(array('name' => '<%= meta_field.id %>_text[]', 'text' => sprintf(__("Information about %s", 'lang_rentals'), "<%= meta_field.name %>"), 'value' => "<%= meta_child_value.text %>", 'xtra' => " maxlength='250'", 'placeholder' => __("Add important information here", 'lang_rentals')))
 																		."</li>
 																	<% }); %>
 																</ul>
@@ -2361,7 +2363,7 @@ class mf_rentals
 													break;
 
 													case 'file_advanced': %>"
-														.get_media_button(array('name' => '<%= meta_field.id %>', 'label' => "<%= meta_field.name %>", 'text' => __("Add", 'lang_webshop'), 'value' => "<%= meta_field.value %>", 'multiple' => true, 'max_file_uploads' => "<%= meta_field.max_file_uploads %>", 'description' => "<%= meta_field.desc %>")) // 'mime_type' => "<%= meta_field.mime_type %>"
+														.get_media_button(array('name' => '<%= meta_field.id %>', 'label' => "<%= meta_field.name %>", 'text' => __("Add", 'lang_rentals'), 'value' => "<%= meta_field.value %>", 'multiple' => true, 'max_file_uploads' => "<%= meta_field.max_file_uploads %>", 'description' => "<%= meta_field.desc %>")) // 'mime_type' => "<%= meta_field.mime_type %>"
 													."<% break;
 
 													case 'ghost': %>
@@ -2409,7 +2411,7 @@ class mf_rentals
 							<% }
 						}); %>
 						<div class='form_button'>
-							<button type='submit' class='button-primary'>".__("Save", 'lang_webshop')."</button>
+							<button type='submit' class='button-primary'>".__("Save", 'lang_rentals')."</button>
 							<% if(post_id > 0)
 							{ %>"
 								.input_hidden(array('name' => 'post_id', 'value' => "<%= post_id %>"))
@@ -2426,7 +2428,7 @@ class mf_rentals
 				$is_template_set = true;
 			}
 
-			$name_webshop = get_option_or_default('setting_webshop_replace_webshop'.$this->option_type, __("Webshop", 'lang_webshop'));
+			$name_webshop = get_option_or_default('setting_webshop_replace_webshop'.$this->option_type, __("Webshop", 'lang_rentals'));
 
 			$arr_items = array();
 
@@ -2434,12 +2436,12 @@ class mf_rentals
 			{
 				$arr_items[] = array(
 					'id' => 'list',
-					'name' => __("List", 'lang_webshop'),
+					'name' => __("List", 'lang_rentals'),
 				);
 
 				$arr_items[] = array(
 					'id' => 'edit',
-					'name' => __("Add New", 'lang_webshop'),
+					'name' => __("Add New", 'lang_rentals'),
 				);
 			}
 
@@ -2451,7 +2453,7 @@ class mf_rentals
 				{
 					$arr_items[] = array(
 						'id' => 'edit/'.$post_id,
-						'name' => __("Edit", 'lang_webshop'),
+						'name' => __("Edit", 'lang_rentals'),
 					);
 				}
 
@@ -2459,7 +2461,7 @@ class mf_rentals
 				{
 					$arr_items[] = array(
 						'id' => 'edit',
-						'name' => __("Add New", 'lang_webshop'),
+						'name' => __("Add New", 'lang_rentals'),
 					);
 				}
 			}
@@ -2726,7 +2728,7 @@ class mf_rentals
 		$this->get_option_type_from_post_id($product_id_first);
 
 		$setting_search_max = get_option_or_default('setting_search_max'.$this->option_type, 50);
-		$name_choose = get_option_or_default('setting_webshop_replace_choose_product'.$this->option_type, __("Choose", 'lang_webshop'));
+		$name_choose = get_option_or_default('setting_webshop_replace_choose_product'.$this->option_type, __("Choose", 'lang_rentals'));
 		$setting_webshop_payment_form = get_option('setting_webshop_payment_form'.$this->option_type);
 		$setting_webshop_switch_icon_on = get_option('setting_webshop_switch_icon_on'.$this->option_type);
 		$setting_webshop_switch_icon_off = get_option('setting_webshop_switch_icon_off'.$this->option_type);
@@ -2899,7 +2901,7 @@ class mf_rentals
 						switch($post_custom_type)
 						{
 							case 'checkbox':
-								$value = ($value == 1 ? __("Yes", 'lang_webshop') : __("No", 'lang_webshop'));
+								$value = ($value == 1 ? __("Yes", 'lang_rentals') : __("No", 'lang_rentals'));
 							break;
 
 							case 'location':
@@ -2925,18 +2927,21 @@ class mf_rentals
 
 		if(count($arr_product_ids) > 0)
 		{
-			$result = $wpdb->get_results($wpdb->prepare("SELECT formEmail, formEmailNotifyFrom, formEmailNotifyPage, formEmailName FROM ".$wpdb->base_prefix."form WHERE formID = '%d' AND formDeleted = '0'", $data['obj_form']->id));
+			$data['obj_form']->get_post_id();
+
+			$result = $wpdb->get_results($wpdb->prepare("SELECT formEmail, formEmailName FROM ".$wpdb->base_prefix."form WHERE formID = '%d'", $data['obj_form']->id)); //, formEmailNotifyFrom, formEmailNotifyPage
 
 			foreach($result as $r)
 			{
 				$data['obj_form']->email_admin = $r->formEmail;
-				$data['obj_form']->email_notify_from = $r->formEmailNotifyFrom;
-				$data['obj_form']->email_notify_page = $r->formEmailNotifyPage;
-				$data['obj_form']->email_subject = ($r->formEmailName != "" ? $r->formEmailName : $data['obj_form']->form_name);
+				//$data['obj_form']->email_notify_from = $r->formEmailNotifyFrom;
+				//$data['obj_form']->email_notify_page = $r->formEmailNotifyPage;
+				$data['obj_form']->email_notify_page = get_post_meta($data['obj_form']->post_id, $this->meta_prefix.'email_notify_page', true);
+				$email_subject = ($r->formEmailName != "" ? $r->formEmailName : $data['obj_form']->form_name);
 			}
 
-			$name_product = get_option_or_default('setting_webshop_replace_product'.$this->option_type, __("Product", 'lang_webshop'));
-			$name_products = get_option_or_default('setting_webshop_replace_products'.$this->option_type, __("Products", 'lang_webshop'));
+			$name_product = get_option_or_default('setting_webshop_replace_product'.$this->option_type, __("Product", 'lang_rentals'));
+			$name_products = get_option_or_default('setting_webshop_replace_products'.$this->option_type, __("Products", 'lang_rentals'));
 
 			$i = 0;
 
@@ -2968,7 +2973,7 @@ class mf_rentals
 					$obj_form->page_content_data = array(
 						'page_id' => $data['obj_form']->email_notify_page,
 						'mail_to' => $product_email,
-						'subject' => $data['obj_form']->email_subject,
+						'subject' => $email_subject,
 						'content' => $arr_mail_content_this,
 					);
 
@@ -3219,7 +3224,7 @@ class mf_rentals
 
 			case 'address':
 			case 'local_address':
-				$fields_array['attributes']['placeholder'] = get_post_meta_or_default($post_id, $this->meta_prefix.'document_placeholder', true, __("Street 123, City", 'lang_webshop'));
+				$fields_array['attributes']['placeholder'] = get_post_meta_or_default($post_id, $this->meta_prefix.'document_placeholder', true, __("Street 123, City", 'lang_rentals'));
 				$fields_array['desc'] = get_post_meta($post_id, $this->meta_prefix.'document_description', true);
 			break;
 
@@ -3239,7 +3244,7 @@ class mf_rentals
 			break;
 
 			case 'phone':
-				$fields_array['attributes']['placeholder'] = get_post_meta_or_default($post_id, $this->meta_prefix.'document_placeholder', true, __("001-888-342-324", 'lang_webshop'));
+				$fields_array['attributes']['placeholder'] = get_post_meta_or_default($post_id, $this->meta_prefix.'document_placeholder', true, __("001-888-342-324", 'lang_rentals'));
 				$fields_array['desc'] = get_post_meta($post_id, $this->meta_prefix.'document_description', true);
 			break;
 
@@ -3429,7 +3434,7 @@ class mf_rentals
 			$this->get_option_type_from_post_id($post->ID);
 		}
 
-		$setting_replace_return_to_search = get_option_or_default('setting_replace_return_to_search'.$this->option_type, __("Continue Search", 'lang_webshop'));
+		$setting_replace_return_to_search = get_option_or_default('setting_replace_return_to_search'.$this->option_type, __("Continue Search", 'lang_rentals'));
 
 		return "<div class='form_button alignleft'>
 			<a href='#' id='mf_back_to_search' class='button button-primary hide'><i class='fa fa-chevron-left'></i> ".$setting_replace_return_to_search."</a>
@@ -3466,24 +3471,24 @@ class mf_rentals
 
 		$templates_path = $this->get_template_path();
 
-		$name_webshop = get_option_or_default('setting_webshop_replace_webshop', __("Webshop", 'lang_webshop'));
+		$name_webshop = get_option_or_default('setting_webshop_replace_webshop', __("Webshop", 'lang_rentals'));
 
 		$templates[$templates_path.'template_webshop.php'] = $name_webshop;
-		//$templates[$templates_path.'template_webshop_search.php'] = $name_webshop." (".__("Search", 'lang_webshop').")";
+		//$templates[$templates_path.'template_webshop_search.php'] = $name_webshop." (".__("Search", 'lang_rentals').")";
 
 		if(get_option('setting_quote_form') > 0)
 		{
-			$templates[$templates_path.'template_webshop_favorites.php'] = $name_webshop." (".__("Favorites", 'lang_webshop').")";
+			$templates[$templates_path.'template_webshop_favorites.php'] = $name_webshop." (".__("Favorites", 'lang_rentals').")";
 		}*/
 
-		$name_webshop = get_option_or_default('setting_webshop_replace_webshop', __("Webshop", 'lang_webshop'));
+		$name_webshop = get_option_or_default('setting_webshop_replace_webshop', __("Webshop", 'lang_rentals'));
 
 		$templates['template_webshop.php'] = $name_webshop;
-		//$templates['template_webshop_search.php'] = $name_webshop." (".__("Search", 'lang_webshop').")";
+		//$templates['template_webshop_search.php'] = $name_webshop." (".__("Search", 'lang_rentals').")";
 
 		if(get_option('setting_quote_form') > 0)
 		{
-			$templates['template_webshop_favorites.php'] = $name_webshop." (".__("Favorites", 'lang_webshop').")";
+			$templates['template_webshop_favorites.php'] = $name_webshop." (".__("Favorites", 'lang_rentals').")";
 		}
 
 		return $templates;
@@ -3697,7 +3702,7 @@ class mf_rentals
 
 		else
 		{
-			$name_webshop = get_option_or_default('setting_webshop_replace_webshop', __("Webshop", 'lang_webshop'));
+			$name_webshop = get_option_or_default('setting_webshop_replace_webshop', __("Webshop", 'lang_rentals'));
 
 			do_log(sprintf("Something was missing when a user paid for access to %s (%s)", $name_webshop, var_export($data, true)));
 		}
@@ -3716,7 +3721,7 @@ class mf_rentals
 
 		if($rows > 0)
 		{
-			$count_message = "&nbsp;<span class='update-plugins' title='".__("Unread Orders", 'lang_webshop')."'>
+			$count_message = "&nbsp;<span class='update-plugins' title='".__("Unread Orders", 'lang_rentals')."'>
 				<span>".$rows."</span>
 			</span>";
 		}
@@ -3738,11 +3743,11 @@ class mf_rentals
 			$menu_start = "edit.php?post_type=".$this->post_type_products.$this->option_type;
 			$menu_capability = 'edit_posts';
 
-			$name_webshop = get_option_or_default('setting_webshop_replace_webshop'.$this->option_type, __("Webshop", 'lang_webshop'));
+			$name_webshop = get_option_or_default('setting_webshop_replace_webshop'.$this->option_type, __("Webshop", 'lang_rentals'));
 
 			if(IS_EDITOR)
 			{
-				$name_products = get_option_or_default('setting_webshop_replace_products'.$this->option_type, __("Products", 'lang_webshop'));
+				$name_products = get_option_or_default('setting_webshop_replace_products'.$this->option_type, __("Products", 'lang_rentals'));
 
 				$count_message = "";
 
@@ -3760,57 +3765,57 @@ class mf_rentals
 				add_menu_page($name_webshop, $name_webshop.$count_message, $menu_capability, $menu_start, '', 'dashicons-cart', 21);
 				add_submenu_page($menu_start, $name_products, $name_products, $menu_capability, $menu_start);
 
-				$menu_title = get_option_or_default('setting_webshop_replace_categories'.$this->option_type, __("Categories", 'lang_webshop'));
+				$menu_title = get_option_or_default('setting_webshop_replace_categories'.$this->option_type, __("Categories", 'lang_rentals'));
 				add_submenu_page($menu_start, $menu_title, $menu_title, $menu_capability, "edit.php?post_type=".$this->post_type_categories.$this->option_type);
 
 				if($this->get_post_name_for_type('custom_categories') != '')
 				{
-					$menu_title = __("Custom Categories", 'lang_webshop');
+					$menu_title = __("Custom Categories", 'lang_rentals');
 					add_submenu_page($menu_start, $menu_title, $menu_title, $menu_capability, "edit.php?post_type=".$this->post_type_custom_categories.$this->option_type);
 				}
 
 				if($this->get_post_name_for_type('location') != '')
 				{
-					$menu_title = __("Location", 'lang_webshop');
+					$menu_title = __("Location", 'lang_rentals');
 					add_submenu_page($menu_start, $menu_title, $menu_title, $menu_capability, "edit.php?post_type=".$this->post_type_location.$this->option_type);
 				}
 
-				$menu_title = get_option_or_default('setting_webshop_replace_doc_types'.$this->option_type, __("Filters", 'lang_webshop'));
+				$menu_title = get_option_or_default('setting_webshop_replace_doc_types'.$this->option_type, __("Filters", 'lang_rentals'));
 				add_submenu_page($menu_start, $menu_title, $menu_title, $menu_capability, "edit.php?post_type=".$this->post_type_document_type.$this->option_type);
 
 				if($rows_order > 0)
 				{
-					$menu_title = __("Orders", 'lang_webshop');
+					$menu_title = __("Orders", 'lang_rentals');
 					add_submenu_page($menu_start, $menu_title, $menu_title.$count_message, $menu_capability, $menu_root.'orders/index.php');
 				}
 
 				/*if($this->get_post_name_for_type('price') != '')
 				{
-					$menu_title = __("Customers", 'lang_webshop');
+					$menu_title = __("Customers", 'lang_rentals');
 					add_submenu_page($menu_start, $menu_title, $menu_title, $menu_capability, "edit.php?post_type=".$this->post_type_customers.$this->option_type);
 
-					$menu_title = __("Delivery Type", 'lang_webshop');
+					$menu_title = __("Delivery Type", 'lang_rentals');
 					add_submenu_page($menu_start, $menu_title, $menu_title, $menu_capability, "edit.php?post_type=".$this->post_type_delivery_type.$this->option_type);
 				}
 
-				$menu_title = __("Import", 'lang_webshop');
+				$menu_title = __("Import", 'lang_rentals');
 				add_submenu_page($menu_start, $menu_title, $menu_title." ".strtolower($name_products), $menu_capability, $menu_root.'import/index.php');*/
 
 				if($rows_stats > 0)
 				{
-					$menu_title = __("Statistics", 'lang_webshop');
+					$menu_title = __("Statistics", 'lang_rentals');
 					add_submenu_page($menu_start, $menu_title, $menu_title, $menu_capability, $menu_root.'stats/index.php');
 				}
 
 				if($this->option_type == '' && is_plugin_active("mf_group/index.php") && $this->get_post_name_for_type('email') != '' && $this->get_list(array('output' => 'value', 'select' => "COUNT(ID)")) > 1)
 				{
-					$menu_title = __("Send e-mail to all", 'lang_webshop')." ".strtolower($name_products);
+					$menu_title = __("Send e-mail to all", 'lang_rentals')." ".strtolower($name_products);
 					add_submenu_page($menu_start, $menu_title, $menu_title, $menu_capability, $menu_root.'group/index.php');
 				}
 
 				if(get_option('setting_webshop_payment_form'.$this->option_type) > 0 && get_the_author_meta('profile_webshop_payment', get_current_user_id()) < date("Y-m-d"))
 				{
-					$menu_title = sprintf(__("Pay to Access %s", 'lang_webshop'), $name_webshop);
+					$menu_title = sprintf(__("Pay to Access %s", 'lang_rentals'), $name_webshop);
 					add_submenu_page($menu_start, $menu_title, $menu_title, $menu_capability, 'admin_menu_payment_page', array($this, 'admin_menu_payment_page'));
 				}
 			}
@@ -3819,7 +3824,7 @@ class mf_rentals
 			{
 				if(get_option('setting_webshop_payment_form'.$this->option_type) > 0 && get_the_author_meta('profile_webshop_payment', get_current_user_id()) < date("Y-m-d"))
 				{
-					$menu_title = sprintf(__("Pay to Access %s", 'lang_webshop'), $name_webshop);
+					$menu_title = sprintf(__("Pay to Access %s", 'lang_rentals'), $name_webshop);
 					add_menu_page($menu_title, $menu_title, $menu_capability, $menu_start, array($this, 'admin_menu_payment_page'), 'dashicons-cart', 21);
 				}
 
@@ -3829,7 +3834,7 @@ class mf_rentals
 				}
 			}
 
-			$menu_title = __("Settings", 'lang_webshop');
+			$menu_title = __("Settings", 'lang_rentals');
 			add_submenu_page($menu_start, $menu_title, $menu_title, $menu_capability, admin_url("options-general.php?page=settings_mf_base#settings_webshop".$this->option_type));
 		}
 
@@ -3889,7 +3894,7 @@ class mf_rentals
 			$arr_yes_no = get_yes_no_for_select();
 
 			$fields_settings[] = array(
-				'name' => __("Searchable", 'lang_webshop'),
+				'name' => __("Searchable", 'lang_rentals'),
 				'id' => $this->meta_prefix.'searchable',
 				'type' => 'select',
 				'options' => $arr_yes_no,
@@ -3915,7 +3920,7 @@ class mf_rentals
 
 				else
 				{
-					$meta_title = get_option_or_default('setting_webshop_replace_categories'.$this->option_type, __("Categories", 'lang_webshop'));
+					$meta_title = get_option_or_default('setting_webshop_replace_categories'.$this->option_type, __("Categories", 'lang_rentals'));
 				}
 
 				$data_temp = array(
@@ -3955,7 +3960,7 @@ class mf_rentals
 
 				else
 				{
-					$meta_title = __("Image", 'lang_webshop');
+					$meta_title = __("Image", 'lang_rentals');
 				}
 
 				$setting_webshop_max_file_uploads = get_option_or_default('setting_webshop_max_file_uploads'.$this->option_type, 0);
@@ -4076,7 +4081,7 @@ class mf_rentals
 			{
 				$meta_boxes[] = array(
 					'id' => $this->meta_prefix.'information',
-					'title' => get_option_or_default('setting_webshop_replace_title_information'.$this->option_type, __("Information", 'lang_webshop')),
+					'title' => get_option_or_default('setting_webshop_replace_title_information'.$this->option_type, __("Information", 'lang_rentals')),
 					'post_types' => array($this->post_type_products.$this->option_type),
 					//'context' => 'side',
 					'priority' => 'low',
@@ -4088,7 +4093,7 @@ class mf_rentals
 			{
 				$meta_boxes[] = array(
 					'id' => $this->meta_prefix.'settings',
-					'title' => get_option_or_default('setting_webshop_replace_title_settings'.$this->option_type, __("Settings", 'lang_webshop')),
+					'title' => get_option_or_default('setting_webshop_replace_title_settings'.$this->option_type, __("Settings", 'lang_rentals')),
 					'post_types' => array($this->post_type_products.$this->option_type),
 					'context' => 'side',
 					'priority' => 'low',
@@ -4100,7 +4105,7 @@ class mf_rentals
 			{
 				$meta_boxes[] = array(
 					'id' => $this->meta_prefix.'searchable',
-					'title' => __("Searchable", 'lang_webshop'),
+					'title' => __("Searchable", 'lang_rentals'),
 					'post_types' => array($this->post_type_products.$this->option_type),
 					'context' => 'side',
 					'priority' => 'low',
@@ -4112,7 +4117,7 @@ class mf_rentals
 			{
 				$meta_boxes[] = array(
 					'id' => $this->meta_prefix.'public',
-					'title' => __("Results", 'lang_webshop'),
+					'title' => __("Results", 'lang_rentals'),
 					'post_types' => array($this->post_type_products.$this->option_type),
 					'context' => 'side',
 					'priority' => 'low',
@@ -4124,7 +4129,7 @@ class mf_rentals
 			{
 				$meta_boxes[] = array(
 					'id' => $this->meta_prefix.'single',
-					'title' => get_option_or_default('setting_webshop_replace_title_contact_info'.$this->option_type, __("Contact Info", 'lang_webshop')),
+					'title' => get_option_or_default('setting_webshop_replace_title_contact_info'.$this->option_type, __("Contact Info", 'lang_rentals')),
 					'post_types' => array($this->post_type_products.$this->option_type),
 					'context' => 'side',
 					'priority' => 'low',
@@ -4136,7 +4141,7 @@ class mf_rentals
 			{
 				$meta_boxes[] = array(
 					'id' => $this->meta_prefix.'quick',
-					'title' => get_option_or_default('setting_webshop_replace_title_quick_info'.$this->option_type, __("Quick Info", 'lang_webshop')),
+					'title' => get_option_or_default('setting_webshop_replace_title_quick_info'.$this->option_type, __("Quick Info", 'lang_rentals')),
 					'post_types' => array($this->post_type_products.$this->option_type),
 					//'context' => 'side',
 					'priority' => 'low',
@@ -4148,7 +4153,7 @@ class mf_rentals
 			{
 				$meta_boxes[] = array(
 					'id' => $this->meta_prefix.'properties',
-					'title' => get_option_or_default('setting_webshop_replace_title_properties'.$this->option_type, __("Properties", 'lang_webshop')),
+					'title' => get_option_or_default('setting_webshop_replace_title_properties'.$this->option_type, __("Properties", 'lang_rentals')),
 					'post_types' => array($this->post_type_products.$this->option_type),
 					//'context' => 'side',
 					'priority' => 'low',
@@ -4179,14 +4184,14 @@ class mf_rentals
 
 			$arr_fields = array(
 				array(
-					'name' => __("Type", 'lang_webshop'),
+					'name' => __("Type", 'lang_rentals'),
 					'id' => $this->meta_prefix.'document_type',
 					'type' => 'select',
 					'options' => $this->get_types_for_select(),
 					'std' => $default_type,
 				),
 				array(
-					'name' => __("Max Length", 'lang_webshop'),
+					'name' => __("Max Length", 'lang_rentals'),
 					'id' => $this->meta_prefix.'document_max_length',
 					'type' => 'number',
 					'attributes' => array(
@@ -4199,7 +4204,7 @@ class mf_rentals
 					'type' => 'divider',
 				),
 				array(
-					'name' => __("Searchable", 'lang_webshop'),
+					'name' => __("Searchable", 'lang_rentals'),
 					'id' => $this->meta_prefix.'document_searchable',
 					'type' => 'select',
 					'options' => $arr_yes_no,
@@ -4211,7 +4216,7 @@ class mf_rentals
 					),
 				),
 				array(
-					'name' => " - ".__("Required", 'lang_webshop'),
+					'name' => " - ".__("Required", 'lang_rentals'),
 					'id' => $this->meta_prefix.'document_searchable_required',
 					'type' => 'select',
 					'options' => $arr_yes_no,
@@ -4223,7 +4228,7 @@ class mf_rentals
 					),
 				),
 				array(
-					'name' => __("Results", 'lang_webshop'),
+					'name' => __("Results", 'lang_rentals'),
 					'id' => $this->meta_prefix.'document_public',
 					'type' => 'select',
 					'options' => $arr_yes_no,
@@ -4235,7 +4240,7 @@ class mf_rentals
 					),
 				),
 				array(
-					'name' => get_option_or_default('setting_webshop_replace_title_contact_info'.$this->option_type, __("Contact Info", 'lang_webshop')),
+					'name' => get_option_or_default('setting_webshop_replace_title_contact_info'.$this->option_type, __("Contact Info", 'lang_rentals')),
 					'id' => $this->meta_prefix.'document_public_single',
 					'type' => 'select',
 					'options' => $arr_yes_no,
@@ -4247,7 +4252,7 @@ class mf_rentals
 					),
 				),
 				array(
-					'name' => get_option_or_default('setting_webshop_replace_title_quick_info'.$this->option_type, __("Quick Info", 'lang_webshop')),
+					'name' => get_option_or_default('setting_webshop_replace_title_quick_info'.$this->option_type, __("Quick Info", 'lang_rentals')),
 					'id' => $this->meta_prefix.'document_quick',
 					'type' => 'select',
 					'options' => $arr_yes_no,
@@ -4259,7 +4264,7 @@ class mf_rentals
 					),
 				),
 				array(
-					'name' => get_option_or_default('setting_webshop_replace_title_properties'.$this->option_type, __("Properties", 'lang_webshop')),
+					'name' => get_option_or_default('setting_webshop_replace_title_properties'.$this->option_type, __("Properties", 'lang_rentals')),
 					'id' => $this->meta_prefix.'document_property',
 					'type' => 'select',
 					'options' => $arr_yes_no,
@@ -4271,7 +4276,7 @@ class mf_rentals
 					),
 				),
 				array(
-					'name' => " - ".__("Required", 'lang_webshop'),
+					'name' => " - ".__("Required", 'lang_rentals'),
 					'id' => $this->meta_prefix.'document_input_required',
 					'type' => 'select',
 					'options' => $arr_yes_no,
@@ -4294,7 +4299,7 @@ class mf_rentals
 				}
 
 				$arr_fields[] = array(
-					'name' => __("Events", 'lang_webshop'),
+					'name' => __("Events", 'lang_rentals'),
 					'id' => $this->meta_prefix.'document_events',
 					'type' => 'select',
 					'options' => $arr_yes_no,
@@ -4317,7 +4322,7 @@ class mf_rentals
 				);
 
 				$arr_fields[] = array(
-					'name' => __("Display on Categories", 'lang_webshop'),
+					'name' => __("Display on Categories", 'lang_rentals'),
 					'id' => $this->meta_prefix.'document_display_on_categories',
 					'type' => 'select3',
 					'options' => $arr_categories,
@@ -4340,7 +4345,7 @@ class mf_rentals
 			if(count($arr_data_symbols) > 1)
 			{
 				$arr_fields[] = array(
-					'name' => __("Symbol", 'lang_webshop')." (<a href='//fontawesome.com/icons'>".__("Ref", 'lang_webshop')."</a>)",
+					'name' => __("Symbol", 'lang_rentals')." (<a href='//fontawesome.com/icons'>".__("Ref", 'lang_rentals')."</a>)",
 					'id' => $this->meta_prefix.'document_symbol',
 					'type' => 'select',
 					'options' => $arr_data_symbols,
@@ -4355,7 +4360,7 @@ class mf_rentals
 			else
 			{
 				$arr_fields[] = array(
-					'name' => __("Symbol", 'lang_webshop')." (<a href='//fontawesome.com/icons'>".__("Ref", 'lang_webshop')."</a>)",
+					'name' => __("Symbol", 'lang_rentals')." (<a href='//fontawesome.com/icons'>".__("Ref", 'lang_rentals')."</a>)",
 					'id' => $this->meta_prefix.'document_symbol',
 					'type' => 'text',
 					'attributes' => array(
@@ -4367,7 +4372,7 @@ class mf_rentals
 			}
 
 			$arr_fields[] = array(
-				'name' => __("Alternate text", 'lang_webshop'),
+				'name' => __("Alternate text", 'lang_rentals'),
 				'id' => $this->meta_prefix.'document_alt_text',
 				'type' => 'text',
 				'attributes' => array(
@@ -4378,7 +4383,7 @@ class mf_rentals
 			);
 
 			$arr_fields[] = array(
-				'name' => __("Custom class", 'lang_webshop'),
+				'name' => __("Custom class", 'lang_rentals'),
 				'id' => $this->meta_prefix.'custom_class',
 				'type' => 'text',
 				/* Same as document_searchable */
@@ -4390,7 +4395,7 @@ class mf_rentals
 			);
 
 			$arr_fields[] = array(
-				'name' => __("Default value", 'lang_webshop'),
+				'name' => __("Default value", 'lang_rentals'),
 				'id' => $this->meta_prefix.'document_default',
 				'type' => 'textarea',
 				/* Same as document_searchable */
@@ -4402,7 +4407,7 @@ class mf_rentals
 			);
 
 			$arr_fields[] = array(
-				'name' => __("Placeholder", 'lang_webshop'),
+				'name' => __("Placeholder", 'lang_rentals'),
 				'id' => $this->meta_prefix.'document_placeholder',
 				'type' => 'text',
 				'attributes' => array(
@@ -4413,7 +4418,7 @@ class mf_rentals
 			);
 
 			$arr_fields[] = array(
-				'name' => __("Description", 'lang_webshop'),
+				'name' => __("Description", 'lang_rentals'),
 				'id' => $this->meta_prefix.'document_description',
 				'type' => 'text',
 				'attributes' => array(
@@ -4425,7 +4430,7 @@ class mf_rentals
 
 			$meta_boxes[] = array(
 				'id' => $this->meta_prefix.'settings',
-				'title' => __("Settings", 'lang_webshop'),
+				'title' => __("Settings", 'lang_rentals'),
 				'post_types' => array($this->post_type_document_type.$this->option_type),
 				//'context' => 'side',
 				'priority' => 'low',
@@ -4434,13 +4439,13 @@ class mf_rentals
 
 			$meta_boxes[] = array(
 				'id' => $this->meta_prefix.'order',
-				'title' => __("Settings", 'lang_webshop'),
+				'title' => __("Settings", 'lang_rentals'),
 				'post_types' => array($this->post_type_document_type.$this->option_type),
 				'context' => 'side',
 				'priority' => 'low',
 				'fields' => array(
 					array(
-						'name' => __("Order number", 'lang_webshop'),
+						'name' => __("Order number", 'lang_rentals'),
 						'id' => $this->meta_prefix.'document_type_order',
 						'type' => 'number',
 					),
@@ -4450,7 +4455,7 @@ class mf_rentals
 
 			// Categories
 			####################################
-			$name_product = get_option_or_default('setting_webshop_replace_product'.$this->option_type, __("Product", 'lang_webshop'));
+			$name_product = get_option_or_default('setting_webshop_replace_product'.$this->option_type, __("Product", 'lang_rentals'));
 
 			$default_value = 'no';
 
@@ -4466,23 +4471,23 @@ class mf_rentals
 
 			$arr_fields = array(
 				array(
-					'name' => __("Background Color", 'lang_webshop'),
+					'name' => __("Background Color", 'lang_rentals'),
 					'id' => $this->meta_prefix.'category_background_color',
 					'type' => 'color',
 				),
 				array(
-					'name' => __("Icon", 'lang_webshop'),
+					'name' => __("Icon", 'lang_rentals'),
 					'id' => $this->meta_prefix.'category_icon',
 					'type' => 'select',
 					'options' => $this->get_symbols_for_select(),
 				),
 				array(
-					'name' => __("Color", 'lang_webshop'),
+					'name' => __("Color", 'lang_rentals'),
 					'id' => $this->meta_prefix.'category_icon_color',
 					'type' => 'color',
 				),
 				array(
-					'name' => sprintf(__("Connect to new %s", 'lang_webshop'), strtolower($name_product)),
+					'name' => sprintf(__("Connect to new %s", 'lang_rentals'), strtolower($name_product)),
 					'id' => $this->meta_prefix.'connect_new_products',
 					'type' => 'select',
 					'options' => $arr_yes_no,
@@ -4495,7 +4500,7 @@ class mf_rentals
 				$arr_include_on = $this->get_include_on_for_select();
 
 				$arr_fields[] = array(
-					'name' => __("Include on", 'lang_webshop'),
+					'name' => __("Include on", 'lang_rentals'),
 					'id' => $this->meta_prefix.'include_on',
 					'type' => 'select',
 					'options' => $arr_include_on,
@@ -4506,7 +4511,7 @@ class mf_rentals
 				);
 
 				$arr_fields[] = array(
-					'name' => __("Event Max Length", 'lang_webshop'),
+					'name' => __("Event Max Length", 'lang_rentals'),
 					'id' => $this->meta_prefix.'event_max_length',
 					'type' => 'number',
 					'attributes' => array(
@@ -4517,7 +4522,7 @@ class mf_rentals
 
 			$meta_boxes[] = array(
 				'id' => $this->meta_prefix.'categories',
-				'title' => __("Settings", 'lang_webshop'),
+				'title' => __("Settings", 'lang_rentals'),
 				'post_types' => array($this->post_type_categories.$this->option_type),
 				'context' => 'side',
 				'priority' => 'low',
@@ -4529,26 +4534,26 @@ class mf_rentals
 			####################################
 			$meta_boxes[] = array(
 				'id' => $this->meta_prefix.'custom_categories',
-				'title' => __("Settings", 'lang_webshop'),
+				'title' => __("Settings", 'lang_rentals'),
 				'post_types' => array($this->post_type_custom_categories.$this->option_type),
 				'context' => 'normal',
 				'priority' => 'low',
 				'fields' => array(
 					array(
-						'name' => get_option_or_default('setting_webshop_replace_doc_types', __("Filters", 'lang_webshop')),
+						'name' => get_option_or_default('setting_webshop_replace_doc_types', __("Filters", 'lang_rentals')),
 						'id' => $this->meta_prefix.'document_type',
 						'type' => 'select',
 						'options' => $this->get_document_types_for_select(array('include' => 'custom_categories')),
 					),
 					array(
-						'name' => __("Image", 'lang_webshop'),
+						'name' => __("Image", 'lang_rentals'),
 						'id' => $this->meta_prefix.'image',
 						'type' => 'file_advanced',
 						'max_file_uploads' => 1,
 						'mime_type' => 'image',
 					),
 					array(
-						'name' => __("Affect Heading", 'lang_webshop'),
+						'name' => __("Affect Heading", 'lang_rentals'),
 						'id' => $this->meta_prefix.'affect_heading',
 						'type' => 'select',
 						'options' => get_yes_no_for_select(array('add_choose_here' => true)),
@@ -4561,13 +4566,13 @@ class mf_rentals
 			####################################
 			$meta_boxes[] = array(
 				'id' => $this->meta_prefix.'location',
-				'title' => __("Settings", 'lang_webshop'),
+				'title' => __("Settings", 'lang_rentals'),
 				'post_types' => array($this->post_type_location.$this->option_type),
 				'context' => 'side',
 				'priority' => 'low',
 				'fields' => array(
 					array(
-						'name' => __("Hidden", 'lang_webshop'),
+						'name' => __("Hidden", 'lang_rentals'),
 						'id' => $this->meta_prefix.'location_hidden',
 						'type' => 'select',
 						'options' => $arr_yes_no,
@@ -4581,13 +4586,13 @@ class mf_rentals
 			####################################
 			$meta_boxes[] = array(
 				'id' => $this->meta_prefix.'settings',
-				'title' => __("Settings", 'lang_webshop'),
+				'title' => __("Settings", 'lang_rentals'),
 				'post_types' => array($this->post_type_customers.$this->option_type),
 				//'context' => 'side',
 				'priority' => 'low',
 				'fields' => array(
 					array(
-						'name' => __("Customer No", 'lang_webshop'),
+						'name' => __("Customer No", 'lang_rentals'),
 						'id' => $this->meta_prefix.'customer_no',
 						'type' => 'number',
 					),
@@ -4700,14 +4705,14 @@ class mf_rentals
 				case $this->post_type_categories.$this->option_type:
 					unset($cols['date']);
 
-					$cols['category_background_color'] = __("Background", 'lang_webshop');
-					$cols['category_icon'] = __("Icon", 'lang_webshop');
-					$cols['products'] = get_option_or_default('setting_webshop_replace_products'.$this->option_type, __("Products", 'lang_webshop'));
-					$cols['connect_new_products'] = sprintf(__("Connect to new %s", 'lang_webshop'), strtolower(get_option_or_default('setting_webshop_replace_product'.$this->option_type, __("Product", 'lang_webshop'))));
+					$cols['category_background_color'] = __("Background", 'lang_rentals');
+					$cols['category_icon'] = __("Icon", 'lang_rentals');
+					$cols['products'] = get_option_or_default('setting_webshop_replace_products'.$this->option_type, __("Products", 'lang_rentals'));
+					$cols['connect_new_products'] = sprintf(__("Connect to new %s", 'lang_rentals'), strtolower(get_option_or_default('setting_webshop_replace_product'.$this->option_type, __("Product", 'lang_rentals'))));
 
 					if(is_plugin_active("mf_calendar/index.php"))
 					{
-						$cols['include_on'] = __("Include on", 'lang_webshop');
+						$cols['include_on'] = __("Include on", 'lang_rentals');
 					}
 				break;
 
@@ -4721,7 +4726,7 @@ class mf_rentals
 
 					if($this->has_categories(array('include_on' => 'products')) > 0)
 					{
-						$cols['category'] = get_option_or_default('setting_webshop_replace_categories'.$this->option_type, __("Categories", 'lang_webshop'));
+						$cols['category'] = get_option_or_default('setting_webshop_replace_categories'.$this->option_type, __("Categories", 'lang_rentals'));
 					}
 
 					$arr_columns = array('ghost', 'location', 'local_address', 'email', 'phone', 'event'); //address
@@ -4749,26 +4754,26 @@ class mf_rentals
 						}
 					}
 
-					$cols['last_updated'] = __("Last Updated", 'lang_webshop');
+					$cols['last_updated'] = __("Last Updated", 'lang_rentals');
 				break;
 
 				case $this->post_type_custom_categories.$this->option_type:
 					unset($cols['date']);
 
-					$cols['document_type'] = get_option_or_default('setting_webshop_replace_doc_types'.$this->option_type, __("Filters", 'lang_webshop'));
-					$cols['image'] = __("Image", 'lang_webshop');
-					$cols['affect_heading'] = __("Affect Heading", 'lang_webshop');
+					$cols['document_type'] = get_option_or_default('setting_webshop_replace_doc_types'.$this->option_type, __("Filters", 'lang_rentals'));
+					$cols['image'] = __("Image", 'lang_rentals');
+					$cols['affect_heading'] = __("Affect Heading", 'lang_rentals');
 				break;
 
 				case $this->post_type_document_type.$this->option_type:
 					unset($cols['date']);
 
-					$cols['type'] = __("Type", 'lang_webshop');
-					$cols['settings'] = __("Settings", 'lang_webshop');
+					$cols['type'] = __("Type", 'lang_rentals');
+					$cols['settings'] = __("Settings", 'lang_rentals');
 
 					if($this->has_categories(array('include_on' => 'products')) > 1)
 					{
-						$cols['display_on_categories'] = __("Display on Categories", 'lang_webshop');
+						$cols['display_on_categories'] = __("Display on Categories", 'lang_rentals');
 					}
 				break;
 
@@ -4779,7 +4784,7 @@ class mf_rentals
 
 					if($this->get_post_name_for_type('location') != '')
 					{
-						$cols['products'] = get_option_or_default('setting_webshop_replace_products'.$this->option_type, __("Products", 'lang_webshop'));
+						$cols['products'] = get_option_or_default('setting_webshop_replace_products'.$this->option_type, __("Products", 'lang_rentals'));
 					}
 				break;
 			}
@@ -4996,14 +5001,14 @@ class mf_rentals
 										{
 											if($meta_webshop_reminder_sent < date("Y-m-d H:i:s", strtotime("-1 month")))
 											{
-												$row_actions .= ($row_actions != '' ? " | " : "")."<span>".sprintf(__("The user was notified %s and has been deactivated until the profile has been updated", 'lang_webshop'), format_date($meta_webshop_reminder_sent))."</span>";
+												$row_actions .= ($row_actions != '' ? " | " : "")."<span>".sprintf(__("The user was notified %s and has been deactivated until the profile has been updated", 'lang_rentals'), format_date($meta_webshop_reminder_sent))."</span>";
 
 												echo "<i class='set_tr_color' rel='red'></i>";
 											}
 
 											else
 											{
-												$row_actions .= ($row_actions != '' ? " | " : "")."<span>".sprintf(__("The user was notified %s", 'lang_webshop'), format_date($meta_webshop_reminder_sent))."</span>";
+												$row_actions .= ($row_actions != '' ? " | " : "")."<span>".sprintf(__("The user was notified %s", 'lang_rentals'), format_date($meta_webshop_reminder_sent))."</span>";
 
 												echo "<i class='set_tr_color' rel='yellow'></i>";
 											}
@@ -5114,7 +5119,7 @@ class mf_rentals
 										$hide = ($post_meta != 'yes');
 										$post_meta = get_post_meta($id, $this->meta_prefix.'document_searchable_required', true);
 
-										echo "<span class='fa-stack fa-2x'".($hide ? " style='visibility: hidden'" : "")." title='".__("Required", 'lang_webshop')." (".__("Searchable", 'lang_webshop').")'>
+										echo "<span class='fa-stack fa-2x'".($hide ? " style='visibility: hidden'" : "")." title='".__("Required", 'lang_rentals')." (".__("Searchable", 'lang_rentals').")'>
 											<i class='fa fa-asterisk grey fa-stack-1x'></i>
 											<i class='fa ".($post_meta == 'yes' ? "fa-check green" : "fa-ban red")." fa-stack-1x'></i>
 										</span>";
@@ -5126,7 +5131,7 @@ class mf_rentals
 										$hide = (in_array($post_document_type, array('categories_v2', 'description', 'color', 'gps', 'overlay', 'heading', 'categories', 'event', 'container_start', 'container_end', 'read_more_button', 'file_advanced', 'event', 'coordinates', 'divider', 'education')));
 										$post_meta = get_post_meta($id, $this->meta_prefix.'document_input_required', true);
 
-										echo "<span class='fa-stack fa-2x'".($hide ? " style='visibility: hidden'" : "")." title='".__("Required", 'lang_webshop')." (".__("Input", 'lang_webshop').")'>
+										echo "<span class='fa-stack fa-2x'".($hide ? " style='visibility: hidden'" : "")." title='".__("Required", 'lang_rentals')." (".__("Input", 'lang_rentals').")'>
 											<i class='fa fa-asterisk grey fa-stack-1x'></i>
 											<i class='fa ".($post_meta == 'yes' ? "fa-check green" : "fa-ban red")." fa-stack-1x'></i>
 										</span>";
@@ -5152,7 +5157,7 @@ class mf_rentals
 
 							else
 							{
-								echo __("All", 'lang_webshop');
+								echo __("All", 'lang_rentals');
 							}
 						break;
 					}
@@ -5203,42 +5208,42 @@ class mf_rentals
 			switch($page_template)
 			{
 				case $templates_path.'template_webshop.php':
-					$name_webshop = get_option_or_default('setting_webshop_replace_webshop', __("Webshop", 'lang_webshop'));
+					$name_webshop = get_option_or_default('setting_webshop_replace_webshop', __("Webshop", 'lang_rentals'));
 
 					$post_states['template_webshop'] = $name_webshop;
 				break;
 
 				case $templates_path.'template_webshop_search.php':
-					//$name_webshop = get_option_or_default('setting_webshop_replace_webshop', __("Webshop", 'lang_webshop'));
+					//$name_webshop = get_option_or_default('setting_webshop_replace_webshop', __("Webshop", 'lang_rentals'));
 
-					//$post_states['template_webshop_search'] = $name_webshop." (".__("Search", 'lang_webshop').")";
+					//$post_states['template_webshop_search'] = $name_webshop." (".__("Search", 'lang_rentals').")";
 				break;
 
 				case $templates_path.'template_webshop_favorites.php':
-					$name_webshop = get_option_or_default('setting_webshop_replace_webshop', __("Webshop", 'lang_webshop'));
+					$name_webshop = get_option_or_default('setting_webshop_replace_webshop', __("Webshop", 'lang_rentals'));
 
-					$post_states['template_webshop_favorites'] = $name_webshop." (".__("Favorites", 'lang_webshop').")";
+					$post_states['template_webshop_favorites'] = $name_webshop." (".__("Favorites", 'lang_rentals').")";
 				break;
 			}*/
 
 			switch($page_template)
 			{
 				case 'template_webshop.php':
-					$name_webshop = get_option_or_default('setting_webshop_replace_webshop', __("Webshop", 'lang_webshop'));
+					$name_webshop = get_option_or_default('setting_webshop_replace_webshop', __("Webshop", 'lang_rentals'));
 
 					$post_states['template_webshop'] = $name_webshop;
 				break;
 
 				case 'template_webshop_search.php':
-					//$name_webshop = get_option_or_default('setting_webshop_replace_webshop', __("Webshop", 'lang_webshop'));
+					//$name_webshop = get_option_or_default('setting_webshop_replace_webshop', __("Webshop", 'lang_rentals'));
 
-					//$post_states['template_webshop_search'] = $name_webshop." (".__("Search", 'lang_webshop').")";
+					//$post_states['template_webshop_search'] = $name_webshop." (".__("Search", 'lang_rentals').")";
 				break;
 
 				case 'template_webshop_favorites.php':
-					$name_webshop = get_option_or_default('setting_webshop_replace_webshop', __("Webshop", 'lang_webshop'));
+					$name_webshop = get_option_or_default('setting_webshop_replace_webshop', __("Webshop", 'lang_rentals'));
 
-					$post_states['template_webshop_favorites'] = $name_webshop." (".__("Favorites", 'lang_webshop').")";
+					$post_states['template_webshop_favorites'] = $name_webshop." (".__("Favorites", 'lang_rentals').")";
 				break;
 			}
 		}
@@ -5443,9 +5448,9 @@ class mf_rentals
 		{
 			unset($cols['posts']);
 
-			$name_products = get_option_or_default('setting_webshop_replace_products', __("Products", 'lang_webshop'));
+			$name_products = get_option_or_default('setting_webshop_replace_products', __("Products", 'lang_rentals'));
 
-			$cols['profile_webshop_payment'] = sprintf(__("Paid for %s until", 'lang_webshop'), $name_products);
+			$cols['profile_webshop_payment'] = sprintf(__("Paid for %s until", 'lang_rentals'), $name_products);
 		}
 
 		return $cols;
@@ -5483,11 +5488,11 @@ class mf_rentals
 	{
 		if(IS_ADMINISTRATOR && get_option('setting_webshop_payment_form') > 0)
 		{
-			$name_products = get_option_or_default('setting_webshop_replace_products', __("Products", 'lang_webshop'));
+			$name_products = get_option_or_default('setting_webshop_replace_products', __("Products", 'lang_rentals'));
 
 			$meta_key = 'profile_webshop_payment';
 			$meta_value = get_the_author_meta($meta_key, $user->ID);
-			$meta_text = sprintf(__("Paid for %s until", 'lang_webshop'), $name_products);
+			$meta_text = sprintf(__("Paid for %s until", 'lang_rentals'), $name_products);
 
 			echo "<table class='form-table'>
 				<tr class='".str_replace("_", "-", $meta_key)."-wrap'>
@@ -5510,7 +5515,7 @@ class mf_rentals
 	{
 		if(apply_filters('get_widget_search', 'webshop-events-widget') > 0 || apply_filters('get_widget_search', 'webshop-filter-products-widget') > 0)
 		{
-			$array['ip']['webshop_get_events'] = array('label' => __("Widget that uses IP address to find out lat/long for visitor but it isn't stored", 'lang_webshop'), 'used' => false, 'lifetime' => "1 second");
+			$array['ip']['webshop_get_events'] = array('label' => __("Widget that uses IP address to find out lat/long for visitor but it isn't stored", 'lang_rentals'), 'used' => false, 'lifetime' => "1 second");
 		}
 
 		return $array;
@@ -5554,15 +5559,15 @@ class mf_rentals
 		switch($data['type'])
 		{
 			case 'filter':
-				$text = get_option_or_default('setting_webshop_replace_filter_products'.$this->option_type, __("Filter amongst %s products", 'lang_webshop'));
+				$text = get_option_or_default('setting_webshop_replace_filter_products'.$this->option_type, __("Filter amongst %s products", 'lang_rentals'));
 			break;
 
 			case 'matches':
-				$text = get_option_or_default('setting_replace_search_result_info'.$this->option_type, __("Your search matches %s products", 'lang_webshop'));
+				$text = get_option_or_default('setting_replace_search_result_info'.$this->option_type, __("Your search matches %s products", 'lang_rentals'));
 			break;
 
 			case 'favorites':
-				$text = get_option_or_default('setting_webshop_replace_favorites_info'.$this->option_type, __("Here are your %s saved products", 'lang_webshop'));
+				$text = get_option_or_default('setting_webshop_replace_favorites_info'.$this->option_type, __("Here are your %s saved products", 'lang_rentals'));
 			break;
 
 			default:
@@ -5586,8 +5591,8 @@ class mf_rentals
 
 		/*if(get_option('setting_webshop_map_button_placement', 'above_map') == 'page_bottom')
 		{
-			$setting_replace_show_map = get_option_or_default('setting_webshop_replace_show_map', __("Show Map", 'lang_webshop'));
-			$setting_webshop_replace_hide_map = get_option_or_default('setting_webshop_replace_hide_map', __("Hide Map", 'lang_webshop'));
+			$setting_replace_show_map = get_option_or_default('setting_webshop_replace_show_map', __("Show Map", 'lang_rentals'));
+			$setting_webshop_replace_hide_map = get_option_or_default('setting_webshop_replace_hide_map', __("Hide Map", 'lang_rentals'));
 
 			$out .= "<h2 class='is_map_toggler button'>
 				<span>".$setting_replace_show_map."</span>
@@ -5598,18 +5603,18 @@ class mf_rentals
 		if(get_option('setting_quote_form'.$this->option_type) > 0 && in_array('quote', $data['include']))
 		{
 			$name_quote_request = get_option('setting_replace_quote_request'.$this->option_type);
-			$name_quote_none_checked = get_option_or_default('setting_webshop_replace_none_checked'.$this->option_type, __("You have to choose at least one product to proceed", 'lang_webshop'));
-			$name_quote_too_many = get_option_or_default('setting_webshop_replace_too_many'.$this->option_type, __("In order to send a quote you have to be specific what you want by filtering", 'lang_webshop'));
+			$name_quote_none_checked = get_option_or_default('setting_webshop_replace_none_checked'.$this->option_type, __("You have to choose at least one product to proceed", 'lang_rentals'));
+			$name_quote_too_many = get_option_or_default('setting_webshop_replace_too_many'.$this->option_type, __("In order to send a quote you have to be specific what you want by filtering", 'lang_rentals'));
 
 			if($name_quote_request == '')
 			{
-				$name_products = get_option_or_default('setting_webshop_replace_products'.$this->option_type, __("Products", 'lang_webshop'));
+				$name_products = get_option_or_default('setting_webshop_replace_products'.$this->option_type, __("Products", 'lang_rentals'));
 
-				$name_quote_request = __("Send request for quote to", 'lang_webshop')." %s ".strtolower($name_products);
+				$name_quote_request = __("Send request for quote to", 'lang_rentals')." %s ".strtolower($name_products);
 			}
 
 			$out .= show_button(array('text' => sprintf($name_quote_request, "<span>0</span>"), 'class' => "show_if_results button-primary hide"));
-			//$out .= show_button(array('type' => "button", 'text' => __("Choose all", 'lang_webshop'), 'class' => "show_choose_all button-secondary hide"));
+			//$out .= show_button(array('type' => "button", 'text' => __("Choose all", 'lang_rentals'), 'class' => "show_choose_all button-secondary hide"));
 
 			$out .= "<p class='show_if_none_checked info_text hide'>".$name_quote_none_checked."</p>"
 			."<p class='show_if_too_many info_text hide'>".$name_quote_too_many."</p>";
@@ -5617,12 +5622,12 @@ class mf_rentals
 
 		if(in_array('print', $data['include']))
 		{
-			$out .= show_button(array('type' => 'button', 'text' => "<i class='fa fa-print'></i>".__("Print List", 'lang_webshop'), 'class' => "show_if_results button-primary hide button_print"));
+			$out .= show_button(array('type' => 'button', 'text' => "<i class='fa fa-print'></i>".__("Print List", 'lang_rentals'), 'class' => "show_if_results button-primary hide button_print"));
 		}
 
 		if(in_array('email', $data['include']))
 		{
-			$setting_webshop_replace_email_favorites = get_option_or_default('setting_webshop_replace_email_favorites'.$this->option_type, __("Email Your Products", 'lang_webshop'));
+			$setting_webshop_replace_email_favorites = get_option_or_default('setting_webshop_replace_email_favorites'.$this->option_type, __("Email Your Products", 'lang_rentals'));
 			$setting_webshop_share_email_subject = get_option('setting_webshop_share_email_subject'.$this->option_type);
 			$setting_webshop_share_email_content = get_option('setting_webshop_share_email_content'.$this->option_type);
 
@@ -5650,8 +5655,8 @@ class mf_rentals
 
 			/*if(get_option('setting_webshop_map_button_placement', 'above_map') == 'above_map')
 			{
-				$setting_replace_show_map = get_option_or_default('setting_webshop_replace_show_map', __("Show Map", 'lang_webshop'));
-				$setting_webshop_replace_hide_map = get_option_or_default('setting_webshop_replace_hide_map', __("Hide Map", 'lang_webshop'));
+				$setting_replace_show_map = get_option_or_default('setting_webshop_replace_show_map', __("Show Map", 'lang_rentals'));
+				$setting_webshop_replace_hide_map = get_option_or_default('setting_webshop_replace_hide_map', __("Hide Map", 'lang_rentals'));
 
 				$out .= "<h2 class='is_map_toggler button'>
 					<span>".$setting_replace_show_map."</span>
@@ -5663,7 +5668,7 @@ class mf_rentals
 
 				if(in_array('search', $setting_maps_controls))
 				{
-					$out .= show_textfield(array('name' => 'webshop_map_input', 'placeholder' => __("Search for an address and find its position", 'lang_webshop'), 'xtra' => "class='webshop_map_input'"));
+					$out .= show_textfield(array('name' => 'webshop_map_input', 'placeholder' => __("Search for an address and find its position", 'lang_rentals'), 'xtra' => "class='webshop_map_input'"));
 				}
 
 				$out .= "<div id='webshop_map' class='webshop_map_container'></div>"
@@ -5686,7 +5691,7 @@ class mf_rentals
 
 		$this->get_map_resources();
 
-		$name_choose_here = "-- ".__("Choose Here", 'lang_webshop')." --";
+		$name_choose_here = "-- ".__("Choose Here", 'lang_rentals')." --";
 
 		$out = "<div id='webshop_search'>";
 
@@ -5702,14 +5707,14 @@ class mf_rentals
 			{
 				$setting_webshop_sort_default = get_option('setting_webshop_sort_default'.$this->option_type, 'alphabetical');
 
-				$out .= show_form_alternatives(array('data' => $this->get_sort_for_select($setting_webshop_display_sort), 'name' => 'order', 'text' => __("Sort By", 'lang_webshop'), 'value' => $setting_webshop_sort_default));
+				$out .= show_form_alternatives(array('data' => $this->get_sort_for_select($setting_webshop_display_sort), 'name' => 'order', 'text' => __("Sort By", 'lang_rentals'), 'value' => $setting_webshop_sort_default));
 			}
 
 			if($setting_webshop_display_filter != 'no')
 			{
 				if($setting_webshop_display_filter == 'button')
 				{
-					$out .= get_toggler_container(array('type' => 'start', 'text' => __("Filter", 'lang_webshop'), 'rel' => 'webshop_filter'));
+					$out .= get_toggler_container(array('type' => 'start', 'text' => __("Filter", 'lang_rentals'), 'rel' => 'webshop_filter'));
 				}
 
 					$obj_rentals_interval = new mf_rentals();
@@ -5887,7 +5892,7 @@ class mf_rentals
 
 							case 'coordinates':
 							case 'gps':
-								$out .= show_textfield(array('type' => 'range', 'name' => $post_name, 'text' => __("Distance", 'lang_webshop'), 'value' => check_var($post_name, 'char'), 'xtra' => "min='0' max='500'"));
+								$out .= show_textfield(array('type' => 'range', 'name' => $post_name, 'text' => __("Distance", 'lang_rentals'), 'value' => check_var($post_name, 'char'), 'xtra' => "min='0' max='500'"));
 							break;
 
 							case 'label':
@@ -6011,7 +6016,7 @@ class mf_rentals
 					<script type='text/template' id='template_event_message'>
 						<li class='info_text'>
 							<p>"
-								.__("I could not find any events", 'lang_webshop')
+								.__("I could not find any events", 'lang_rentals')
 								."<% if(start_date != '' && end_date != '')
 								{ %>
 									(<%= start_date %> -> <%= end_date %>)
@@ -6042,7 +6047,7 @@ class mf_rentals
 											'xtra' => "class='map_coordinates' data-id='<%= event_id %>' data-name='<%= product_title %> - <%= event_title %>'"
 												."<% if(event_url != '')
 												{ %>"
-													."data-url='<%= event_url %>' data-link_text='".__("Read More", 'lang_webshop')."'"
+													."data-url='<%= event_url %>' data-link_text='".__("Read More", 'lang_rentals')."'"
 												."<% } %>"
 												.(IS_ADMINISTRATOR ? " data-type='events_coordinates'" : ""),
 										))
@@ -6051,7 +6056,7 @@ class mf_rentals
 								<p><%= name_product %>: <a href='<%= product_url %>'><%= product_title %></a></p>
 							</div>
 							<div class='list_url'>
-								<a href='<%= event_url %>'>".__("Read More", 'lang_webshop')."</a>
+								<a href='<%= event_url %>'>".__("Read More", 'lang_rentals')."</a>
 							</div>
 							<% if(product_map != '')
 							{ %>"
@@ -6060,7 +6065,7 @@ class mf_rentals
 									'xtra' => "class='map_coordinates' data-id='<%= product_id %>' data-name='<%= product_title %>'"
 										."<% if(event_url != '')
 										{ %>"
-											." data-url='<%= event_url %>' data-link_text='".__("Read More", 'lang_webshop')."'"
+											." data-url='<%= event_url %>' data-link_text='".__("Read More", 'lang_rentals')."'"
 										."<% } %>"
 										.(IS_ADMINISTRATOR ? " data-type='events_map'" : ""),
 								))
@@ -6070,13 +6075,13 @@ class mf_rentals
 
 					<script type='text/template' id='template_event_load_more'>
 						<li class='widget_load_more form_button'>"
-							.show_button(array('text' => sprintf(__("Display More Events (%s)", 'lang_webshop'), "<%= event_rest %>"), 'class' => "button"))
+							.show_button(array('text' => sprintf(__("Display More Events (%s)", 'lang_rentals'), "<%= event_rest %>"), 'class' => "button"))
 						."</li>
 					</script>";
 				break;
 
 				case 'filter_products':
-					$name_products = get_option_or_default('setting_webshop_replace_products'.$this->option_type, __("Products", 'lang_webshop'));
+					$name_products = get_option_or_default('setting_webshop_replace_products'.$this->option_type, __("Products", 'lang_rentals'));
 
 					if($data['button_text'] != '')
 					{
@@ -6085,7 +6090,7 @@ class mf_rentals
 
 					else
 					{
-						$filter_products_load_more_button_text = sprintf(__("Display More %s (%s)", 'lang_webshop'), $name_products, "<%= filter_products_rest %>");
+						$filter_products_load_more_button_text = sprintf(__("Display More %s (%s)", 'lang_rentals'), $name_products, "<%= filter_products_rest %>");
 					}
 
 					$out .= "<script type='text/template' id='template_filter_products_spinner'>"
@@ -6094,7 +6099,7 @@ class mf_rentals
 
 					<script type='text/template' id='template_filter_products_message'>
 						<li class='info_text'>
-							<p>".sprintf(__("I could not find any %s", 'lang_webshop'), $name_products)."</p>
+							<p>".sprintf(__("I could not find any %s", 'lang_rentals'), $name_products)."</p>
 						</li>
 					</script>
 
@@ -6142,7 +6147,7 @@ class mf_rentals
 							<% if(product_url != '')
 							{ %>
 								<div class='list_url'>
-									<a href='<%= product_url %>'>".__("Read More", 'lang_webshop')."</a>
+									<a href='<%= product_url %>'>".__("Read More", 'lang_rentals')."</a>
 								</div>
 							<% }
 
@@ -6157,7 +6162,7 @@ class mf_rentals
 										."<% } %>"
 										."<% if(product_url != '')
 										{ %>"
-											." data-url='<%= product_url %>' data-link_text='".__("Read More", 'lang_webshop')."'"
+											." data-url='<%= product_url %>' data-link_text='".__("Read More", 'lang_rentals')."'"
 										."<% } %>"
 										.(IS_ADMINISTRATOR ? " data-type='products_coordinates'" : ""),
 								))
@@ -6173,11 +6178,11 @@ class mf_rentals
 				break;
 
 				case 'products':
-					$name_choose = get_option_or_default('setting_webshop_replace_choose_product'.$this->option_type, __("Choose", 'lang_webshop'));
+					$name_choose = get_option_or_default('setting_webshop_replace_choose_product'.$this->option_type, __("Choose", 'lang_rentals'));
 
 					$out .= "<script type='text/template' id='template_product_message'>
 						<li class='info_text'>
-							<p>".__("I could not find anything that corresponded to your choices", 'lang_webshop')."</p>
+							<p>".__("I could not find anything that corresponded to your choices", 'lang_rentals')."</p>
 						</li>
 					</script>
 
@@ -6247,7 +6252,7 @@ class mf_rentals
 							//."<% } %>"
 							."<% if(product_url != '' && product_has_read_more == false)
 							{ %>
-								<a href='<%= product_url %>' class='product_link product_column'>".__("Read More", 'lang_webshop')."&hellip;</a>
+								<a href='<%= product_url %>' class='product_link product_column'>".__("Read More", 'lang_rentals')."&hellip;</a>
 							<% }
 
 							if(product_map != '')
@@ -6257,7 +6262,7 @@ class mf_rentals
 									'xtra' => "class='map_coordinates' data-id='<%= product_id %>' data-name='<%= product_title %>'"
 										."<% if(product_url != '')
 										{ %>"
-											." data-url='<%= product_url %>' data-link_text='".__("Read More", 'lang_webshop')."'"
+											." data-url='<%= product_url %>' data-link_text='".__("Read More", 'lang_rentals')."'"
 										."<% } %>"
 										.(IS_ADMINISTRATOR ? " data-type='products_map'" : ""),
 								))
@@ -6707,7 +6712,7 @@ class mf_rentals
 					if($post_start_date == date("Y-m-d"))
 					{
 						$post_start_row_1 = date("H", strtotime($post_start))."<sup>".date("i", strtotime($post_start))."</sup>";
-						$post_start_row_2 = __("Today", 'lang_webshop');
+						$post_start_row_2 = __("Today", 'lang_rentals');
 					}
 
 					else
@@ -6726,7 +6731,7 @@ class mf_rentals
 						'feed_id' => $feed_id,
 						'list_class' => $list_class,
 						'product_id' => $product_id,
-						'name_product' => get_option_or_default('setting_webshop_replace_product'.$this->option_type, __("Product", 'lang_webshop')),
+						'name_product' => get_option_or_default('setting_webshop_replace_product'.$this->option_type, __("Product", 'lang_rentals')),
 						'product_url' => get_permalink($product_id),
 						'product_title' => $product_title,
 						'product_categories' => $product_categories,
@@ -6755,7 +6760,7 @@ class mf_rentals
 		else
 		{
 			$out['success'] = false;
-			$out['message'] = __("The event does not seam to have a slug", 'lang_webshop');
+			$out['message'] = __("The event does not seam to have a slug", 'lang_rentals');
 		}
 
 		return $out;
@@ -7626,11 +7631,11 @@ class mf_rentals
 							$this->product_form_buy = "<form method='post' action='' class='mf_form'>"
 								.show_textfield(array('name' => 'intProductAmount', 'value' => ($intProductAmount_saved > 0 ? $intProductAmount_saved : $intProductAmount), 'type' => 'number', 'id' => "product_amount"))
 								."<div class='form_button'>"
-									.show_button(array('name' => 'btnProductBuy', 'text' => ($intProductAmount_saved > 0 ? __("Update Cart", 'lang_webshop') : __("Add to Cart", 'lang_webshop')), 'class' => "button-primary"));
+									.show_button(array('name' => 'btnProductBuy', 'text' => ($intProductAmount_saved > 0 ? __("Update Cart", 'lang_rentals') : __("Add to Cart", 'lang_rentals')), 'class' => "button-primary"));
 
 									if($intProductAmount_saved > 0)
 									{
-										$this->product_form_buy .= show_button(array('name' => 'btnProductBuy', 'text' => __("Delete", 'lang_webshop'), 'class' => "button-primary", 'xtra' => "id='product_delete'"));
+										$this->product_form_buy .= show_button(array('name' => 'btnProductBuy', 'text' => __("Delete", 'lang_rentals'), 'class' => "button-primary", 'xtra' => "id='product_delete'"));
 									}
 
 								$this->product_form_buy .= "</div>"
@@ -7866,9 +7871,9 @@ class mf_rentals
 		if($this->product_map != '')
 		{
 			/*$setting_maps_controls = get_option_or_default('setting_maps_controls', array('search', 'fullscreen', 'zoom'));
-			$setting_webshop_replace_show_map = get_option_or_default('setting_webshop_replace_show_map', __("Show Map", 'lang_webshop'));
-			$setting_webshop_replace_hide_map = get_option_or_default('setting_webshop_replace_hide_map', __("Hide Map", 'lang_webshop'));
-			
+			$setting_webshop_replace_show_map = get_option_or_default('setting_webshop_replace_show_map', __("Show Map", 'lang_rentals'));
+			$setting_webshop_replace_hide_map = get_option_or_default('setting_webshop_replace_hide_map', __("Hide Map", 'lang_rentals'));
+
 			$this->template_shortcodes['map']['html'] = "<div class='form_button'>
 				<h2 class='is_map_toggler button'>
 					<span>".$setting_webshop_replace_show_map."</span>
@@ -7878,7 +7883,7 @@ class mf_rentals
 
 					if(in_array('search', $setting_maps_controls))
 					{
-						$this->template_shortcodes['map']['html'] .= show_textfield(array('name' => 'maps_search_input', 'placeholder' => __("Search for an address and find its position", 'lang_webshop'), 'xtra' => "class='maps_search_input'"));
+						$this->template_shortcodes['map']['html'] .= show_textfield(array('name' => 'maps_search_input', 'placeholder' => __("Search for an address and find its position", 'lang_rentals'), 'xtra' => "class='maps_search_input'"));
 					}
 
 					$this->template_shortcodes['map']['html'] .= "<div id='webshop_map'></div>";
@@ -7952,9 +7957,9 @@ class mf_rentals
 
 						if($setting_quote_form > 0)
 						{
-							$setting_replace_add_to_search = get_option_or_default('setting_replace_add_to_search'.$this->option_type, __("Add to Search", 'lang_webshop'));
-							$setting_replace_remove_from_search = get_option_or_default('setting_replace_remove_from_search'.$this->option_type, __("Remove from Search", 'lang_webshop'));
-							$setting_replace_return_to_search = get_option_or_default('setting_replace_return_to_search'.$this->option_type, __("Continue Search", 'lang_webshop'));
+							$setting_replace_add_to_search = get_option_or_default('setting_replace_add_to_search'.$this->option_type, __("Add to Search", 'lang_rentals'));
+							$setting_replace_remove_from_search = get_option_or_default('setting_replace_remove_from_search'.$this->option_type, __("Remove from Search", 'lang_rentals'));
+							$setting_replace_return_to_search = get_option_or_default('setting_replace_return_to_search'.$this->option_type, __("Continue Search", 'lang_rentals'));
 
 							$this->template_shortcodes['form']['html'] .= "<div class='has_searched hide'>"
 								.show_button(array('type' => 'button', 'text' => "<i class='fa fa-check'></i> ".$setting_replace_add_to_search, 'class' => "button-primary add_to_search", 'xtra' => "product_id='".$this->product_id."'"))
@@ -7967,14 +7972,14 @@ class mf_rentals
 
 							if($setting_quote_form_single > 0)
 							{
-								$setting_replace_send_request_for_quote = get_option_or_default('setting_replace_send_request_for_quote'.$this->option_type, __("Send request for quote", 'lang_webshop'));
+								$setting_replace_send_request_for_quote = get_option_or_default('setting_replace_send_request_for_quote'.$this->option_type, __("Send request for quote", 'lang_rentals'));
 
 								$this->template_shortcodes['form']['html'] .= show_button(array('type' => 'button', 'text' => "<i class='fa fa-envelope'></i> ".$setting_replace_send_request_for_quote, 'class' => "button-primary send_request_for_quote", 'xtra' => "product_id='".$this->product_id."' form_url='".$this->get_form_url($setting_quote_form_single)."'"));
 							}
 
 							if($setting_quote_form > 0)
 							{
-								$setting_replace_search_for_another = get_option_or_default('setting_replace_search_for_another'.$this->option_type, __("Search for Another", 'lang_webshop'));
+								$setting_replace_search_for_another = get_option_or_default('setting_replace_search_for_another'.$this->option_type, __("Search for Another", 'lang_rentals'));
 
 								$this->template_shortcodes['form']['html'] .= show_button(array('type' => 'button', 'text' => "<i class='fa fa-search'></i> ".$setting_replace_search_for_another, 'class' => "button-secondary search_for_another", 'xtra' => "search_url='".$this->search_url."'"));
 							}
@@ -8772,7 +8777,7 @@ class mf_rentals
 
 				else
 				{
-					$out .= "<li>"._("There is nothing to show here", 'lang_webshop')."</li>";
+					$out .= "<li>"._("There is nothing to show here", 'lang_rentals')."</li>";
 				}
 
 			$out .= "</ul>
@@ -8797,8 +8802,8 @@ if(class_exists('mf_import'))
 			$this->post_type = $this->obj_webshop->post_type_products;
 			$this->actions = array('import');
 			$this->columns = array(
-				'post_title' => __("Title", 'lang_webshop'),
-				'post_content' => __("Content", 'lang_webshop'),
+				'post_title' => __("Title", 'lang_rentals'),
+				'post_content' => __("Content", 'lang_rentals'),
 			);
 
 			$this->arr_type = array(
@@ -8951,7 +8956,7 @@ if(class_exists('RWMB_Field') && class_exists('RWMB_Text_Field'))
 
 			else
 			{
-				return "<p>".sprintf(__("You have to install the plugin %s first", 'lang_webshop'), "MF Calendar")."</p>";
+				return "<p>".sprintf(__("You have to install the plugin %s first", 'lang_rentals'), "MF Calendar")."</p>";
 			}
 		}
 	}
@@ -9079,7 +9084,7 @@ if(class_exists('RWMB_Field') && class_exists('RWMB_Text_Field'))
 
 				else
 				{
-					return "<p>".sprintf(__("You have to install the plugin %s first", 'lang_webshop'), "MF Social Feed")."</p>";
+					return "<p>".sprintf(__("You have to install the plugin %s first", 'lang_rentals'), "MF Social Feed")."</p>";
 				}
 			}
 		}
@@ -9117,7 +9122,7 @@ class widget_webshop_search extends WP_Widget
 
 		$this->widget_ops = array(
 			'classname' => 'webshop_search',
-			'description' => __("Display Search", 'lang_webshop'),
+			'description' => __("Display Search", 'lang_rentals'),
 		);
 
 		/*$this->arr_default = array(
@@ -9125,7 +9130,7 @@ class widget_webshop_search extends WP_Widget
 			'webshop_option_type' => '',
 		);*/
 
-		parent::__construct(str_replace("_", "-", $this->widget_ops['classname']).'-widget', __("Webshop", 'lang_webshop')." (".__("Search", 'lang_webshop').")", $this->widget_ops);
+		parent::__construct(str_replace("_", "-", $this->widget_ops['classname']).'-widget', __("Webshop", 'lang_rentals')." (".__("Search", 'lang_rentals').")", $this->widget_ops);
 	}
 
 	function widget($args, $instance)
@@ -9180,8 +9185,8 @@ class widget_webshop_search extends WP_Widget
 		$instance = wp_parse_args((array)$instance, $this->arr_default);
 
 		echo "<div class='mf_form'>"
-			.show_textfield(array('name' => $this->get_field_name('webshop_heading'), 'text' => __("Heading", 'lang_webshop'), 'value' => $instance['webshop_heading'], 'xtra' => " id='".$this->widget_ops['classname']."-title'"))
-			.show_select(array('data' => $this->obj_webshop->get_option_types_for_select(), 'name' => $this->get_field_name('webshop_option_type'), 'text' => __("Type", 'lang_webshop'), 'value' => $instance['webshop_option_type']))
+			.show_textfield(array('name' => $this->get_field_name('webshop_heading'), 'text' => __("Heading", 'lang_rentals'), 'value' => $instance['webshop_heading'], 'xtra' => " id='".$this->widget_ops['classname']."-title'"))
+			.show_select(array('data' => $this->obj_webshop->get_option_types_for_select(), 'name' => $this->get_field_name('webshop_option_type'), 'text' => __("Type", 'lang_rentals'), 'value' => $instance['webshop_option_type']))
 		."</div>";
 	}
 }
@@ -9203,10 +9208,10 @@ class widget_webshop_map extends WP_Widget
 
 		$this->widget_ops = array(
 			'classname' => 'webshop_map',
-			'description' => __("Display Map", 'lang_webshop'),
+			'description' => __("Display Map", 'lang_rentals'),
 		);
 
-		parent::__construct(str_replace("_", "-", $this->widget_ops['classname']).'-widget', __("Webshop", 'lang_webshop')." (".__("Map", 'lang_webshop').")", $this->widget_ops);
+		parent::__construct(str_replace("_", "-", $this->widget_ops['classname']).'-widget', __("Webshop", 'lang_rentals')." (".__("Map", 'lang_rentals').")", $this->widget_ops);
 	}
 
 	function widget($args, $instance)
@@ -9247,8 +9252,8 @@ class widget_webshop_map extends WP_Widget
 		$instance = wp_parse_args((array)$instance, $this->arr_default);
 
 		echo "<div class='mf_form'>"
-			.show_textfield(array('name' => $this->get_field_name('webshop_heading'), 'text' => __("Heading", 'lang_webshop'), 'value' => $instance['webshop_heading'], 'xtra' => " id='".$this->widget_ops['classname']."-title'"))
-			.show_select(array('data' => $this->obj_webshop->get_option_types_for_select(), 'name' => $this->get_field_name('webshop_option_type'), 'text' => __("Type", 'lang_webshop'), 'value' => $instance['webshop_option_type']))
+			.show_textfield(array('name' => $this->get_field_name('webshop_heading'), 'text' => __("Heading", 'lang_rentals'), 'value' => $instance['webshop_heading'], 'xtra' => " id='".$this->widget_ops['classname']."-title'"))
+			.show_select(array('data' => $this->obj_webshop->get_option_types_for_select(), 'name' => $this->get_field_name('webshop_option_type'), 'text' => __("Type", 'lang_rentals'), 'value' => $instance['webshop_option_type']))
 		."</div>";
 	}
 }
@@ -9276,7 +9281,7 @@ class widget_webshop_form extends WP_Widget
 
 		$this->widget_ops = array(
 			'classname' => 'webshop_form',
-			'description' => __("Display start page form", 'lang_webshop'),
+			'description' => __("Display start page form", 'lang_rentals'),
 		);
 
 		/*$this->arr_default = array(
@@ -9287,10 +9292,10 @@ class widget_webshop_form extends WP_Widget
 			'webshop_form_button_text' => '',
 		);*/
 
-		$this->name_products = get_option_or_default('setting_webshop_replace_products', __("Products", 'lang_webshop'));
-		$this->name_doc_types = get_option_or_default('setting_webshop_replace_doc_types', __("Filters", 'lang_webshop'));
+		$this->name_products = get_option_or_default('setting_webshop_replace_products', __("Products", 'lang_rentals'));
+		$this->name_doc_types = get_option_or_default('setting_webshop_replace_doc_types', __("Filters", 'lang_rentals'));
 
-		parent::__construct('webshop-widget', __("Webshop", 'lang_webshop')." (".__("Form", 'lang_webshop').")", $this->widget_ops);
+		parent::__construct('webshop-widget', __("Webshop", 'lang_rentals')." (".__("Form", 'lang_rentals').")", $this->widget_ops);
 	}
 
 	function get_doc_type_input($data)
@@ -9436,7 +9441,7 @@ class widget_webshop_form extends WP_Widget
 
 			if(count($instance['webshop_doc_type']) > 0)
 			{
-				$name_choose_here = "-- ".__("Choose Here", 'lang_webshop')." --";
+				$name_choose_here = "-- ".__("Choose Here", 'lang_rentals')." --";
 
 				echo apply_filters('filter_before_widget', $before_widget);
 
@@ -9460,14 +9465,14 @@ class widget_webshop_form extends WP_Widget
 							}
 
 							echo "<li class='form_button'>"
-								.show_button(array('text' => ($instance['webshop_form_button_text'] != '' ? str_replace("[product_amount]", "<span class='product_filtered_amount'></span>", $instance['webshop_form_button_text']) : __("Search", 'lang_webshop'))))
+								.show_button(array('text' => ($instance['webshop_form_button_text'] != '' ? str_replace("[product_amount]", "<span class='product_filtered_amount'></span>", $instance['webshop_form_button_text']) : __("Search", 'lang_rentals'))))
 							."</li>
 						</ul>";
 
 						if(get_option('setting_show_all_min') > 0 && strpos($instance['webshop_form_button_text'], "[product_amount]") === false)
 						{
 							echo "<p class='webshop_form_link'>
-								<a href='".get_permalink($instance['webshop_action'])."'>".__("Show all", 'lang_webshop')."<span class='product_filtered_amount'></span>".($this->name_products != '' ? " ".strtolower($this->name_products) : "")."</a>
+								<a href='".get_permalink($instance['webshop_action'])."'>".__("Show all", 'lang_rentals')."<span class='product_filtered_amount'></span>".($this->name_products != '' ? " ".strtolower($this->name_products) : "")."</a>
 							</p>";
 						}
 
@@ -9519,8 +9524,8 @@ class widget_webshop_form extends WP_Widget
 		}
 
 		echo "<div class='mf_form'>"
-			.show_textfield(array('name' => $this->get_field_name('webshop_heading'), 'text' => __("Heading", 'lang_webshop'), 'value' => $instance['webshop_heading'], 'xtra' => " id='".$this->widget_ops['classname']."-title'"))
-			.show_select(array('data' => $arr_data_action, 'name' => $this->get_field_name('webshop_action'), 'text' => __("Go to after submit", 'lang_webshop'), 'value' => $instance['webshop_action']))
+			.show_textfield(array('name' => $this->get_field_name('webshop_heading'), 'text' => __("Heading", 'lang_rentals'), 'value' => $instance['webshop_heading'], 'xtra' => " id='".$this->widget_ops['classname']."-title'"))
+			.show_select(array('data' => $arr_data_action, 'name' => $this->get_field_name('webshop_action'), 'text' => __("Go to after submit", 'lang_rentals'), 'value' => $instance['webshop_action']))
 			."<div".apply_filters('get_flex_flow', "").">"
 				.show_select(array('data' => $arr_data_doc_type, 'name' => $this->get_field_name('webshop_doc_type')."[]", 'text' => $this->name_doc_types, 'value' => $instance['webshop_doc_type']));
 
@@ -9530,12 +9535,12 @@ class widget_webshop_form extends WP_Widget
 					{
 						list($arr_data, $out_temp) = $this->get_doc_type_input(array('post_id' => $post_id));
 
-						echo show_select(array('data' => $arr_data, 'name' => $this->get_field_name('webshop_doc_type_default'), 'text' => sprintf(__("Default %s", 'lang_webshop'), $this->name_doc_types), 'value' => $instance['webshop_doc_type_default']));
+						echo show_select(array('data' => $arr_data, 'name' => $this->get_field_name('webshop_doc_type_default'), 'text' => sprintf(__("Default %s", 'lang_rentals'), $this->name_doc_types), 'value' => $instance['webshop_doc_type_default']));
 					}
 				}
 
 			echo "</div>"
-			.show_textfield(array('name' => $this->get_field_name('webshop_form_button_text'), 'text' => __("Button text", 'lang_webshop'), 'value' => $instance['webshop_form_button_text']))
+			.show_textfield(array('name' => $this->get_field_name('webshop_form_button_text'), 'text' => __("Button text", 'lang_rentals'), 'value' => $instance['webshop_form_button_text']))
 		."</div>";
 	}
 }
@@ -9558,7 +9563,7 @@ class widget_webshop_list extends WP_Widget
 
 		$this->widget_ops = array(
 			'classname' => 'webshop_list webshop_widget',
-			'description' => __("Display Webshop List", 'lang_webshop'),
+			'description' => __("Display Webshop List", 'lang_rentals'),
 		);
 
 		/*$this->arr_default = array(
@@ -9567,7 +9572,7 @@ class widget_webshop_list extends WP_Widget
 			'webshop_locations' => "",
 		);*/
 
-		parent::__construct('webshop-list-widget', __("Webshop", 'lang_webshop')." (".__("List", 'lang_webshop').")", $this->widget_ops);
+		parent::__construct('webshop-list-widget', __("Webshop", 'lang_rentals')." (".__("List", 'lang_rentals').")", $this->widget_ops);
 	}
 
 	function widget($args, $instance)
@@ -9633,9 +9638,9 @@ class widget_webshop_list extends WP_Widget
 		get_post_children(array('post_type' => $this->obj_webshop->post_type_location), $arr_data_locations);
 
 		echo "<div class='mf_form'>"
-			.show_textfield(array('name' => $this->get_field_name('webshop_heading'), 'text' => __("Heading", 'lang_webshop'), 'value' => $instance['webshop_heading'], 'xtra' => " id='".$this->widget_ops['classname']."-title'"))
-			.show_select(array('data' => $arr_data, 'name' => $this->get_field_name('webshop_action'), 'text' => __("Go to on click", 'lang_webshop'), 'value' => $instance['webshop_action']))
-			.show_select(array('data' => $arr_data_locations, 'name' => $this->get_field_name('webshop_locations')."[]", 'text' => __("Locations", 'lang_webshop'), 'value' => $instance['webshop_locations']))
+			.show_textfield(array('name' => $this->get_field_name('webshop_heading'), 'text' => __("Heading", 'lang_rentals'), 'value' => $instance['webshop_heading'], 'xtra' => " id='".$this->widget_ops['classname']."-title'"))
+			.show_select(array('data' => $arr_data, 'name' => $this->get_field_name('webshop_action'), 'text' => __("Go to on click", 'lang_rentals'), 'value' => $instance['webshop_action']))
+			.show_select(array('data' => $arr_data_locations, 'name' => $this->get_field_name('webshop_locations')."[]", 'text' => __("Locations", 'lang_rentals'), 'value' => $instance['webshop_locations']))
 		."</div>";
 	}
 }
@@ -9660,7 +9665,7 @@ class widget_webshop_favorites extends WP_Widget
 
 		$this->widget_ops = array(
 			'classname' => 'webshop_favorites webshop_widget',
-			'description' => __("Display start page favorites", 'lang_webshop'),
+			'description' => __("Display start page favorites", 'lang_rentals'),
 		);
 
 		/*$this->arr_default = array(
@@ -9671,9 +9676,9 @@ class widget_webshop_favorites extends WP_Widget
 			'webshop_display_border' => 'yes',
 		);*/
 
-		parent::__construct('webshop-favorites-widget', __("Webshop", 'lang_webshop')." (".__("Favorites", 'lang_webshop').")", $this->widget_ops);
+		parent::__construct('webshop-favorites-widget', __("Webshop", 'lang_rentals')." (".__("Favorites", 'lang_rentals').")", $this->widget_ops);
 
-		$this->name_products = get_option_or_default('setting_webshop_replace_products', __("Products", 'lang_webshop'));
+		$this->name_products = get_option_or_default('setting_webshop_replace_products', __("Products", 'lang_rentals'));
 	}
 
 	function widget($args, $instance)
@@ -9735,15 +9740,15 @@ class widget_webshop_favorites extends WP_Widget
 		get_post_children(array('post_type' => $this->obj_webshop->post_type_products, 'order_by' => 'post_title'), $arr_data);
 
 		echo "<div class='mf_form'>"
-			.show_textfield(array('name' => $this->get_field_name('webshop_heading'), 'text' => __("Heading", 'lang_webshop'), 'value' => $instance['webshop_heading'], 'xtra' => " id='".$this->widget_ops['classname']."-title'"))
+			.show_textfield(array('name' => $this->get_field_name('webshop_heading'), 'text' => __("Heading", 'lang_rentals'), 'value' => $instance['webshop_heading'], 'xtra' => " id='".$this->widget_ops['classname']."-title'"))
 			.show_select(array('data' => $arr_data, 'name' => $this->get_field_name('webshop_products')."[]", 'text' => $this->name_products, 'value' => $instance['webshop_products']))
-			.show_select(array('data' => get_yes_no_for_select(), 'name' => $this->get_field_name('webshop_display_category'), 'text' => __("Display Category", 'lang_webshop'), 'value' => $instance['webshop_display_category']))
+			.show_select(array('data' => get_yes_no_for_select(), 'name' => $this->get_field_name('webshop_display_category'), 'text' => __("Display Category", 'lang_rentals'), 'value' => $instance['webshop_display_category']))
 			."<div".apply_filters('get_flex_flow', "").">"
-				.show_select(array('data' => get_yes_no_for_select(), 'name' => $this->get_field_name('webshop_show_info'), 'text' => __("Display Info", 'lang_webshop'), 'value' => $instance['webshop_show_info']));
+				.show_select(array('data' => get_yes_no_for_select(), 'name' => $this->get_field_name('webshop_show_info'), 'text' => __("Display Info", 'lang_rentals'), 'value' => $instance['webshop_show_info']));
 
 				if($instance['webshop_show_info'] == 'yes')
 				{
-					echo show_select(array('data' => get_yes_no_for_select(), 'name' => $this->get_field_name('webshop_display_border'), 'text' => __("Display Border", 'lang_webshop'), 'value' => $instance['webshop_display_border']));
+					echo show_select(array('data' => get_yes_no_for_select(), 'name' => $this->get_field_name('webshop_display_border'), 'text' => __("Display Border", 'lang_rentals'), 'value' => $instance['webshop_display_border']));
 				}
 
 			echo "</div>
@@ -9771,7 +9776,7 @@ class widget_webshop_recent extends WP_Widget
 
 		$this->widget_ops = array(
 			'classname' => 'webshop_recent webshop_widget',
-			'description' => __("Display Recent", 'lang_webshop'),
+			'description' => __("Display Recent", 'lang_rentals'),
 		);
 
 		/*$this->arr_default = array(
@@ -9782,9 +9787,9 @@ class widget_webshop_recent extends WP_Widget
 			'webshop_display_border' => 'yes',
 		);*/
 
-		parent::__construct('webshop-recent-widget', __("Webshop", 'lang_webshop')." (".__("Recent", 'lang_webshop').")", $this->widget_ops);
+		parent::__construct('webshop-recent-widget', __("Webshop", 'lang_rentals')." (".__("Recent", 'lang_rentals').")", $this->widget_ops);
 
-		$this->name_products = get_option_or_default('setting_webshop_replace_products', __("Products", 'lang_webshop'));
+		$this->name_products = get_option_or_default('setting_webshop_replace_products', __("Products", 'lang_rentals'));
 	}
 
 	function widget($args, $instance)
@@ -9850,17 +9855,17 @@ class widget_webshop_recent extends WP_Widget
 		$instance = wp_parse_args((array)$instance, $this->arr_default);
 
 		echo "<div class='mf_form'>"
-			.show_textfield(array('name' => $this->get_field_name('webshop_heading'), 'text' => __("Heading", 'lang_webshop'), 'value' => $instance['webshop_heading'], 'xtra' => " id='".$this->widget_ops['classname']."-title'"))
+			.show_textfield(array('name' => $this->get_field_name('webshop_heading'), 'text' => __("Heading", 'lang_rentals'), 'value' => $instance['webshop_heading'], 'xtra' => " id='".$this->widget_ops['classname']."-title'"))
 			."<div".apply_filters('get_flex_flow', "").">"
-				.show_textfield(array('type' => 'number', 'name' => $this->get_field_name('webshop_amount'), 'text' => __("Amount", 'lang_webshop'), 'value' => $instance['webshop_amount']))
-				.show_select(array('data' => get_yes_no_for_select(), 'name' => $this->get_field_name('webshop_display_category'), 'text' => __("Display Category", 'lang_webshop'), 'value' => $instance['webshop_display_category']))
+				.show_textfield(array('type' => 'number', 'name' => $this->get_field_name('webshop_amount'), 'text' => __("Amount", 'lang_rentals'), 'value' => $instance['webshop_amount']))
+				.show_select(array('data' => get_yes_no_for_select(), 'name' => $this->get_field_name('webshop_display_category'), 'text' => __("Display Category", 'lang_rentals'), 'value' => $instance['webshop_display_category']))
 			."</div>
 			<div".apply_filters('get_flex_flow', "").">"
-				.show_select(array('data' => get_yes_no_for_select(), 'name' => $this->get_field_name('webshop_show_info'), 'text' => __("Display Info", 'lang_webshop'), 'value' => $instance['webshop_show_info']));
+				.show_select(array('data' => get_yes_no_for_select(), 'name' => $this->get_field_name('webshop_show_info'), 'text' => __("Display Info", 'lang_rentals'), 'value' => $instance['webshop_show_info']));
 
 				if($instance['webshop_show_info'] == 'yes')
 				{
-					echo show_select(array('data' => get_yes_no_for_select(), 'name' => $this->get_field_name('webshop_display_border'), 'text' => __("Display Border", 'lang_webshop'), 'value' => $instance['webshop_display_border']));
+					echo show_select(array('data' => get_yes_no_for_select(), 'name' => $this->get_field_name('webshop_display_border'), 'text' => __("Display Border", 'lang_rentals'), 'value' => $instance['webshop_display_border']));
 				}
 
 			echo "</div>
@@ -9892,7 +9897,7 @@ class widget_webshop_events extends WP_Widget
 
 		$this->widget_ops = array(
 			'classname' => 'webshop_events webshop_widget',
-			'description' => __("Display Events", 'lang_webshop'),
+			'description' => __("Display Events", 'lang_rentals'),
 		);
 
 		/*$this->arr_default = array(
@@ -9907,33 +9912,33 @@ class widget_webshop_events extends WP_Widget
 			'webshop_amount' => 3,
 		);*/
 
-		parent::__construct('webshop-events-widget', __("Webshop", 'lang_webshop')." (".__("Events", 'lang_webshop').")", $this->widget_ops);
+		parent::__construct('webshop-events-widget', __("Webshop", 'lang_rentals')." (".__("Events", 'lang_rentals').")", $this->widget_ops);
 	}
 
 	function get_filters_for_select()
 	{
 		return array(
-			'calendar' => __("Calendar", 'lang_webshop'),
-			'category' => get_option_or_default('setting_webshop_replace_category', __("Category", 'lang_webshop')),
-			'location' => __("Location", 'lang_webshop'),
-			'order_by' => __("Order by", 'lang_webshop'),
+			'calendar' => __("Calendar", 'lang_rentals'),
+			'category' => get_option_or_default('setting_webshop_replace_category', __("Category", 'lang_rentals')),
+			'location' => __("Location", 'lang_rentals'),
+			'order_by' => __("Order by", 'lang_rentals'),
 		);
 	}
 
 	function get_event_types_for_select()
 	{
 		return array(
-			'' => __("All", 'lang_webshop'),
-			'distance' => __("Closest", 'lang_webshop'),
-			'today' => __("Today", 'lang_webshop'),
+			'' => __("All", 'lang_rentals'),
+			'distance' => __("Closest", 'lang_rentals'),
+			'today' => __("Today", 'lang_rentals'),
 		);
 	}
 
 	function get_order_by_for_select()
 	{
 		$arr_data = array(
-			'date' => __("Date", 'lang_webshop'),
-			'distance' => __("Closest", 'lang_webshop'),
+			'date' => __("Date", 'lang_rentals'),
+			'distance' => __("Closest", 'lang_rentals'),
 		);
 
 		/*$arr_locations = array();
@@ -9943,7 +9948,7 @@ class widget_webshop_events extends WP_Widget
 
 		if(count($arr_locations) > 0)
 		{
-			$arr_data["opt_start_location"] = __("Location", 'lang_webshop');
+			$arr_data["opt_start_location"] = __("Location", 'lang_rentals');
 
 				foreach($arr_locations as $key => $value)
 				{
@@ -10013,7 +10018,7 @@ class widget_webshop_events extends WP_Widget
 						if(in_array('order_by', $instance['webshop_filters']))
 						{
 							$event_filter_order_by = check_var('event_filter_order_by', 'char', true, $instance['webshop_filters_order_by']);
-							$webshop_filters_order_by_text = $instance['webshop_filters_order_by_text'] != '' ? $instance['webshop_filters_order_by_text'] : __("Order by", 'lang_webshop');
+							$webshop_filters_order_by_text = $instance['webshop_filters_order_by_text'] != '' ? $instance['webshop_filters_order_by_text'] : __("Order by", 'lang_rentals');
 
 							echo show_select(array('data' => $this->get_order_by_for_select(), 'name' => 'event_filter_order_by', 'text' => $webshop_filters_order_by_text, 'value' => $event_filter_order_by, 'xtra' => " class='event_filter_order_by'"));
 						}
@@ -10082,23 +10087,23 @@ class widget_webshop_events extends WP_Widget
 		$instance = wp_parse_args((array)$instance, $this->arr_default);
 
 		echo "<div class='mf_form'>"
-			.show_textfield(array('name' => $this->get_field_name('webshop_heading'), 'text' => __("Heading", 'lang_webshop'), 'value' => $instance['webshop_heading'], 'xtra' => " id='".$this->widget_ops['classname']."-title'"))
-			.show_select(array('data' => $this->get_filters_for_select(), 'name' => $this->get_field_name('webshop_filters')."[]", 'text' => __("Display Filters", 'lang_webshop'), 'value' => $instance['webshop_filters']));
+			.show_textfield(array('name' => $this->get_field_name('webshop_heading'), 'text' => __("Heading", 'lang_rentals'), 'value' => $instance['webshop_heading'], 'xtra' => " id='".$this->widget_ops['classname']."-title'"))
+			.show_select(array('data' => $this->get_filters_for_select(), 'name' => $this->get_field_name('webshop_filters')."[]", 'text' => __("Display Filters", 'lang_rentals'), 'value' => $instance['webshop_filters']));
 
 			if(in_array('order_by', $instance['webshop_filters']))
 			{
-				echo show_select(array('data' => $this->get_order_by_for_select(), 'name' => $this->get_field_name('webshop_filters_order_by'), 'text' => __("Order by", 'lang_webshop')." (".__("Default", 'lang_webshop').")", 'value' => $instance['webshop_filters_order_by']))
-				.show_textfield(array('name' => $this->get_field_name('webshop_filters_order_by_text'), 'text' => __("Order by Text", 'lang_webshop'), 'value' => $instance['webshop_filters_order_by_text'], 'placeholder' => __("Order by", 'lang_webshop')));
+				echo show_select(array('data' => $this->get_order_by_for_select(), 'name' => $this->get_field_name('webshop_filters_order_by'), 'text' => __("Order by", 'lang_rentals')." (".__("Default", 'lang_rentals').")", 'value' => $instance['webshop_filters_order_by']))
+				.show_textfield(array('name' => $this->get_field_name('webshop_filters_order_by_text'), 'text' => __("Order by Text", 'lang_rentals'), 'value' => $instance['webshop_filters_order_by_text'], 'placeholder' => __("Order by", 'lang_rentals')));
 			}
 
-			echo show_textarea(array('name' => $this->get_field_name('webshop_text'), 'text' => __("Text", 'lang_webshop'), 'value' => $instance['webshop_text'], 'placeholder' => sprintf(__("There are %s events", 'lang_webshop'), "[amount]")))
+			echo show_textarea(array('name' => $this->get_field_name('webshop_text'), 'text' => __("Text", 'lang_rentals'), 'value' => $instance['webshop_text'], 'placeholder' => sprintf(__("There are %s events", 'lang_rentals'), "[amount]")))
 			."<div".apply_filters('get_flex_flow', "").">"
-				.show_select(array('data' => $this->obj_webshop->get_option_types_for_select(), 'name' => $this->get_field_name('webshop_option_type'), 'text' => __("Type", 'lang_webshop'), 'value' => $instance['webshop_option_type']))
-				.show_select(array('data' => $this->get_event_types_for_select(), 'name' => $this->get_field_name('webshop_event_type'), 'text' => __("Event Type", 'lang_webshop'), 'value' => $instance['webshop_event_type']))
+				.show_select(array('data' => $this->obj_webshop->get_option_types_for_select(), 'name' => $this->get_field_name('webshop_option_type'), 'text' => __("Type", 'lang_rentals'), 'value' => $instance['webshop_option_type']))
+				.show_select(array('data' => $this->get_event_types_for_select(), 'name' => $this->get_field_name('webshop_event_type'), 'text' => __("Event Type", 'lang_rentals'), 'value' => $instance['webshop_event_type']))
 			."</div>
 			<div".apply_filters('get_flex_flow', "").">"
-				.show_textfield(array('type' => 'number', 'name' => $this->get_field_name('webshop_months'), 'text' => __("Months", 'lang_webshop'), 'value' => $instance['webshop_months'], 'xtra' => "min='1' max='12'"))
-				.show_textfield(array('type' => 'number', 'name' => $this->get_field_name('webshop_amount'), 'text' => __("Amount", 'lang_webshop'), 'value' => $instance['webshop_amount'], 'xtra' => "min='1' max='20'"))
+				.show_textfield(array('type' => 'number', 'name' => $this->get_field_name('webshop_months'), 'text' => __("Months", 'lang_rentals'), 'value' => $instance['webshop_months'], 'xtra' => "min='1' max='12'"))
+				.show_textfield(array('type' => 'number', 'name' => $this->get_field_name('webshop_amount'), 'text' => __("Amount", 'lang_rentals'), 'value' => $instance['webshop_amount'], 'xtra' => "min='1' max='20'"))
 			."</div>
 		</div>";
 	}
@@ -10129,7 +10134,7 @@ class widget_webshop_filter_products extends WP_Widget
 
 		$this->widget_ops = array(
 			'classname' => 'webshop_filter_products webshop_widget',
-			'description' => __("Display Filtered Products", 'lang_webshop'),
+			'description' => __("Display Filtered Products", 'lang_rentals'),
 		);
 
 		/*$this->arr_default = array(
@@ -10145,28 +10150,28 @@ class widget_webshop_filter_products extends WP_Widget
 			'webshop_button_text' => '',
 		);*/
 
-		parent::__construct('webshop-filter-products-widget', __("Webshop", 'lang_webshop')." (".__("Filtered Products", 'lang_webshop').")", $this->widget_ops);
+		parent::__construct('webshop-filter-products-widget', __("Webshop", 'lang_rentals')." (".__("Filtered Products", 'lang_rentals').")", $this->widget_ops);
 	}
 
 	function get_filters_for_select()
 	{
 		return array(
-			'order_by' => __("Order by", 'lang_webshop'),
+			'order_by' => __("Order by", 'lang_rentals'),
 		);
 	}
 
 	function get_order_by_for_select()
 	{
 		$arr_data = array(
-			'' => "-- ".__("Choose Here", 'lang_webshop')." --",
-			'latest' => __("Latest", 'lang_webshop'),
-			'alphabetical' => __("A-Z", 'lang_webshop'),
-			'distance' => __("Closest", 'lang_webshop'),
+			'' => "-- ".__("Choose Here", 'lang_rentals')." --",
+			'latest' => __("Latest", 'lang_rentals'),
+			'alphabetical' => __("A-Z", 'lang_rentals'),
+			'distance' => __("Closest", 'lang_rentals'),
 		);
 
 		/*if(IS_SUPER_ADMIN)
 		{
-			$arr_data['map_center'] = __("Map Center", 'lang_webshop');
+			$arr_data['map_center'] = __("Map Center", 'lang_rentals');
 		}*/
 
 		return $arr_data;
@@ -10214,7 +10219,7 @@ class widget_webshop_filter_products extends WP_Widget
 						if(in_array('order_by', $instance['webshop_filters']))
 						{
 							$product_filter_order_by = check_var('product_filter_order_by', 'char', true, $instance['webshop_filters_order_by']);
-							$webshop_filters_order_by_text = $instance['webshop_filters_order_by_text'] != '' ? $instance['webshop_filters_order_by_text'] : __("Order by", 'lang_webshop');
+							$webshop_filters_order_by_text = $instance['webshop_filters_order_by_text'] != '' ? $instance['webshop_filters_order_by_text'] : __("Order by", 'lang_rentals');
 
 							echo show_select(array('data' => $this->get_order_by_for_select(), 'name' => 'product_filter_order_by', 'text' => $webshop_filters_order_by_text, 'value' => $product_filter_order_by, 'field_class' => "mf_form_field product_filter_order_by"));
 						}
@@ -10290,28 +10295,28 @@ class widget_webshop_filter_products extends WP_Widget
 	{
 		$instance = wp_parse_args((array)$instance, $this->arr_default);
 
-		$name_category = get_option_or_default('setting_webshop_replace_category', __("Category", 'lang_webshop'));
+		$name_category = get_option_or_default('setting_webshop_replace_category', __("Category", 'lang_rentals'));
 
 		$this->obj_webshop->option_type = ($instance['webshop_option_type'] != '' ? "_".$instance['webshop_option_type'] : '');
 
 		echo "<div class='mf_form'>"
-			.show_textfield(array('name' => $this->get_field_name('webshop_heading'), 'text' => __("Heading", 'lang_webshop'), 'value' => $instance['webshop_heading'], 'xtra' => " id='".$this->widget_ops['classname']."-title'"))
-			.show_select(array('data' => $this->get_filters_for_select(), 'name' => $this->get_field_name('webshop_filters')."[]", 'text' => __("Display Filters", 'lang_webshop'), 'value' => $instance['webshop_filters']));
+			.show_textfield(array('name' => $this->get_field_name('webshop_heading'), 'text' => __("Heading", 'lang_rentals'), 'value' => $instance['webshop_heading'], 'xtra' => " id='".$this->widget_ops['classname']."-title'"))
+			.show_select(array('data' => $this->get_filters_for_select(), 'name' => $this->get_field_name('webshop_filters')."[]", 'text' => __("Display Filters", 'lang_rentals'), 'value' => $instance['webshop_filters']));
 
 			if(in_array('order_by', $instance['webshop_filters']))
 			{
-				echo show_select(array('data' => $this->get_order_by_for_select(), 'name' => $this->get_field_name('webshop_filters_order_by'), 'text' => __("Order by", 'lang_webshop')." (".__("Default", 'lang_webshop').")", 'value' => $instance['webshop_filters_order_by']))
-				.show_textfield(array('name' => $this->get_field_name('webshop_filters_order_by_text'), 'text' => __("Order by Text", 'lang_webshop'), 'value' => $instance['webshop_filters_order_by_text'], 'placeholder' => __("Order by", 'lang_webshop')));
+				echo show_select(array('data' => $this->get_order_by_for_select(), 'name' => $this->get_field_name('webshop_filters_order_by'), 'text' => __("Order by", 'lang_rentals')." (".__("Default", 'lang_rentals').")", 'value' => $instance['webshop_filters_order_by']))
+				.show_textfield(array('name' => $this->get_field_name('webshop_filters_order_by_text'), 'text' => __("Order by Text", 'lang_rentals'), 'value' => $instance['webshop_filters_order_by_text'], 'placeholder' => __("Order by", 'lang_rentals')));
 			}
 
-			echo show_textarea(array('name' => $this->get_field_name('webshop_text'), 'text' => __("Text", 'lang_webshop'), 'value' => $instance['webshop_text'], 'placeholder' => sprintf(__("There are %s events", 'lang_webshop'), "[amount]")))
+			echo show_textarea(array('name' => $this->get_field_name('webshop_text'), 'text' => __("Text", 'lang_rentals'), 'value' => $instance['webshop_text'], 'placeholder' => sprintf(__("There are %s events", 'lang_rentals'), "[amount]")))
 			."<div".apply_filters('get_flex_flow', "").">"
-				.show_select(array('data' => $this->obj_webshop->get_option_types_for_select(), 'name' => $this->get_field_name('webshop_option_type'), 'text' => __("Type", 'lang_webshop'), 'value' => $instance['webshop_option_type']))
-				.show_textfield(array('type' => 'number', 'name' => $this->get_field_name('webshop_amount'), 'text' => __("Amount", 'lang_webshop'), 'value' => $instance['webshop_amount']))
+				.show_select(array('data' => $this->obj_webshop->get_option_types_for_select(), 'name' => $this->get_field_name('webshop_option_type'), 'text' => __("Type", 'lang_rentals'), 'value' => $instance['webshop_option_type']))
+				.show_textfield(array('type' => 'number', 'name' => $this->get_field_name('webshop_amount'), 'text' => __("Amount", 'lang_rentals'), 'value' => $instance['webshop_amount']))
 			."</div>"
-			.show_select(array('data' => get_yes_no_for_select(), 'name' => $this->get_field_name('webshop_link_product'), 'text' => __("Link Product", 'lang_webshop'), 'value' => $instance['webshop_link_product']))
+			.show_select(array('data' => get_yes_no_for_select(), 'name' => $this->get_field_name('webshop_link_product'), 'text' => __("Link Product", 'lang_rentals'), 'value' => $instance['webshop_link_product']))
 			.show_select(array('data' => $this->obj_webshop->get_categories_for_select(array('include_on' => 'products')), 'name' => $this->get_field_name('webshop_category')."[]", 'text' => $name_category, 'value' => $instance['webshop_category'], 'required' => true))
-			.show_textfield(array('name' => $this->get_field_name('webshop_button_text'), 'text' => __("Button Text", 'lang_webshop'), 'value' => $instance['webshop_button_text']))
+			.show_textfield(array('name' => $this->get_field_name('webshop_button_text'), 'text' => __("Button Text", 'lang_rentals'), 'value' => $instance['webshop_button_text']))
 		."</div>";
 	}
 }
@@ -10337,7 +10342,7 @@ class widget_webshop_product_meta extends WP_Widget
 
 		$this->widget_ops = array(
 			'classname' => 'webshop_product_meta webshop_widget',
-			'description' => __("Display Product Meta", 'lang_webshop'),
+			'description' => __("Display Product Meta", 'lang_rentals'),
 		);
 
 		/*$this->arr_default = array(
@@ -10349,29 +10354,29 @@ class widget_webshop_product_meta extends WP_Widget
 			'webshop_event_doc_types' => '',
 		);*/
 
-		parent::__construct('webshop-product_meta-widget', __("Webshop", 'lang_webshop')." (".__("Product Meta", 'lang_webshop').")", $this->widget_ops);
+		parent::__construct('webshop-product_meta-widget', __("Webshop", 'lang_rentals')." (".__("Product Meta", 'lang_rentals').")", $this->widget_ops);
 	}
 
 	function get_meta_types_for_select()
 	{
 		$arr_data = array(
-			'' => "-- ".__("Choose Here", 'lang_webshop')." --",
-			//'opt_start_products' => get_option_or_default('setting_webshop_replace_products'.$this->option_type, __("Products", 'lang_webshop')),
+			'' => "-- ".__("Choose Here", 'lang_rentals')." --",
+			//'opt_start_products' => get_option_or_default('setting_webshop_replace_products'.$this->option_type, __("Products", 'lang_rentals')),
 				//'address'
 				//'share'
-				'slideshow' => __("Slideshow", 'lang_webshop'),
+				'slideshow' => __("Slideshow", 'lang_rentals'),
 				//'description'
-				'meta' => get_option_or_default('setting_webshop_replace_title_contact_info'.$this->obj_webshop->option_type, __("Contact Info", 'lang_webshop')),
-				'quick' => get_option_or_default('setting_webshop_replace_title_quick_info'.$this->obj_webshop->option_type, __("Quick Info", 'lang_webshop')),
-				'property' => get_option_or_default('setting_webshop_replace_title_properties'.$this->obj_webshop->option_type, __("Properties", 'lang_webshop')),
+				'meta' => get_option_or_default('setting_webshop_replace_title_contact_info'.$this->obj_webshop->option_type, __("Contact Info", 'lang_rentals')),
+				'quick' => get_option_or_default('setting_webshop_replace_title_quick_info'.$this->obj_webshop->option_type, __("Quick Info", 'lang_rentals')),
+				'property' => get_option_or_default('setting_webshop_replace_title_properties'.$this->obj_webshop->option_type, __("Properties", 'lang_rentals')),
 				//'social'
 				//'previous_next'
-				'category_info' => __("Category Info", 'lang_webshop'),
+				'category_info' => __("Category Info", 'lang_rentals'),
 			//'opt_end_products' => "",
-			//'opt_start_events' => __("Events", 'lang_webshop'),
-				'event_info' => __("Event Info", 'lang_webshop'),
-				'actions' => __("Actions", 'lang_webshop'),
-				'breadcrumbs' => __("Breadcrumbs", 'lang_webshop'),
+			//'opt_start_events' => __("Events", 'lang_rentals'),
+				'event_info' => __("Event Info", 'lang_rentals'),
+				'actions' => __("Actions", 'lang_rentals'),
+				'breadcrumbs' => __("Breadcrumbs", 'lang_rentals'),
 			//'opt_end_events' => "",
 		);
 
@@ -10525,17 +10530,17 @@ class widget_webshop_product_meta extends WP_Widget
 
 							if($event_category > 0)
 							{
-								$out_temp .= "<strong>".__("Category", 'lang_webshop').":</strong> <span>".get_post_title($event_category)."</span><br>";
+								$out_temp .= "<strong>".__("Category", 'lang_rentals').":</strong> <span>".get_post_title($event_category)."</span><br>";
 							}
 
 							if($event_date != '')
 							{
-								$out_temp .= "<strong>".__("Date and Time", 'lang_webshop').":</strong> <span>".$event_date."</span><br>";
+								$out_temp .= "<strong>".__("Date and Time", 'lang_rentals').":</strong> <span>".$event_date."</span><br>";
 							}
 
 							if($event_location != '')
 							{
-								$out_temp .= "<strong>".__("Location", 'lang_webshop').":</strong> <span>".$event_location."</span><br>";
+								$out_temp .= "<strong>".__("Location", 'lang_rentals').":</strong> <span>".$event_location."</span><br>";
 
 								$event_coordinates = get_post_meta($this->obj_webshop->event_id, $obj_calendar->meta_prefix.'coordinates', true);
 
@@ -10555,7 +10560,7 @@ class widget_webshop_product_meta extends WP_Widget
 
 									if($event_url != '')
 									{
-										$event_xtra .= " data-url='".$event_url."' data-link_text='".__("Read More", 'lang_webshop')."'";
+										$event_xtra .= " data-url='".$event_url."' data-link_text='".__("Read More", 'lang_rentals')."'";
 									}
 
 									if(IS_ADMINISTRATOR)
@@ -10575,7 +10580,7 @@ class widget_webshop_product_meta extends WP_Widget
 								$product_title = get_post_title($product_id);
 								$product_url = get_permalink($product_id);
 
-								$out_temp .= "<strong>".get_option_or_default('setting_webshop_replace_product'.$option_type, __("Product", 'lang_webshop')).":</strong> <a href='".$product_url."'>".$product_title."</a><br>";
+								$out_temp .= "<strong>".get_option_or_default('setting_webshop_replace_product'.$option_type, __("Product", 'lang_rentals')).":</strong> <a href='".$product_url."'>".$product_title."</a><br>";
 
 								$gps_post_name = $this->obj_webshop->get_post_name_for_type('gps');
 
@@ -10589,7 +10594,7 @@ class widget_webshop_product_meta extends WP_Widget
 
 										if($product_url != '')
 										{
-											$product_xtra .= " data-url='".$product_url."' data-link_text='".__("Read More", 'lang_webshop')."'";
+											$product_xtra .= " data-url='".$product_url."' data-link_text='".__("Read More", 'lang_rentals')."'";
 										}
 
 										if(IS_ADMINISTRATOR)
@@ -10658,10 +10663,10 @@ class widget_webshop_product_meta extends WP_Widget
 
 									if($post_email != '')
 									{
-										$name_product = get_option_or_default('setting_webshop_replace_product'.$this->obj_webshop->option_type, __("Product", 'lang_webshop'));
+										$name_product = get_option_or_default('setting_webshop_replace_product'.$this->obj_webshop->option_type, __("Product", 'lang_rentals'));
 
 										$widget_content .= "<li>"
-											.apply_filters('the_content', "<a href='mailto:".$post_email."'><i class='fas fa-user'></i><span>".sprintf(__("Contact %s", 'lang_webshop'), $name_product)."</span></a>")
+											.apply_filters('the_content', "<a href='mailto:".$post_email."'><i class='fas fa-user'></i><span>".sprintf(__("Contact %s", 'lang_rentals'), $name_product)."</span></a>")
 										."</li>";
 									}
 								}
@@ -10669,21 +10674,21 @@ class widget_webshop_product_meta extends WP_Widget
 								/*$widget_content .= "<li>
 									<a href='#'>
 										<i class='fas fa-user'></i>
-										<span>".__("Mark as Favorite", 'lang_webshop')."</span>
+										<span>".__("Mark as Favorite", 'lang_rentals')."</span>
 									</a>
 								</li>";*/
 
 								$widget_content .= "<li>
-									<a href='mailto:?subject=".__("I can recommend this event", 'lang_webshop')."&body=".sprintf(__("Hi! I think that you might like this event. Go to %s to view it.", 'lang_webshop'), get_permalink($this->obj_webshop->event_id))."'>
+									<a href='mailto:?subject=".__("I can recommend this event", 'lang_rentals')."&body=".sprintf(__("Hi! I think that you might like this event. Go to %s to view it.", 'lang_rentals'), get_permalink($this->obj_webshop->event_id))."'>
 										<i class='fas fa-envelope-square'></i>
-										<span>".__("Tell a Friend", 'lang_webshop')."</span>
+										<span>".__("Tell a Friend", 'lang_rentals')."</span>
 									</a>
 								</li>";
 
 								$widget_content .= "<li>
 									<a href='#' onclick='window.print()'>
 										<i class='fas fa-print'></i>
-										<span>".__("Print the Information", 'lang_webshop')."</span>
+										<span>".__("Print the Information", 'lang_rentals')."</span>
 									</a>
 								</li>";
 
@@ -10756,20 +10761,20 @@ class widget_webshop_product_meta extends WP_Widget
 		$instance = wp_parse_args((array)$instance, $this->arr_default);
 
 		echo "<div class='mf_form'>"
-			.show_textfield(array('name' => $this->get_field_name('webshop_heading'), 'text' => __("Heading", 'lang_webshop'), 'value' => $instance['webshop_heading'], 'xtra' => " id='".$this->widget_ops['classname']."-title'"))
-			.show_select(array('data' => $this->get_meta_types_for_select(), 'name' => $this->get_field_name('webshop_meta_type'), 'text' => __("Type", 'lang_webshop'), 'value' => $instance['webshop_meta_type']));
+			.show_textfield(array('name' => $this->get_field_name('webshop_heading'), 'text' => __("Heading", 'lang_rentals'), 'value' => $instance['webshop_heading'], 'xtra' => " id='".$this->widget_ops['classname']."-title'"))
+			.show_select(array('data' => $this->get_meta_types_for_select(), 'name' => $this->get_field_name('webshop_meta_type'), 'text' => __("Type", 'lang_rentals'), 'value' => $instance['webshop_meta_type']));
 
 			switch($instance['webshop_meta_type'])
 			{
 				case 'category_info':
-					$name_category = get_option_or_default('setting_webshop_replace_category', __("Category", 'lang_webshop'));
+					$name_category = get_option_or_default('setting_webshop_replace_category', __("Category", 'lang_rentals'));
 
 					echo show_select(array('data' => $this->obj_webshop->get_categories_for_select(array('include_on' => 'products')), 'name' => $this->get_field_name('webshop_category'), 'text' => $name_category, 'value' => $instance['webshop_category'], 'required' => true))
-					.show_textfield(array('name' => $this->get_field_name('webshop_category_text'), 'text' => __("Text", 'lang_webshop'), 'value' => $instance['webshop_category_text'], 'placeholder' => sprintf(__("%s offers %s", 'lang_webshop'), "[product]", "[category]")));
+					.show_textfield(array('name' => $this->get_field_name('webshop_category_text'), 'text' => __("Text", 'lang_rentals'), 'value' => $instance['webshop_category_text'], 'placeholder' => sprintf(__("%s offers %s", 'lang_rentals'), "[product]", "[category]")));
 				break;
 
 				case 'event_info':
-					echo show_select(array('data' => $this->obj_webshop->get_option_types_for_select(), 'name' => $this->get_field_name('webshop_option_type'), 'text' => __("Type", 'lang_webshop'), 'value' => $instance['webshop_option_type']));
+					echo show_select(array('data' => $this->obj_webshop->get_option_types_for_select(), 'name' => $this->get_field_name('webshop_option_type'), 'text' => __("Type", 'lang_rentals'), 'value' => $instance['webshop_option_type']));
 
 					$arr_data = array();
 
@@ -10780,7 +10785,7 @@ class widget_webshop_product_meta extends WP_Widget
 						$arr_data[$arr_field['post_id']] = $arr_field['name'];
 					}
 
-					echo show_select(array('data' => $arr_data, 'name' => $this->get_field_name('webshop_event_doc_types')."[]", 'text' => __("Filters", 'lang_webshop'), 'value' => $instance['webshop_event_doc_types']));
+					echo show_select(array('data' => $arr_data, 'name' => $this->get_field_name('webshop_event_doc_types')."[]", 'text' => __("Filters", 'lang_rentals'), 'value' => $instance['webshop_event_doc_types']));
 				break;
 			}
 
@@ -10805,7 +10810,7 @@ class widget_webshop_categories extends WP_Widget
 
 		$this->widget_ops = array(
 			'classname' => 'webshop_categories',
-			'description' => __("Display Categories", 'lang_webshop'),
+			'description' => __("Display Categories", 'lang_rentals'),
 		);
 
 		/*$this->arr_default = array(
@@ -10813,7 +10818,7 @@ class widget_webshop_categories extends WP_Widget
 			'webshop_option_type' => '',
 		);*/
 
-		parent::__construct(str_replace("_", "-", $this->widget_ops['classname']).'-widget', __("Webshop", 'lang_webshop')." (".__("Categories", 'lang_webshop').")", $this->widget_ops);
+		parent::__construct(str_replace("_", "-", $this->widget_ops['classname']).'-widget', __("Webshop", 'lang_rentals')." (".__("Categories", 'lang_rentals').")", $this->widget_ops);
 	}
 
 	function get_product_list_item($post_id = 0, $category_id = 0)
@@ -10922,8 +10927,8 @@ class widget_webshop_categories extends WP_Widget
 		$instance = wp_parse_args((array)$instance, $this->arr_default);
 
 		echo "<div class='mf_form'>"
-			.show_textfield(array('name' => $this->get_field_name('webshop_heading'), 'text' => __("Heading", 'lang_webshop'), 'value' => $instance['webshop_heading'], 'xtra' => " id='".$this->widget_ops['classname']."-title'"))
-			.show_select(array('data' => $this->obj_webshop->get_option_types_for_select(), 'name' => $this->get_field_name('webshop_option_type'), 'text' => __("Type", 'lang_webshop'), 'value' => $instance['webshop_option_type']))
+			.show_textfield(array('name' => $this->get_field_name('webshop_heading'), 'text' => __("Heading", 'lang_rentals'), 'value' => $instance['webshop_heading'], 'xtra' => " id='".$this->widget_ops['classname']."-title'"))
+			.show_select(array('data' => $this->obj_webshop->get_option_types_for_select(), 'name' => $this->get_field_name('webshop_option_type'), 'text' => __("Type", 'lang_rentals'), 'value' => $instance['webshop_option_type']))
 		."</div>";
 	}
 }
@@ -10945,7 +10950,7 @@ class widget_webshop_cart extends WP_Widget
 
 		$this->widget_ops = array(
 			'classname' => 'webshop_cart',
-			'description' => __("Display Cart", 'lang_webshop'),
+			'description' => __("Display Cart", 'lang_rentals'),
 		);
 
 		/*$this->arr_default = array(
@@ -10953,7 +10958,7 @@ class widget_webshop_cart extends WP_Widget
 			'webshop_option_type' => '',
 		);*/
 
-		parent::__construct(str_replace("_", "-", $this->widget_ops['classname']).'-widget', __("Webshop", 'lang_webshop')." (".__("Cart", 'lang_webshop').")", $this->widget_ops);
+		parent::__construct(str_replace("_", "-", $this->widget_ops['classname']).'-widget', __("Webshop", 'lang_rentals')." (".__("Cart", 'lang_rentals').")", $this->widget_ops);
 	}
 
 	function get_cart()
@@ -11002,7 +11007,7 @@ class widget_webshop_cart extends WP_Widget
 				$wpdb->query($wpdb->prepare("INSERT INTO ".$wpdb->prefix."webshop_product2user SET productID = '%d', userID = '%d', webshopCookie = %s, productAmount = '%d', webshopCreated = NOW()", $intProductID, get_current_user_id(), $sesWebshopCookie, $intProductAmount));
 			}
 
-			//$done_text = __("The cart has been updated", 'lang_webshop');
+			//$done_text = __("The cart has been updated", 'lang_rentals');
 		}
 
 		else if(isset($_POST['btnOrderConfirm']) && wp_verify_nonce($_POST['_wpnonce_order_confirm'], 'order_confirm'))
@@ -11056,7 +11061,7 @@ class widget_webshop_cart extends WP_Widget
 							//update_product_amount($intProductID2, $intProductAmount2)
 						}
 
-						$done_text = __("The order has been completed", 'lang_webshop');
+						$done_text = __("The order has been completed", 'lang_rentals');
 
 						$intCustomerID = $strOrderName = $emlOrderEmail = $strOrderText = $intOrderDeliveryType = "";
 						unset($_POST['btnOrderConfirm']);
@@ -11065,7 +11070,7 @@ class widget_webshop_cart extends WP_Widget
 						{
 							$strEmail = $emlOrderEmail;
 							$strFromEmail = get_bloginfo('admin_email');
-							$strSubject = __("Order info", 'lang_webshop')." (".date("Y-m-d").")";
+							$strSubject = __("Order info", 'lang_rentals')." (".date("Y-m-d").")";
 							$strText = "";
 
 							sendEmail();
@@ -11075,13 +11080,13 @@ class widget_webshop_cart extends WP_Widget
 
 				else
 				{
-					$error_text = __("You have to select the customer and correct customer number", 'lang_webshop');
+					$error_text = __("You have to select the customer and correct customer number", 'lang_rentals');
 				}
 			}
 
 			else
 			{
-				$error_text = __("You have to enter customer, customer number, name and e-mail", 'lang_webshop');
+				$error_text = __("You have to enter customer, customer number, name and e-mail", 'lang_rentals');
 			}
 		}
 
@@ -11112,7 +11117,7 @@ class widget_webshop_cart extends WP_Widget
 			$out .= "</ul>
 			<form method='post' action='' id='order_proceed' class='mf_form".(isset($_POST['btnOrderConfirm']) ? " hide" : "")."'>
 				<div class='form_button'>"
-					.show_button(array('name' => 'btnOrderProceed', 'text' => __("Proceed to Checkout", 'lang_webshop'), 'type' => 'button'))
+					.show_button(array('name' => 'btnOrderProceed', 'text' => __("Proceed to Checkout", 'lang_rentals'), 'type' => 'button'))
 				."</div>
 			</form>";
 
@@ -11129,29 +11134,29 @@ class widget_webshop_cart extends WP_Widget
 			}
 
 			$out .= "<form method='post' action='' id='order_confirm' class='mf_form".(isset($_POST['btnOrderConfirm']) ? "" : " hide")."'>
-				<h4>".__("Checkout", 'lang_webshop')."</h4>";
+				<h4>".__("Checkout", 'lang_rentals')."</h4>";
 
 				$arr_data = get_posts_for_select(array('post_type' => $this->post_type_customers.$this->obj_webshop->option_type, 'order' => "post_title ASC", 'add_choose_here' => true));
 
 				if(count($arr_data) > 0)
 				{
-					$out .= show_select(array('data' => $arr_data, 'name' => 'intCustomerID', 'text' => __("Customer", 'lang_webshop'), 'value' => $intCustomerID))
-					.show_textfield(array('name' => 'intCustomerNo', 'text' => __("Customer No", 'lang_webshop'), 'value' => $intCustomerNo, 'type' => 'number'));
+					$out .= show_select(array('data' => $arr_data, 'name' => 'intCustomerID', 'text' => __("Customer", 'lang_rentals'), 'value' => $intCustomerID))
+					.show_textfield(array('name' => 'intCustomerNo', 'text' => __("Customer No", 'lang_rentals'), 'value' => $intCustomerNo, 'type' => 'number'));
 				}
 
-				$out .= show_textfield(array('name' => 'strOrderName', 'text' => __("Name", 'lang_webshop'), 'value' => $strOrderName, 'required' => true))
-				.show_textfield(array('name' => 'emlOrderEmail', 'text' => __("E-mail", 'lang_webshop'), 'value' => $emlOrderEmail, 'required' => true))
-				.show_textarea(array('name' => 'strOrderText', 'text' => __("Text", 'lang_webshop'), 'value' => $strOrderText));
+				$out .= show_textfield(array('name' => 'strOrderName', 'text' => __("Name", 'lang_rentals'), 'value' => $strOrderName, 'required' => true))
+				.show_textfield(array('name' => 'emlOrderEmail', 'text' => __("E-mail", 'lang_rentals'), 'value' => $emlOrderEmail, 'required' => true))
+				.show_textarea(array('name' => 'strOrderText', 'text' => __("Text", 'lang_rentals'), 'value' => $strOrderText));
 
 				$arr_data = get_posts_for_select(array('post_type' => $this->post_type_delivery_type.$this->obj_webshop->option_type, 'order' => "post_title ASC"));
 
 				if(count($arr_data) > 0)
 				{
-					$out .= show_select(array('data' => $arr_data, 'name' => 'intDeliveryTypeID', 'text' => __("Delivery Type", 'lang_webshop'), 'value' => $intDeliveryTypeID));
+					$out .= show_select(array('data' => $arr_data, 'name' => 'intDeliveryTypeID', 'text' => __("Delivery Type", 'lang_rentals'), 'value' => $intDeliveryTypeID));
 				}
 
 				$out .= "<div class='form_button'>"
-					.show_button(array('name' => 'btnOrderConfirm', 'text' => __("Confirm Order", 'lang_webshop')))
+					.show_button(array('name' => 'btnOrderConfirm', 'text' => __("Confirm Order", 'lang_rentals')))
 				."</div>"
 				.wp_nonce_field('order_confirm', '_wpnonce_order_confirm', true, false)
 			."</form>";
@@ -11198,8 +11203,8 @@ class widget_webshop_cart extends WP_Widget
 		$instance = wp_parse_args((array)$instance, $this->arr_default);
 
 		echo "<div class='mf_form'>"
-			.show_textfield(array('name' => $this->get_field_name('webshop_heading'), 'text' => __("Heading", 'lang_webshop'), 'value' => $instance['webshop_heading'], 'xtra' => " id='".$this->widget_ops['classname']."-title'"))
-			.show_select(array('data' => $this->obj_webshop->get_option_types_for_select(), 'name' => $this->get_field_name('webshop_option_type'), 'text' => __("Type", 'lang_webshop'), 'value' => $instance['webshop_option_type']))
+			.show_textfield(array('name' => $this->get_field_name('webshop_heading'), 'text' => __("Heading", 'lang_rentals'), 'value' => $instance['webshop_heading'], 'xtra' => " id='".$this->widget_ops['classname']."-title'"))
+			.show_select(array('data' => $this->obj_webshop->get_option_types_for_select(), 'name' => $this->get_field_name('webshop_option_type'), 'text' => __("Type", 'lang_rentals'), 'value' => $instance['webshop_option_type']))
 		."</div>";
 	}
 }

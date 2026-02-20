@@ -34,7 +34,7 @@ var WebshopView = Backbone.View.extend(
 				jQuery(".webshop_map.display_on_mobile .webshop_map_container").attr("id", "webshop_map_hide").parents(".map_wrapper").addClass('hide');
 			}
 		}
-		
+
 		if(jQuery(".product_aside .widget.maps_map").length > 0)
 		{
 			var self = this;

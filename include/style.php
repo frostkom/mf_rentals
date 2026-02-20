@@ -985,7 +985,7 @@ echo "@media all
 				{
 					opacity: 1;
 				}
-				
+
 	#main > #product_form
 	{
 		display: -webkit-box;
@@ -1293,7 +1293,7 @@ echo "@media all
 				{
 					height: 100%;
 				}
-				
+
 				.webshop_item_list .product_image_container .widget
 				{
 					padding: 0 !important;

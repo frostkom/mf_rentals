@@ -95,8 +95,8 @@ if(!function_exists('get_list_navigation'))
 			$out .= "<form method='post' action='".preg_replace("/\&paged\=\d+/", "", $_SERVER['REQUEST_URI'])."'>
 				<p class='search-box'>"
 					//."<input type='search' name='s' value='".$strSearch."'>"
-					.show_textfield(array('type' => 'search', 'name' => 's', 'value' => $strSearch, 'placeholder' => __("Search for", 'lang_webshop'), 'xtra' => " autocomplete='off'"))
-					.show_button(array('text' => __("Search", 'lang_webshop'), 'class' => "button"))
+					.show_textfield(array('type' => 'search', 'name' => 's', 'value' => $strSearch, 'placeholder' => __("Search for", 'lang_rentals'), 'xtra' => " autocomplete='off'"))
+					.show_button(array('text' => __("Search", 'lang_rentals'), 'class' => "button"))
 				."</p>
 			</form>";
 		}
@@ -142,7 +142,7 @@ function update_product_amount($intProductID2, $intProductAmount2)
 
 			else
 			{
-				$error_text = __("The amount in stock and in the order is wrong", 'lang_webshop')." (".$post_meta." - ".$intProductAmount2.")";
+				$error_text = __("The amount in stock and in the order is wrong", 'lang_rentals')." (".$post_meta." - ".$intProductAmount2.")";
 			}
 		}
 	}
@@ -165,7 +165,7 @@ if(isset($_REQUEST['btnOrderDelete']) && wp_verify_nonce($_REQUEST['_wpnonce_ord
 	$wpdb->query($wpdb->prepare("DELETE FROM ".$wpdb->prefix."webshop_product2user WHERE orderID = '%d'", $intOrderID));
 	$wpdb->query($wpdb->prepare("DELETE FROM ".$wpdb->prefix."webshop_order WHERE orderID = '%d'", $intOrderID));
 
-	$done_text = __("The order was deleted", 'lang_webshop');
+	$done_text = __("The order was deleted", 'lang_rentals');
 }
 
 else if(isset($_REQUEST['btnOrderInvoice']) && wp_verify_nonce($_REQUEST['_wpnonce_order_invoice'], 'order_invoice_'.$intOrderID))
@@ -193,15 +193,15 @@ else if(isset($_REQUEST['btnOrderDelivery']) && wp_verify_nonce($_REQUEST['_wpno
 	{
 		$strEmail = $strOrderEmail;
 		$strFromEmail = get_bloginfo('admin_email');
-		$strSubject = __("Shipping info", 'lang_webshop')." (".date("Y-m-d").")";
-		$strText = sprintf(__("Your order from %s is now ready for pickup. Thanks for your order and welcome back!", 'lang_webshop'), get_bloginfo('name'));
+		$strSubject = __("Shipping info", 'lang_rentals')." (".date("Y-m-d").")";
+		$strText = sprintf(__("Your order from %s is now ready for pickup. Thanks for your order and welcome back!", 'lang_rentals'), get_bloginfo('name'));
 
 		sendEmail();
 	}
 }
 
 echo "<div class='wrap'>
-	<h2>".__("Orders", 'lang_webshop')."</h2>"
+	<h2>".__("Orders", 'lang_rentals')."</h2>"
 	.get_notification();
 
 	$query_join = $query_xtra = "";
@@ -216,10 +216,10 @@ echo "<div class='wrap'>
 	echo get_list_navigation($resultPagination)
 	."<table class='widefat striped'>";
 
-		$arr_header[] = __("Invoice sent", 'lang_webshop');
-		$arr_header[] = __("Delivered", 'lang_webshop');
-		$arr_header[] = __("Ordered by", 'lang_webshop');
-		$arr_header[] = __("Created", 'lang_webshop');
+		$arr_header[] = __("Invoice sent", 'lang_rentals');
+		$arr_header[] = __("Delivered", 'lang_rentals');
+		$arr_header[] = __("Ordered by", 'lang_rentals');
+		$arr_header[] = __("Created", 'lang_rentals');
 
 		echo show_table_header($arr_header)
 		."<tbody>";
@@ -245,7 +245,7 @@ echo "<div class='wrap'>
 						{
 							echo "<i class='fa fa-ban fa-lg red'></i>
 							<div class='row-actions'>
-								<a href='".wp_nonce_url("?post_type=".$obj_rentals->post_type_products."&page=mf_rentals/orders/index.php&btnOrderInvoice&intOrderID=".$intOrderID2, 'order_invoice_'.$intOrderID2, '_wpnonce_order_invoice')."'>".__("Invoice sent", 'lang_webshop')."</a>
+								<a href='".wp_nonce_url("?post_type=".$obj_rentals->post_type_products."&page=mf_rentals/orders/index.php&btnOrderInvoice&intOrderID=".$intOrderID2, 'order_invoice_'.$intOrderID2, '_wpnonce_order_invoice')."'>".__("Invoice sent", 'lang_rentals')."</a>
 							</div>";
 						}
 
@@ -261,7 +261,7 @@ echo "<div class='wrap'>
 						{
 							echo "<i class='fa fa-ban fa-lg red'></i>
 							<div class='row-actions'>
-								<a href='".wp_nonce_url("?post_type=".$obj_rentals->post_type_products."&page=mf_rentals/orders/index.php&btnOrderDelivery&intOrderID=".$intOrderID2, 'order_delivery_'.$intOrderID2, '_wpnonce_order_delivery')."'>".__("Delivered", 'lang_webshop')."</a>
+								<a href='".wp_nonce_url("?post_type=".$obj_rentals->post_type_products."&page=mf_rentals/orders/index.php&btnOrderDelivery&intOrderID=".$intOrderID2, 'order_delivery_'.$intOrderID2, '_wpnonce_order_delivery')."'>".__("Delivered", 'lang_rentals')."</a>
 							</div>";
 						}
 
@@ -286,7 +286,7 @@ echo "<div class='wrap'>
 					<td>"
 						.format_date($strOrderCreated)
 						."<div class='row-actions'>
-							<a href='".wp_nonce_url("?post_type=".$obj_rentals->post_type_products."&page=mf_rentals/orders/index.php&btnOrderDelete&intOrderID=".$intOrderID2, 'order_delete_'.$intOrderID2, '_wpnonce_order_delete')."'>".__("Delete", 'lang_webshop')."</a>
+							<a href='".wp_nonce_url("?post_type=".$obj_rentals->post_type_products."&page=mf_rentals/orders/index.php&btnOrderDelete&intOrderID=".$intOrderID2, 'order_delete_'.$intOrderID2, '_wpnonce_order_delete')."'>".__("Delete", 'lang_rentals')."</a>
 						</div>
 					</td>
 				</tr>";

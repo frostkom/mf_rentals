@@ -3,11 +3,11 @@
 Plugin Name: MF Rentals
 Plugin URI: https://github.com/frostkom/mf_rentals
 Description:
-Version: 2.2.3.5
+Version: 2.2.3.6
 Licence: GPLv2 or later
 Author: Martin Fors
 Author URI: https://martinfors.se
-Text Domain: lang_webshop
+Text Domain: lang_rentals
 Domain Path: /lang
 
 Requires Plugins: meta-box
@@ -96,8 +96,6 @@ if(!function_exists('is_plugin_active') || function_exists('is_plugin_active') &
 	add_filter('single_template', array($obj_rentals, 'single_template'));
 	//add_filter('get_page_templates', array($obj_rentals, 'get_page_templates'));
 	add_filter('theme_templates', array($obj_rentals, 'get_page_templates'));
-
-	load_plugin_textdomain('lang_webshop', false, dirname(plugin_basename(__FILE__))."/lang/");
 
 	function activate_webshop()
 	{

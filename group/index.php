@@ -5,7 +5,7 @@ $intGroupID = 0;
 $obj_group = new mf_group();
 $obj_rentals = new mf_rentals();
 
-$name_webshop = get_option_or_default('setting_webshop_replace_webshop', __("Webshop", 'lang_webshop'));
+$name_webshop = get_option_or_default('setting_webshop_replace_webshop', __("Webshop", 'lang_rentals'));
 
 $result = $obj_group->get_groups(array('where' => " AND post_title LIKE '%".$name_webshop."%'", 'order' => "post_title ASC", 'limit' => 0, 'amount' => 1));
 
@@ -69,7 +69,7 @@ if($intGroupID > 0)
 
 			else
 			{
-				$error_text = __("The address was not able to be created", 'lang_webshop');
+				$error_text = __("The address was not able to be created", 'lang_rentals');
 			}
 		}
 
@@ -81,16 +81,16 @@ if($intGroupID > 0)
 
 	else
 	{
-		$error_text = __("You have not set a field for e-mails", 'lang_webshop');
+		$error_text = __("You have not set a field for e-mails", 'lang_rentals');
 	}
 }
 
 else
 {
-	$error_text = __("Could not find an existing group or create a new one", 'lang_webshop');
+	$error_text = __("Could not find an existing group or create a new one", 'lang_rentals');
 }
 
 echo "<div class='wrap'>
-	<h2>".__("Loading", 'lang_webshop')."...</h2>"
+	<h2>".__("Loading", 'lang_rentals')."...</h2>"
 	.get_notification()
 ."</div>";

@@ -18,7 +18,7 @@ $dteStatsDateStart = check_var('dteStatsDateStart', 'date', true, date("Y-m-d", 
 $dteStatsDateEnd = check_var('dteStatsDateEnd', 'date', true, date("Y-m-d", strtotime($dteAnswerMax)));
 
 $arr_data_limit = array(
-	'' => "-- ".__("Choose Here", 'lang_webshop')." --"
+	'' => "-- ".__("Choose Here", 'lang_rentals')." --"
 );
 
 for($i = 5; $i <= 100; $i += 5)
@@ -26,12 +26,12 @@ for($i = 5; $i <= 100; $i += 5)
 	$arr_data_limit[$i] = $i;
 }
 
-$arr_data_limit[0] = "-- ".__("All", 'lang_webshop')." --";
+$arr_data_limit[0] = "-- ".__("All", 'lang_rentals')." --";
 
-$name_products = get_option_or_default('setting_webshop_replace_products', __("Products", 'lang_webshop'));
+$name_products = get_option_or_default('setting_webshop_replace_products', __("Products", 'lang_rentals'));
 
 echo "<div class='wrap'>
-	<h2>".__("Statistics", 'lang_webshop')."</h2>
+	<h2>".__("Statistics", 'lang_rentals')."</h2>
 	<div id='poststuff'>
 		<div id='post-body' class='columns-2'>
 			<div id='post-body-content'>
@@ -51,7 +51,7 @@ echo "<div class='wrap'>
 
 								if($strProductName == '')
 								{
-									$strProductName = "(".__("unknown", 'lang_webshop').")";
+									$strProductName = "(".__("unknown", 'lang_rentals').")";
 								}
 
 								echo "<li>".$intProductAmount.". ".$strProductName."</li>";
@@ -62,7 +62,7 @@ echo "<div class='wrap'>
 				</div>
 
 				<div class='postbox'>
-					<h3 class='hndle'><span>".__("Monthly", 'lang_webshop')."</span></h3>
+					<h3 class='hndle'><span>".__("Monthly", 'lang_rentals')."</span></h3>
 					<div class='inside'>";
 
 						$arr_flot_info = $arr_flot_data = array();
@@ -100,7 +100,7 @@ echo "<div class='wrap'>
 						if(isset($arr_flot_data['month']))
 						{
 							$arr_flot_info['months'] = array(
-								'label' => __("Months", 'lang_webshop'),
+								'label' => __("Months", 'lang_rentals'),
 								'data' => $arr_flot_data['month'],
 							);
 						}
@@ -108,7 +108,7 @@ echo "<div class='wrap'>
 						if(isset($arr_flot_data['year']))
 						{
 							$arr_flot_info['years'] = array(
-								'label' => __("Years", 'lang_webshop'),
+								'label' => __("Years", 'lang_rentals'),
 								'data' => $arr_flot_data['year'],
 							);
 						}
@@ -119,17 +119,17 @@ echo "<div class='wrap'>
 			</div>
 			<div id='postbox-container-1'>
 				<div class='postbox'>
-					<h3 class='hndle'><span>".__("Filter", 'lang_webshop')."</span></h3>
+					<h3 class='hndle'><span>".__("Filter", 'lang_rentals')."</span></h3>
 					<form method='post' class='inside mf_form'>"
-						.show_select(array('data' => $arr_data_limit, 'name' => 'intStatsLimit', 'text' => __("Limit", 'lang_webshop'), 'value' => $intStatsLimit, 'xtra' => "rel='submit_change' class='is_disabled' disabled"))
+						.show_select(array('data' => $arr_data_limit, 'name' => 'intStatsLimit', 'text' => __("Limit", 'lang_rentals'), 'value' => $intStatsLimit, 'xtra' => "rel='submit_change' class='is_disabled' disabled"))
 						."<div class='flex_flow'>"
-							.show_textfield(array('type' => 'date', 'name' => 'dteStatsDateStart', 'text' => __("From", 'lang_webshop'), 'value' => $dteStatsDateStart, 'xtra' => "rel='submit_change' class='is_disabled' disabled"))
-							.show_textfield(array('type' => 'date', 'name' => 'dteStatsDateEnd', 'text' => __("To", 'lang_webshop'), 'value' => $dteStatsDateEnd, 'xtra' => "rel='submit_change' min='".$dteStatsDateStart."' class='is_disabled' disabled"))
+							.show_textfield(array('type' => 'date', 'name' => 'dteStatsDateStart', 'text' => __("From", 'lang_rentals'), 'value' => $dteStatsDateStart, 'xtra' => "rel='submit_change' class='is_disabled' disabled"))
+							.show_textfield(array('type' => 'date', 'name' => 'dteStatsDateEnd', 'text' => __("To", 'lang_rentals'), 'value' => $dteStatsDateEnd, 'xtra' => "rel='submit_change' min='".$dteStatsDateStart."' class='is_disabled' disabled"))
 						."</div>
 					</form>
 				</div>
 				<div class='postbox'>
-					<h3 class='hndle'><span>".__("Location", 'lang_webshop')."</span></h3>
+					<h3 class='hndle'><span>".__("Location", 'lang_rentals')."</span></h3>
 					<div class='inside'>
 						<ul>";
 
@@ -152,10 +152,10 @@ echo "<div class='wrap'>
 				if(isset($dteAnswerMin))
 				{
 					echo "<div class='postbox'>
-						<h3 class='hndle'><span>".__("Overall", 'lang_webshop')."</span></h3>
+						<h3 class='hndle'><span>".__("Overall", 'lang_rentals')."</span></h3>
 						<div class='inside'>
-							<p>".__("First answer", 'lang_webshop').": ".format_date($dteAnswerMin)."</p>
-							<p>".__("Latest answer", 'lang_webshop').": ".format_date($dteAnswerMax)."</p>
+							<p>".__("First answer", 'lang_rentals').": ".format_date($dteAnswerMin)."</p>
+							<p>".__("Latest answer", 'lang_rentals').": ".format_date($dteAnswerMax)."</p>
 						</div>
 					</div>";
 				}
