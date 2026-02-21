@@ -191,7 +191,6 @@ class mf_rentals
 		if($post_id > 0)
 		{
 			$post_title = get_post_title($post_id);
-			//$post_author = mf_get_post_content($post_id, 'post_author');
 			$post_author = get_post_field('post_author', $post_id);
 		}
 
@@ -684,8 +683,6 @@ class mf_rentals
 
 						$meta_webshop_reminder_sent = get_user_meta($post_author, 'meta_webshop_reminder_sent', true);
 
-						//do_log("Check: ".$post_title." (".$meta_webshop_reminder_sent.")");
-
 						if($meta_webshop_reminder_sent > DEFAULT_DATE)
 						{
 							if($meta_webshop_reminder_sent < date("Y-m-d H:i:s", strtotime("-1 month")))
@@ -763,11 +760,6 @@ class mf_rentals
 		$this->user_updated_notification_subject_placeholder = __("A reminder to update your information", 'lang_rentals');
 		$this->user_updated_notification_content_placeholder = "[link_start]".sprintf(__("You have not updated your information since %s which is more than %s months ago. Please do so.", 'lang_rentals'), "[post_modified]", "[month_amount]")."[link_end]";
 
-		/*if(!session_id())
-		{
-			@session_start();
-		}*/
-
 		$this->get_option_types();
 
 		foreach($this->arr_option_types as $option_type)
@@ -783,7 +775,7 @@ class mf_rentals
 
 			$args = array(
 				'labels' => $labels,
-				'public' => false, // Previously true but changed to hide in sitemap.xml
+				'public' => false,
 				'show_ui' => true,
 				'show_in_menu' => false,
 				'show_in_nav_menus' => false,
@@ -836,7 +828,7 @@ class mf_rentals
 
 			$args = array(
 				'labels' => $labels,
-				'public' => false, // Previously true but changed to hide in sitemap.xml
+				'public' => false,
 				'show_ui' => true,
 				'show_in_menu' => false,
 				'show_in_nav_menus' => false,
@@ -857,7 +849,7 @@ class mf_rentals
 
 			$args = array(
 				'labels' => $labels,
-				'public' => false, // Previously true but changed to hide in sitemap.xml
+				'public' => false,
 				'show_ui' => true,
 				'show_in_menu' => false,
 				'show_in_nav_menus' => false,
@@ -878,7 +870,7 @@ class mf_rentals
 
 			$args = array(
 				'labels' => $labels,
-				'public' => false, // Previously true but changed to hide in sitemap.xml
+				'public' => false,
 				'show_ui' => true,
 				'show_in_menu' => false,
 				'show_in_nav_menus' => false,
@@ -1031,8 +1023,6 @@ class mf_rentals
 				'setting_webshop_replace_products_slug|'.$option_type => sprintf(__("Replace %s slug with", 'lang_rentals'), strtolower($name_product)),
 			);
 
-			//$arr_settings['setting_webshop_activate_frontend_admin|'.$option_type] = __("Activate on Front-End Admin", 'lang_rentals');
-
 			if($this->has_categories(array('include_on' => 'products')) > 0)
 			{
 				$name_categories = get_option_or_default('setting_webshop_replace_categories'.$this->option_type, __("Categories", 'lang_rentals'));
@@ -1181,33 +1171,29 @@ class mf_rentals
 
 			//Map
 			############################
-			/*if($this->get_post_name_for_type('gps') != '')
-			{*/
-				$options_area = $options_area_orig."_map";
+			$options_area = $options_area_orig."_map";
 
-				add_settings_section($options_area.'|'.$option_type, "", array($this, $options_area."_callback"), BASE_OPTIONS_PAGE);
+			add_settings_section($options_area.'|'.$option_type, "", array($this, $options_area."_callback"), BASE_OPTIONS_PAGE);
 
-				$arr_settings = array();
+			$arr_settings = array();
+			$arr_settings['setting_webshop_symbol_inactive_image|'.$option_type] = __("Symbol inactive image", 'lang_rentals');
+			$arr_settings['setting_webshop_symbol_active_image|'.$option_type] = __("Symbol active image", 'lang_rentals');
 
-				$arr_settings['setting_webshop_symbol_inactive_image|'.$option_type] = __("Symbol inactive image", 'lang_rentals');
-				$arr_settings['setting_webshop_symbol_active_image|'.$option_type] = __("Symbol active image", 'lang_rentals');
+			if($ghost_post_name != '')
+			{
+				$arr_settings['setting_ghost_inactive_image|'.$option_type] = __("Ghost symbol inactive image", 'lang_rentals');
+				$arr_settings['setting_ghost_active_image|'.$option_type] = __("Ghost symbol active image", 'lang_rentals');
+			}
 
-				if($ghost_post_name != '')
-				{
-					$arr_settings['setting_ghost_inactive_image|'.$option_type] = __("Ghost symbol inactive image", 'lang_rentals');
-					$arr_settings['setting_ghost_active_image|'.$option_type] = __("Ghost symbol active image", 'lang_rentals');
-				}
+			if(get_option('setting_webshop_symbol_active_image'.$this->option_type) == '')
+			{
+				$arr_settings['setting_webshop_symbol_inactive|'.$option_type] = __("Symbol inactive color", 'lang_rentals');
+				$arr_settings['setting_webshop_symbol_active|'.$option_type] = __("Symbol active color", 'lang_rentals');
+			}
 
-				if(get_option('setting_webshop_symbol_active_image'.$this->option_type) == '')
-				{
-					$arr_settings['setting_webshop_symbol_inactive|'.$option_type] = __("Symbol inactive color", 'lang_rentals');
-					$arr_settings['setting_webshop_symbol_active|'.$option_type] = __("Symbol active color", 'lang_rentals');
-				}
+			$arr_settings['setting_map_info|'.$option_type] = __("Map Information", 'lang_rentals');
 
-				$arr_settings['setting_map_info|'.$option_type] = __("Map Information", 'lang_rentals');
-
-				show_settings_fields(array('area' => $options_area.'|'.$option_type, 'object' => $this, 'settings' => $arr_settings));
-			//}
+			show_settings_fields(array('area' => $options_area.'|'.$option_type, 'object' => $this, 'settings' => $arr_settings));
 			############################
 		}
 
@@ -1237,21 +1223,7 @@ class mf_rentals
 			$setting_key = get_setting_key(__FUNCTION__, $args);
 			$option = get_option($setting_key);
 
-			$suffix = "";
-
-			/*if($option != '')
-			{
-				global $obj_font_icons;
-
-				if(!isset($obj_font_icons))
-				{
-					$obj_font_icons = new mf_font_icons();
-				}
-
-				$suffix = $obj_font_icons->get_symbol_tag(array('symbol' => $option));
-			}*/
-
-			echo show_select(array('data' => $this->get_symbols_for_select(), 'name' => $setting_key, 'value' => $option, 'suffix' => $suffix));
+			echo show_select(array('data' => $this->get_symbols_for_select(), 'name' => $setting_key, 'value' => $option));
 		}
 
 		function setting_webshop_replace_webshop_callback($args = array())
@@ -1470,14 +1442,6 @@ class mf_rentals
 
 		echo show_textfield(array('name' => $setting_key, 'value' => $option, 'placeholder' => "c", 'description' => ($option != '' ? get_site_url()."/".$option."/abc" : "")));
 	}
-
-	/*function setting_webshop_activate_frontend_admin_callback($args = array())
-	{
-		$setting_key = get_setting_key(__FUNCTION__, $args);
-		$option = get_option($setting_key, 'no');
-
-		echo show_select(array('data' => get_yes_no_for_select(), 'name' => $setting_key, 'value' => $option));
-	}*/
 
 	function setting_webshop_replace_categories_callback($args = array())
 	{
@@ -2002,7 +1966,6 @@ class mf_rentals
 
 		mf_enqueue_script('script_webshop', $plugin_include_url."script.js", array(
 			'plugins_url' => $plugin_base_url,
-			//'read_more' => __("Read More", 'lang_rentals'),
 			'symbol_active_image' => $symbol_active_image,
 			'symbol_active' => trim($symbol_active, "#"),
 			'mobile_breakpoint' => $setting_mobile_breakpoint,
@@ -2178,8 +2141,6 @@ class mf_rentals
 							break;
 						}
 
-						//.show_textfield(array('name' => 'post_name', 'text' => __("URL", 'lang_rentals'), 'value' => "<%= post_name %>"))
-
 						$templates .= "<% _.each(meta_boxes, function(meta_box)
 						{ %>
 							<% if(meta_box.fields.length > 0)
@@ -2229,8 +2190,6 @@ class mf_rentals
 															<div class='form_select type_<%= meta_field.type %><%= meta_field.class %>'>
 																<label for='<%= meta_field.id %>'><%= meta_field.name %></label>
 																<select id='<%= meta_field.id %>' name='<%= meta_field.id %><% if(meta_field.multiple == true){ %>[]<% } %>'"
-																	//."<%= meta_field.attributes %>" // attributes is not a string anymore
-																	//."<% if(meta_field.attributes.required == true){ %> required<%} %>"
 																	."<% _.each(meta_field.attributes, function(meta_attribute_value, meta_attribute_key)
 																	{ %>
 																		<%= meta_attribute_key %>='<%= meta_attribute_value %>'
@@ -2307,7 +2266,6 @@ class mf_rentals
 																							<div class='flex_flow tight'>"
 																								.show_textfield(array('type' => 'date', 'name' => '<%= meta_field.id %>_start_date[]', 'text' => __("Start Date", 'lang_rentals'), 'value' => "<%= meta_child_value.start_date %>", 'xtra_class' => "start_date", 'placeholder' => date("Y-m-d")))
 																								.show_textfield(array('type' => 'time', 'name' => '<%= meta_field.id %>_start_time[]', 'text' => __("Time", 'lang_rentals'), 'value' => "<%= meta_child_value.start_time %>", 'xtra_class' => "start_time", 'placeholder' => date("H:00")))
-																								//."<h3>-</h3>"
 																								.show_textfield(array('type' => 'date', 'name' => '<%= meta_field.id %>_end_date[]', 'text' => __("End Date", 'lang_rentals'), 'value' => "<%= meta_child_value.end_date %>", 'placeholder' => date("Y-m-d")))
 																								.show_textfield(array('type' => 'time', 'name' => '<%= meta_field.id %>_end_time[]', 'text' => __("Time", 'lang_rentals'), 'value' => "<%= meta_child_value.end_time %>", 'placeholder' => date("H:00")))
 																								.input_hidden(array('name' => '<%= meta_field.id %>_id[]', 'value' => "<%= meta_child_key %>"))
@@ -2363,7 +2321,7 @@ class mf_rentals
 													break;
 
 													case 'file_advanced': %>"
-														.get_media_button(array('name' => '<%= meta_field.id %>', 'label' => "<%= meta_field.name %>", 'text' => __("Add", 'lang_rentals'), 'value' => "<%= meta_field.value %>", 'multiple' => true, 'max_file_uploads' => "<%= meta_field.max_file_uploads %>", 'description' => "<%= meta_field.desc %>")) // 'mime_type' => "<%= meta_field.mime_type %>"
+														.get_media_button(array('name' => '<%= meta_field.id %>', 'label' => "<%= meta_field.name %>", 'text' => __("Add", 'lang_rentals'), 'value' => "<%= meta_field.value %>", 'multiple' => true, 'max_file_uploads' => "<%= meta_field.max_file_uploads %>", 'description' => "<%= meta_field.desc %>"))
 													."<% break;
 
 													case 'ghost': %>
@@ -2378,7 +2336,6 @@ class mf_rentals
 													<% break;
 
 													case 'gps': %>"
-														//.get_map(array('input_name' => 'webshop_map_input', 'coordinates_name' => "<%= meta_field.id %>", 'coordinates' => "<%= meta_field.value %>"))
 														.apply_filters('get_map', '', array('input_name' => 'webshop_map_input', 'coordinates_name' => "<%= meta_field.id %>", 'coordinates' => "<%= meta_field.value %>"))
 													."<% break;
 
@@ -2552,8 +2509,6 @@ class mf_rentals
 						$plugin_include_url = plugin_dir_url(__FILE__);
 						mf_enqueue_style('style_webshop_overlay', $plugin_include_url."style_overlay.css");
 
-						//do_log("Hide product: #".$post->ID.", post_type = ".$post->post_type.", overlay_post_name = ".$overlay_post_name.", post_overlay = ".$post_overlay);
-
 						$this->footer_output = "<div id='overlay_product' class='overlay_container modal'>
 							<div>".apply_filters('the_content', get_post_field('post_content', $post_overlay))."</div>
 						</div>";
@@ -2670,7 +2625,7 @@ class mf_rentals
 
 		register_widget('widget_webshop_recent');
 
-		if(is_plugin_active("mf_calendar/index.php")) // && $this->get_post_name_for_type('events') != ''
+		if(is_plugin_active("mf_calendar/index.php"))
 		{
 			register_widget('widget_webshop_events');
 		}
@@ -2929,14 +2884,12 @@ class mf_rentals
 		{
 			$data['obj_form']->get_post_id();
 
-			$result = $wpdb->get_results($wpdb->prepare("SELECT formEmail, formEmailName FROM ".$wpdb->base_prefix."form WHERE formID = '%d'", $data['obj_form']->id)); //, formEmailNotifyFrom, formEmailNotifyPage
+			$result = $wpdb->get_results($wpdb->prepare("SELECT formEmail, formEmailName FROM ".$wpdb->base_prefix."form WHERE formID = '%d'", $data['obj_form']->id));
 
 			foreach($result as $r)
 			{
-				$data['obj_form']->email_admin = $r->formEmail;
-				//$data['obj_form']->email_notify_from = $r->formEmailNotifyFrom;
-				//$data['obj_form']->email_notify_page = $r->formEmailNotifyPage;
-				$data['obj_form']->email_notify_page = get_post_meta($data['obj_form']->post_id, $this->meta_prefix.'email_notify_page', true);
+				//$data['obj_form']->email_admin = $r->formEmail; // This will send from an address that is not allowed by the server
+				$email_notify_page = get_post_meta($data['obj_form']->post_id, $this->meta_prefix.'email_notify_page', true);
 				$email_subject = ($r->formEmailName != "" ? $r->formEmailName : $data['obj_form']->form_name);
 			}
 
@@ -2971,7 +2924,7 @@ class mf_rentals
 					$obj_form->answer_id = $data['obj_form']->answer_id;
 
 					$obj_form->page_content_data = array(
-						'page_id' => $data['obj_form']->email_notify_page,
+						'page_id' => $email_notify_page,
 						'mail_to' => $product_email,
 						'subject' => $email_subject,
 						'content' => $arr_mail_content_this,
@@ -3005,8 +2958,9 @@ class mf_rentals
 							$name_temp = get_bloginfo('name');
 						}
 
-						$obj_form->mail_data['from'] = $data['obj_form']->answer_data['email'];
-						$obj_form->mail_data['headers'] = "From: ".$name_temp." <".$data['obj_form']->answer_data['email'].">\r\n";
+						// This will send from an address that is not allowed by the server
+						//$obj_form->mail_data['from'] = $data['obj_form']->answer_data['email'];
+						//$obj_form->mail_data['headers'] = "From: ".$name_temp." <".$data['obj_form']->answer_data['email'].">\r\n";
 					}
 
 					$obj_form->send_transactional_email();
@@ -10793,7 +10747,7 @@ class widget_webshop_product_meta extends WP_Widget
 	}
 }
 
-class widget_webshop_categories extends WP_Widget
+/*class widget_webshop_categories extends WP_Widget
 {
 	var $obj_rentals = "";
 
@@ -10812,11 +10766,6 @@ class widget_webshop_categories extends WP_Widget
 			'classname' => 'webshop_categories',
 			'description' => __("Display Categories", 'lang_rentals'),
 		);
-
-		/*$this->arr_default = array(
-			'webshop_heading' => '',
-			'webshop_option_type' => '',
-		);*/
 
 		parent::__construct(str_replace("_", "-", $this->widget_ops['classname']).'-widget', __("Webshop", 'lang_rentals')." (".__("Categories", 'lang_rentals').")", $this->widget_ops);
 	}
@@ -10953,11 +10902,6 @@ class widget_webshop_cart extends WP_Widget
 			'description' => __("Display Cart", 'lang_rentals'),
 		);
 
-		/*$this->arr_default = array(
-			'webshop_heading' => '',
-			'webshop_option_type' => '',
-		);*/
-
 		parent::__construct(str_replace("_", "-", $this->widget_ops['classname']).'-widget', __("Webshop", 'lang_rentals')." (".__("Cart", 'lang_rentals').")", $this->widget_ops);
 	}
 
@@ -11065,16 +11009,6 @@ class widget_webshop_cart extends WP_Widget
 
 						$intCustomerID = $strOrderName = $emlOrderEmail = $strOrderText = $intOrderDeliveryType = "";
 						unset($_POST['btnOrderConfirm']);
-
-						/*if($emlOrderEmail != '')
-						{
-							$strEmail = $emlOrderEmail;
-							$strFromEmail = get_bloginfo('admin_email');
-							$strSubject = __("Order info", 'lang_rentals')." (".date("Y-m-d").")";
-							$strText = "";
-
-							sendEmail();
-						}*/
 					}
 				}
 
@@ -11207,4 +11141,4 @@ class widget_webshop_cart extends WP_Widget
 			.show_select(array('data' => $this->obj_webshop->get_option_types_for_select(), 'name' => $this->get_field_name('webshop_option_type'), 'text' => __("Type", 'lang_rentals'), 'value' => $instance['webshop_option_type']))
 		."</div>";
 	}
-}
+}*/
