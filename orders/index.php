@@ -322,4 +322,4 @@ echo "<div class='wrap'>
 	</table>
 </div>";
 
-update_user_meta(get_current_user_id(), 'meta_orders_viewed', date("Y-m-d H:i:s"));
+update_user_meta(get_current_user_id(), 'meta_orders_viewed', current_time('mysql'));

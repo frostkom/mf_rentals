@@ -736,7 +736,7 @@ class mf_rentals
 
 								if($sent)
 								{
-									update_user_meta($post_author, 'meta_webshop_reminder_sent', date("Y-m-d H:i:s"));
+									update_user_meta($post_author, 'meta_webshop_reminder_sent', current_time('mysql'));
 								}
 							}
 
@@ -5668,7 +5668,7 @@ class mf_rentals
 			{
 				if($setting_webshop_display_filter == 'button')
 				{
-					$out .= get_toggler_container(array('type' => 'start', 'text' => __("Filter", 'lang_rentals'), 'rel' => 'webshop_filter'));
+					$out .= get_toggler_container(array('type' => 'start', 'id' => 'filter', 'text' => __("Filter", 'lang_rentals')));
 				}
 
 					$obj_rentals_interval = new mf_rentals();
@@ -8569,7 +8569,7 @@ class mf_rentals
 				'product_description' => apply_filters('the_content', $this->product_description),
 				'product_has_email' => $this->product_has_email,
 				'product_map' => $this->product_map,
-				'product_timestamp' => date("Y-m-d H:i:s"),
+				'product_timestamp' => current_time('mysql'),
 			);
 		}
 	}
@@ -10913,7 +10913,7 @@ class widget_webshop_cart extends WP_Widget
 
 		if($sesWebshopCookie == '')
 		{
-			$sesWebshopCookie = md5((defined('NONCE_SALT') ? NONCE_SALT : '').get_current_visitor_ip().date("Y-m-d H:i:s"));
+			$sesWebshopCookie = md5((defined('NONCE_SALT') ? NONCE_SALT : '').get_current_visitor_ip().current_time('mysql'));
 
 			update_user_meta(get_current_user_id(), 'meta_webshop_session', $sesWebshopCookie);
 		}

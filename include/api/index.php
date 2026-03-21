@@ -86,7 +86,7 @@ switch($type_switch)
 						'post_title' => "",
 						'post_name' => "",
 						'meta_boxes' => array(),
-						'timestamp' => date("Y-m-d H:i:s"),
+						'timestamp' => current_time('mysql'),
 					);
 
 					if($post_id > 0)
@@ -439,7 +439,7 @@ switch($type_switch)
 							$post_data = array(
 								'ID' => $post_id,
 								'post_status' => 'publish',
-								'post_modified' => date("Y-m-d H:i:s"),
+								'post_modified' => current_time('mysql'),
 								'meta_input' => array(),
 							);
 
@@ -542,7 +542,7 @@ switch($type_switch)
 																				'ID' => $arr_event_id[$i],
 																				'post_title' => $arr_event_name[$i],
 																				'post_content' => $arr_event_text[$i],
-																				//'post_modified' => date("Y-m-d H:i:s"),
+																				//'post_modified' => current_time('mysql'),
 																				'meta_input' => array(
 																					$obj_calendar->meta_prefix.'location' => $arr_event_location[$i],
 																					$obj_calendar->meta_prefix.'coordinates' => $arr_event_coordinates[$i],
@@ -873,7 +873,7 @@ switch($type_switch)
 	case 'events':
 		$id = check_var('id', 'char');
 		$option_type = check_var('option_type');
-		$start_date = check_var('start_date', 'date', true, date("Y-m-d H:i:s"));
+		$start_date = check_var('start_date', 'date', true, current_time('mysql'));
 		$product_id = check_var('product_id', 'int');
 		$event_id = check_var('event_id', 'int');
 		$event_type = check_var('event_type');
