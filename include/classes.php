@@ -685,7 +685,7 @@ class mf_rentals
 
 						if($meta_webshop_reminder_sent > DEFAULT_DATE)
 						{
-							if($meta_webshop_reminder_sent < date("Y-m-d H:i:s", strtotime("-1 month")))
+							if($meta_webshop_reminder_sent < date("Y-m-d H:i:s", strtotime(current_time('mysql')." -1 month")))
 							{
 								do_log("Deactivate ".$user_data->user_email." (".$user_data->display_name.") because the person has not updated the info within ".$setting_webshop_user_updated_notification." + 1 months (".$this->option_type.")");
 
@@ -768,27 +768,28 @@ class mf_rentals
 
 			$name_categories = get_option_or_default('setting_webshop_replace_categories'.$this->option_type, __("Categories", 'lang_rentals'));
 
-			$labels = array(
-				'name' => _x($name_categories, 'post type general name'),
-				'menu_name' => $name_categories
-			);
-
-			$args = array(
-				'labels' => $labels,
+			register_post_type($this->post_type_categories.$this->option_type, array(
+				'labels' => array(
+					'name' => $name_categories,
+					'singular_name' => $name_categories,
+					'menu_name' => $name_categories,
+					'all_items' => __("List", 'lang_rentals'),
+					'edit_item' => __("Edit", 'lang_rentals'),
+					'view_item' => __("View", 'lang_rentals'),
+					'add_new_item' => __("Add New", 'lang_rentals'),
+				),
 				'public' => false,
 				'show_ui' => true,
 				'show_in_menu' => false,
 				'show_in_nav_menus' => false,
 				'exclude_from_search' => true,
-				'supports' => array('title', 'editor', 'excerpt', 'page-attributes'),
+				'supports' => array('title', 'editor', 'excerpt', 'page-attributes', 'revisions'),
 				'hierarchical' => true,
 				'has_archive' => false,
 				'rewrite' => array(
 					'slug' => get_option_or_default('setting_webshop_replace_categories_slug'.$this->option_type, 'c'),
 				),
-			);
-
-			register_post_type($this->post_type_categories.$this->option_type, $args);
+			));
 
 			$name_products = get_option_or_default('setting_webshop_replace_products'.$this->option_type, __("Products", 'lang_rentals'));
 
@@ -799,13 +800,16 @@ class mf_rentals
 				$arr_supports[] = 'editor';
 			}
 
-			$labels = array(
-				'name' => _x($name_products, 'post type general name'),
-				'menu_name' => $name_products
-			);
-
-			$args = array(
-				'labels' => $labels,
+			register_post_type($this->post_type_products.$this->option_type, array(
+				'labels' => array(
+					'name' => $name_products,
+					'singular_name' => $name_products,
+					'menu_name' => $name_products,
+					'all_items' => __("List", 'lang_rentals'),
+					'edit_item' => __("Edit", 'lang_rentals'),
+					'view_item' => __("View", 'lang_rentals'),
+					'add_new_item' => __("Add New", 'lang_rentals'),
+				),
 				'public' => true,
 				'show_in_menu' => false,
 				'show_in_nav_menus' => false,
@@ -815,19 +819,18 @@ class mf_rentals
 				'rewrite' => array(
 					'slug' => get_option_or_default('setting_webshop_replace_products_slug'.$this->option_type, 'w'),
 				),
-			);
+			));
 
-			register_post_type($this->post_type_products.$this->option_type, $args);
-
-			$name_custom_categories = __("Custom Categories", 'lang_rentals');
-
-			$labels = array(
-				'name' => _x($name_custom_categories, 'post type general name'),
-				'menu_name' => $name_custom_categories
-			);
-
-			$args = array(
-				'labels' => $labels,
+			register_post_type($this->post_type_custom_categories.$this->option_type, array(
+				'labels' => array(
+					'name' => __("Custom Categories", 'lang_rentals'),
+					'singular_name' => __("Custom Category", 'lang_rentals'),
+					'menu_name' => __("Custom Categories", 'lang_rentals'),
+					'all_items' => __("List", 'lang_rentals'),
+					'edit_item' => __("Edit", 'lang_rentals'),
+					'view_item' => __("View", 'lang_rentals'),
+					'add_new_item' => __("Add New", 'lang_rentals'),
+				),
 				'public' => false,
 				'show_ui' => true,
 				'show_in_menu' => false,
@@ -836,19 +839,20 @@ class mf_rentals
 				'supports' => array('title', 'page-attributes'),
 				'hierarchical' => true,
 				'has_archive' => false,
-			);
-
-			register_post_type($this->post_type_custom_categories.$this->option_type, $args);
+			));
 
 			$name_doc_types = get_option_or_default('setting_webshop_replace_doc_types'.$this->option_type, __("Filters", 'lang_rentals'));
 
-			$labels = array(
-				'name' => _x($name_doc_types, 'post type general name'),
-				'menu_name' => $name_doc_types
-			);
-
 			$args = array(
-				'labels' => $labels,
+				'labels' => array(
+					'name' => $name_doc_types,
+					'singular_name' => $name_doc_types,
+					'menu_name' => $name_doc_types,
+					'all_items' => __("List", 'lang_rentals'),
+					'edit_item' => __("Edit", 'lang_rentals'),
+					'view_item' => __("View", 'lang_rentals'),
+					'add_new_item' => __("Add New", 'lang_rentals'),
+				),
 				'public' => false,
 				'show_ui' => true,
 				'show_in_menu' => false,
@@ -861,15 +865,16 @@ class mf_rentals
 
 			register_post_type($this->post_type_document_type.$this->option_type, $args);
 
-			$name_location = __("Location", 'lang_rentals');
-
-			$labels = array(
-				'name' => _x($name_location, 'post type general name'),
-				'menu_name' => $name_location
-			);
-
-			$args = array(
-				'labels' => $labels,
+			register_post_type($this->post_type_location.$this->option_type, array(
+				'labels' => array(
+					'name' => __("Locations", 'lang_rentals'),
+					'singular_name' => __("Location", 'lang_rentals'),
+					'menu_name' => __("Locations", 'lang_rentals'),
+					'all_items' => __("List", 'lang_rentals'),
+					'edit_item' => __("Edit", 'lang_rentals'),
+					'view_item' => __("View", 'lang_rentals'),
+					'add_new_item' => __("Add New", 'lang_rentals'),
+				),
 				'public' => false,
 				'show_ui' => true,
 				'show_in_menu' => false,
@@ -878,47 +883,43 @@ class mf_rentals
 				'supports' => array('title', 'page-attributes'),
 				'hierarchical' => true,
 				'has_archive' => false,
-			);
+			));
 
-			register_post_type($this->post_type_location.$this->option_type, $args);
-
-			$name_customers = __("Customers", 'lang_rentals');
-
-			$labels = array(
-				'name' => _x($name_customers, 'post type general name'),
-				'menu_name' => $name_customers
-			);
-
-			$args = array(
-				'labels' => $labels,
+			register_post_type($this->post_type_customers.$this->option_type, array(
+				'labels' => array(
+					'name' => __("Customers", 'lang_rentals'),
+					'singular_name' => __("Customer", 'lang_rentals'),
+					'menu_name' => __("Customers", 'lang_rentals'),
+					'all_items' => __("List", 'lang_rentals'),
+					'edit_item' => __("Edit", 'lang_rentals'),
+					'view_item' => __("View", 'lang_rentals'),
+					'add_new_item' => __("Add New", 'lang_rentals'),
+				),
 				'public' => false,
 				'exclude_from_search' => true,
 				'supports' => array('title'),
 				'hierarchical' => true,
 				'has_archive' => false,
 				'show_in_menu' => false,
-			);
+			));
 
-			register_post_type($this->post_type_customers.$this->option_type, $args);
-
-			$name_delivery_type = __("Delivery Type", 'lang_rentals');
-
-			$labels = array(
-				'name' => _x($name_delivery_type, 'post type general name'),
-				'menu_name' => $name_delivery_type
-			);
-
-			$args = array(
-				'labels' => $labels,
+			register_post_type($this->post_type_delivery_type.$this->option_type, array(
+				'labels' => array(
+					'name' => __("Delivery Type", 'lang_rentals'),
+					'singular_name' => __("Delivery Type", 'lang_rentals'),
+					'menu_name' => __("Delivery Types", 'lang_rentals'),
+					'all_items' => __("List", 'lang_rentals'),
+					'edit_item' => __("Edit", 'lang_rentals'),
+					'view_item' => __("View", 'lang_rentals'),
+					'add_new_item' => __("Add New", 'lang_rentals'),
+				),
 				'public' => false,
 				'exclude_from_search' => true,
 				'supports' => array('title'),
 				'hierarchical' => true,
 				'has_archive' => false,
 				'show_in_menu' => false,
-			);
-
-			register_post_type($this->post_type_delivery_type.$this->option_type, $args);
+			));
 		}
 
 		flush_rewrite_rules();
@@ -2509,7 +2510,7 @@ class mf_rentals
 						$plugin_include_url = plugin_dir_url(__FILE__);
 						mf_enqueue_style('style_webshop_overlay', $plugin_include_url."style_overlay.css");
 
-						$this->footer_output = "<div id='overlay_product' class='overlay_container modal'>
+						$this->footer_output .= "<div id='overlay_product' class='overlay_container modal'>
 							<div>".apply_filters('the_content', get_post_field('post_content', $post_overlay))."</div>
 						</div>";
 					}
@@ -2520,7 +2521,7 @@ class mf_rentals
 
 	function wp_footer()
 	{
-		if(isset($this->footer_output) && $this->footer_output != '')
+		if($this->footer_output != '')
 		{
 			echo $this->footer_output;
 		}
@@ -3188,7 +3189,7 @@ class mf_rentals
 			break;
 
 			case 'email':
-				$fields_array['attributes']['placeholder'] = get_post_meta_or_default($post_id, $this->meta_prefix.'document_placeholder', true, get_placeholder_email());
+				$fields_array['attributes']['placeholder'] = get_post_meta($post_id, $this->meta_prefix.'document_placeholder', true); //, get_placeholder_email()
 				$fields_array['desc'] = get_post_meta($post_id, $this->meta_prefix.'document_description', true);
 			break;
 
@@ -4953,7 +4954,7 @@ class mf_rentals
 
 										if($meta_webshop_reminder_sent > DEFAULT_DATE)
 										{
-											if($meta_webshop_reminder_sent < date("Y-m-d H:i:s", strtotime("-1 month")))
+											if($meta_webshop_reminder_sent < date("Y-m-d H:i:s", strtotime(current_time('mysql')." -1 month")))
 											{
 												$row_actions .= ($row_actions != '' ? " | " : "")."<span>".sprintf(__("The user was notified %s and has been deactivated until the profile has been updated", 'lang_rentals'), format_date($meta_webshop_reminder_sent))."</span>";
 

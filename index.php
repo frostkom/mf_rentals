@@ -3,7 +3,7 @@
 Plugin Name: MF Rentals
 Plugin URI: https://github.com/frostkom/mf_rentals
 Description:
-Version: 2.2.3.8
+Version: 2.2.3.9
 Licence: GPLv2 or later
 Author: Martin Fors
 Author URI: https://martinfors.se
@@ -134,7 +134,7 @@ if(!function_exists('is_plugin_active') || function_exists('is_plugin_active') &
 		) DEFAULT CHARSET=".$default_charset);
 
 		$arr_update_column[$wpdb->prefix."webshop_product2user"] = array(
-			'webshopAmount' => "ALTER TABLE [table] CHANGE [column] productAmount INT UNSIGNED",
+			'webshopAmount' => "ALTER TABLE [table] CHANGE [column] [column] productAmount INT UNSIGNED",
 		);
 
 		$wpdb->query("CREATE TABLE IF NOT EXISTS ".$wpdb->prefix."webshop_sent (

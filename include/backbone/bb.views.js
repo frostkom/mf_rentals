@@ -424,7 +424,7 @@ var WebshopView = Backbone.View.extend(
 					}
 				}
 
-				if(html != "")
+				/*if(html != "")
 				{
 					jQuery(".product_previous_next").html(html).removeClass('hide');
 				}
@@ -432,7 +432,7 @@ var WebshopView = Backbone.View.extend(
 				else
 				{
 					jQuery(".product_previous_next").addClass('hide');
-				}
+				}*/
 			}
 		}
 	},
