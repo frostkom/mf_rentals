@@ -3,7 +3,7 @@
 Plugin Name: MF Rentals
 Plugin URI: https://github.com/frostkom/mf_rentals
 Description:
-Version: 2.2.3.9
+Version: 2.2.3.10
 Licence: GPLv2 or later
 Author: Martin Fors
 Author URI: https://martinfors.se

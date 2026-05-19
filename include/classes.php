@@ -3789,8 +3789,11 @@ class mf_rentals
 				}
 			}
 
-			$menu_title = __("Settings", 'lang_rentals');
-			add_submenu_page($menu_start, $menu_title, $menu_title, $menu_capability, admin_url("options-general.php?page=settings_mf_base#settings_webshop".$this->option_type));
+			if(IS_ADMINISTRATOR)
+			{
+				$menu_title = __("Settings", 'lang_rentals');
+				add_submenu_page($menu_start, $menu_title, $menu_title, $menu_capability, admin_url("options-general.php?page=settings_mf_base#settings_webshop".$this->option_type));
+			}
 		}
 
 		$this->option_type = '';
