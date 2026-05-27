@@ -8556,7 +8556,7 @@ class mf_rentals
 
 			else
 			{
-				$product_image = get_image_fallback();
+				$product_image = apply_filters('get_image_fallback', "");
 			}
 
 			$json_output['product_response'][] = array(
