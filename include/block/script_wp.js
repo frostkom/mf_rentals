@@ -3,6 +3,7 @@
 	var el = wp.element.createElement,
 		registerBlockType = wp.blocks.registerBlockType,
 		SelectControl = wp.components.SelectControl,
+		PanelBody = wp.components.PanelBody,
 		InspectorControls = wp.blockEditor.InspectorControls;
 
 	/*registerBlockType('mf/webshoplist',
@@ -59,18 +60,22 @@
 				[
 					/*el(
 						InspectorControls,
-						'div',
+						{key: 'inspector'},
 						el(
-							SelectControl,
-							{
-								label: script_webshop_block_wp.webshop_location_label,
-								value: props.attributes.webshop_location,
-								options: convert_php_array_to_block_js(script_webshop_block_wp.webshop_location),
-								onChange: function(value)
+							PanelBody,
+							{title: script_webshop_block_wp.block_title, initialOpen: true},
+							el(
+								SelectControl,
 								{
-									props.setAttributes({webshop_location: value});
+									label: script_webshop_block_wp.webshop_location_label,
+									value: props.attributes.webshop_location,
+									options: convert_php_array_to_block_js(script_webshop_block_wp.webshop_location),
+									onChange: function(value)
+									{
+										props.setAttributes({webshop_location: value});
+									}
 								}
-							}
+							)
 						)
 					),*/
 
@@ -145,19 +150,23 @@
 				[
 					el(
 						InspectorControls,
-						'div',
-						/*el(
-							SelectControl,
-							{
-								label: script_webshop_block_wp.webshop_option_type_label,
-								value: props.attributes.webshop_option_type,
-								options: convert_php_array_to_block_js(script_webshop_block_wp.webshop_option_type),
-								onChange: function(value)
+						{key: 'inspector'},
+						el(
+							PanelBody,
+							{title: script_webshop_block_wp.block_title2, initialOpen: true},
+							/*el(
+								SelectControl,
 								{
-									props.setAttributes({webshop_option_type: value});
+									label: script_webshop_block_wp.webshop_option_type_label,
+									value: props.attributes.webshop_option_type,
+									options: convert_php_array_to_block_js(script_webshop_block_wp.webshop_option_type),
+									onChange: function(value)
+									{
+										props.setAttributes({webshop_option_type: value});
+									}
 								}
-							}
-						)*/
+							)*/
+						)
 					),
 					el(
 						'strong',
@@ -227,18 +236,22 @@
 				[
 					/*el(
 						InspectorControls,
-						'div',
+						{key: 'inspector'},
 						el(
-							SelectControl,
-							{
-								label: script_webshop_block_wp.webshop_option_type_label,
-								value: props.attributes.webshop_option_type,
-								options: convert_php_array_to_block_js(script_webshop_block_wp.webshop_option_type),
-								onChange: function(value)
+							PanelBody,
+							{title: script_webshop_block_wp.block_title3, initialOpen: true},
+							el(
+								SelectControl,
 								{
-									props.setAttributes({webshop_option_type: value});
+									label: script_webshop_block_wp.webshop_option_type_label,
+									value: props.attributes.webshop_option_type,
+									options: convert_php_array_to_block_js(script_webshop_block_wp.webshop_option_type),
+									onChange: function(value)
+									{
+										props.setAttributes({webshop_option_type: value});
+									}
 								}
-							}
+							)
 						)
 					),*/
 
