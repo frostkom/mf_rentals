@@ -333,9 +333,6 @@ echo "@media all
 
 		body:not(.is_mobile).is_webshop_search_page .aside.left, body:not(.is_mobile).is_webshop_search_page .aside.right
 		{
-			-webkit-box-flex: 0 0 40%;
-			-webkit-flex: 0 0 40%;
-			-ms-flex: 0 0 40%;
 			flex: 0 0 40%;
 			margin-left: 0;
 			max-width: 40%;
@@ -449,9 +446,6 @@ echo "@media all
 		.webshop_filter_products .list_item, .webshop_events .list_item
 		{
 			background: #e4eff3;
-			display: -webkit-box;
-			display: -ms-flexbox;
-			display: -webkit-flex;
 			display: flex;
 			margin-bottom: .5em;
 			overflow: hidden;
@@ -492,9 +486,6 @@ echo "@media all
 
 			#wrapper .webshop_filter_products li > div, #wrapper .webshop_events li > div
 			{
-				-webkit-box-flex: 1 1 auto;
-				-webkit-flex: 1 1 auto;
-				-ms-flex: 1 1 auto;
 				flex: 1 1 auto;
 				max-width: 60%;
 			}
@@ -528,10 +519,7 @@ echo "@media all
 
 				#wrapper .webshop_filter_products li .list_url, #wrapper .webshop_events li .list_url
 				{
-					/*-webkit-box-flex: 0 0 6em;
-					-webkit-flex: 0 0 6em;
-					-ms-flex: 0 0 6em;
-					flex: 0 0 6em;*/
+					/*flex: 0 0 6em;*/
 					text-align: right;
 				}
 
@@ -760,9 +748,6 @@ echo "@media all
 
 					#wrapper .webshop_events li .event_date
 					{
-						-webkit-box-flex: 0 0 4em;
-						-webkit-flex: 0 0 4em;
-						-ms-flex: 0 0 4em;
 						flex: 0 0 4em;
 					}
 
@@ -888,13 +873,7 @@ echo "@media all
 
 			.widget.webshop_product_meta .type_actions
 			{
-				display: -webkit-box;
-				display: -ms-flexbox;
-				display: -webkit-flex;
 				display: flex;
-				-webkit-box-flex-wrap: wrap;
-				-webkit-flex-wrap: wrap;
-				-ms-flex-wrap: wrap;
 				flex-wrap: wrap;
 				list-style: none;
 			}
@@ -904,9 +883,6 @@ echo "@media all
 					background: #eee;
 					border-radius: .5em;
 					display: block;
-					-webkit-box-flex: 0 0 10em;
-					-webkit-flex: 0 0 10em;
-					-ms-flex: 0 0 10em;
 					flex: 0 0 10em;
 					margin: 0 1em 1em 0;
 					position: relative;
@@ -988,21 +964,12 @@ echo "@media all
 
 	#main > #product_form
 	{
-		display: -webkit-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
 		display: flex;
 	}
 
 		#product_form article
 		{
-			-webkit-box-flex: 1 1 60%;
-			-webkit-flex: 1 1 60%;
-			-ms-flex: 1 1 60%;
 			flex: 1 1 60%;
-			-webkit-box-ordinal-group: 1;
-			-webkit-order: 1;
-			-ms-flex-order: 1;
 			order: 1;
 			float: left;
 			min-width: 60%;
@@ -1010,15 +977,9 @@ echo "@media all
 
 		#product_form .aside
 		{
-			-webkit-box-flex: 1 1 40%;
-			-webkit-flex: 1 1 40%;
-			-ms-flex: 1 1 40%;
 			flex: 1 1 40%;
 			float: right;
 			margin: 0;
-			-webkit-box-ordinal-group: 2;
-			-webkit-order: 2;
-			-ms-flex-order: 2;
 			order: 2;
 			padding: 0;
 			min-width: 40%;
@@ -1114,9 +1075,6 @@ echo "@media all
 
 				echo ".is_mobile #webshop_search .flex_flow
 				{
-					display: -webkit-box;
-					display: -ms-flexbox;
-					display: -webkit-flex;
 					display: flex;
 				}
 
