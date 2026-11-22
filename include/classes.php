@@ -6237,9 +6237,9 @@ class mf_rentals
 	{
 		$out = "<div class='calendar_container'>
 			<div class='calendar_header'>
-				<button data-month='<%= last_month %>'>&laquo;</button>
+				<button data-month='<%- last_month %>'>&laquo;</button>
 				<span><%= nice_month %></span>
-				<button data-month='<%= next_month %>'>&raquo;</button>
+				<button data-month='<%- next_month %>'>&raquo;</button>
 			</div>
 			<div class='calendar_days'>";
 
@@ -6250,15 +6250,15 @@ class mf_rentals
 
 				$out .= "<% _.each(days, function(day)
 				{ %>
-					<div class='day<%= day.class %>'>
+					<div class='day<%- day.class %>'>
 						<% if(day.event_amount > 0)
 						{ %>
-							<a href='#' data-date='<%= day.date %>'>
+							<a href='#' data-date='<%- day.date %>'>
 								<%= day.number %>
 								<ul>
 									<% _.each(day.events, function(event)
 									{ %>
-										<li class='<%= event.class %>'></li>
+										<li class='<%- event.class %>'></li>
 									<% }); %>
 								</ul>
 							</a>
