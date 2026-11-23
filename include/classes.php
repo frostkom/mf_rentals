@@ -2094,12 +2094,12 @@ class mf_rentals
 							{
 								_.each(list, function(product)
 								{ %>
-									<tr id='product_<%= product.post_id %>'>
+									<tr id='product_<%- product.post_id %>'>
 										<td>
 											<%= product.post_title %>
 											<div class='row-actions'>"
-												."<a href='#admin/webshop/edit/<%= product.post_id %>'>".__("Edit", 'lang_rentals')."</a>"
-												.(IS_ADMINISTRATOR ? "<a href='".admin_url("post.php?post=<%= product.post_id %>&action=edit")."'>".__("Edit in Admin", 'lang_rentals')."</a>" : "")
+												."<a href='#admin/webshop/edit/<%- product.post_id %>'>".__("Edit", 'lang_rentals')."</a>"
+												.(IS_ADMINISTRATOR ? "<a href='".admin_url("post.php?post=<%- product.post_id %>&action=edit")."'>".__("Edit in Admin", 'lang_rentals')."</a>" : "")
 												."<a href='<%= product.post_url %>'>".__("View", 'lang_rentals')."</a>"
 											."</div>
 										</td>
@@ -2146,7 +2146,7 @@ class mf_rentals
 						{ %>
 							<% if(meta_box.fields.length > 0)
 							{ %>
-								<div id='<%= meta_box.id %>' class='meta_box context_<%= meta_box.context %>'>
+								<div id='<%- meta_box.id %>' class='meta_box context_<%- meta_box.context %>'>
 									<h2><%= meta_box.title %></h2>
 									<div>
 										<% _.each(meta_box.fields, function(meta_field)
@@ -2158,19 +2158,19 @@ class mf_rentals
 													case 'city':
 													case 'address':
 													case 'local_address': %>"
-														.show_textfield(array('name' => '<%= meta_field.id %>', 'text' => "<%= meta_field.name %>", 'value' => "<%= meta_field.value %>", 'xtra_class' => "maps_location", 'xtra' => "<% if(meta_field.attributes.required == true){ %> required<%} %>", 'placeholder' => "<%= meta_field.attributes.placeholder %>", 'description' => "<%= meta_field.desc %>"))
+														.show_textfield(array('name' => '<%- meta_field.id %>', 'text' => "<%= meta_field.name %>", 'value' => "<%= meta_field.value %>", 'xtra_class' => "maps_location", 'xtra' => "<% if(meta_field.attributes.required == true){ %> required<%} %>", 'placeholder' => "<%= meta_field.attributes.placeholder %>", 'description' => "<%= meta_field.desc %>"))
 													."<% break;
 
 													case 'clock': %>"
-														.show_textfield(array('name' => '<%= meta_field.id %>', 'text' => "<%= meta_field.name %>", 'value' => "<%= meta_field.value %>", 'xtra' => "<% if(meta_field.attributes.required == true){ %> required<%} %>", 'placeholder' => "<%= meta_field.attributes.placeholder %>", 'description' => "<%= meta_field.desc %>"))
+														.show_textfield(array('name' => '<%- meta_field.id %>', 'text' => "<%= meta_field.name %>", 'value' => "<%= meta_field.value %>", 'xtra' => "<% if(meta_field.attributes.required == true){ %> required<%} %>", 'placeholder' => "<%= meta_field.attributes.placeholder %>", 'description' => "<%= meta_field.desc %>"))
 													."<% break;
 
 													case 'content': %>"
-														.show_textarea(array('name' => '<%= meta_field.id %>', 'text' => "<%= meta_field.name %>", 'value' => "<%= meta_field.value %>", 'xtra' => "<% if(meta_field.attributes.required == true){ %> required<%} %>", 'placeholder' => "<%= meta_field.attributes.placeholder %>", 'description' => "<%= meta_field.desc %>"))
+														.show_textarea(array('name' => '<%- meta_field.id %>', 'text' => "<%= meta_field.name %>", 'value' => "<%= meta_field.value %>", 'xtra' => "<% if(meta_field.attributes.required == true){ %> required<%} %>", 'placeholder' => "<%= meta_field.attributes.placeholder %>", 'description' => "<%= meta_field.desc %>"))
 													."<% break;
 
 													case 'coordinates': %>"
-														.input_hidden(array('name' => '<%= meta_field.id %>', 'value' => "<%= meta_field.value %>", 'xtra' => "class='maps_coordinates'"))
+														.input_hidden(array('name' => '<%- meta_field.id %>', 'value' => "<%= meta_field.value %>", 'xtra' => "class='maps_coordinates'"))
 													."<% break;
 
 													case 'custom_categories':
@@ -2189,8 +2189,8 @@ class mf_rentals
 														else
 														{ %>
 															<div class='form_select type_<%= meta_field.type %><%= meta_field.class %>'>
-																<label for='<%= meta_field.id %>'><%= meta_field.name %></label>
-																<select id='<%= meta_field.id %>' name='<%= meta_field.id %><% if(meta_field.multiple == true){ %>[]<% } %>'"
+																<label for='<%- meta_field.id %>'><%= meta_field.name %></label>
+																<select id='<%- meta_field.id %>' name='<%- meta_field.id %><% if(meta_field.multiple == true){ %>[]<% } %>'"
 																	."<% _.each(meta_field.attributes, function(meta_attribute_value, meta_attribute_key)
 																	{ %>
 																		<%= meta_attribute_key %>='<%= meta_attribute_value %>'
@@ -2216,11 +2216,11 @@ class mf_rentals
 
 													case 'description':
 													case 'text': %>"
-														.show_textfield(array('name' => '<%= meta_field.id %>', 'text' => "<%= meta_field.name %>", 'value' => "<%= meta_field.value %>", 'xtra' => "<% if(meta_field.attributes.required == true){ %> required<%} %>", 'placeholder' => "<%= meta_field.attributes.placeholder %>", 'description' => "<%= meta_field.desc %>"))
+														.show_textfield(array('name' => '<%- meta_field.id %>', 'text' => "<%= meta_field.name %>", 'value' => "<%= meta_field.value %>", 'xtra' => "<% if(meta_field.attributes.required == true){ %> required<%} %>", 'placeholder' => "<%= meta_field.attributes.placeholder %>", 'description' => "<%= meta_field.desc %>"))
 													."<% break;
 
 													case 'email': %>"
-														.show_textfield(array('type' => 'email', 'name' => '<%= meta_field.id %>', 'text' => "<%= meta_field.name %>", 'value' => "<%= meta_field.value %>", 'xtra' => "<% if(meta_field.attributes.required == true){ %> required<%} %>", 'placeholder' => "<%= meta_field.attributes.placeholder %>", 'description' => "<%= meta_field.desc %>"))
+														.show_textfield(array('type' => 'email', 'name' => '<%- meta_field.id %>', 'text' => "<%= meta_field.name %>", 'value' => "<%= meta_field.value %>", 'xtra' => "<% if(meta_field.attributes.required == true){ %> required<%} %>", 'placeholder' => "<%= meta_field.attributes.placeholder %>", 'description' => "<%= meta_field.desc %>"))
 													."<% break;
 
 													case 'event':
@@ -2232,7 +2232,7 @@ class mf_rentals
 														else
 														{ %>
 															<div class='form_children type_<%= meta_field.type %><%= meta_field.class %>'>
-																<label for='<%= meta_field.id %>'>
+																<label for='<%- meta_field.id %>'>
 																	<%= meta_field.name %>
 																	<% if(meta_field.alt_text != '')
 																	{ %>
@@ -2245,9 +2245,9 @@ class mf_rentals
 																		<li>
 																			<h3>".__("Add New", 'lang_rentals')."</h3>
 																			<div".apply_filters('get_flex_flow', "").">"
-																				.show_textfield(array('name' => '<%= meta_field.id %>_name[]', 'value' => "<%= meta_child_value.name %>", 'xtra_class' => "event_name", 'maxlength' => 50, 'placeholder' => __("Title", 'lang_rentals'), 'suffix' => "<i class='fa fa-trash fa-lg red' title='".__("Delete", 'lang_rentals')." <%= meta_field.name %>'></i>"))
-																				.input_hidden(array('name' => '<%= meta_field.id %>_coordinates[]', 'value' => "<%= meta_child_value.coordinates %>", 'xtra' => "class='maps_coordinates'"))
-																				.show_textfield(array('name' => '<%= meta_field.id %>_location[]', 'value' => "<%= meta_child_value.location %>", 'xtra_class' => "maps_location", 'maxlength' => 50, 'placeholder' => __("Street 123, City", 'lang_rentals')))
+																				.show_textfield(array('name' => '<%- meta_field.id %>_name[]', 'value' => "<%= meta_child_value.name %>", 'xtra_class' => "event_name", 'maxlength' => 50, 'placeholder' => __("Title", 'lang_rentals'), 'suffix' => "<i class='fa fa-trash fa-lg red' title='".__("Delete", 'lang_rentals')." <%= meta_field.name %>'></i>"))
+																				.input_hidden(array('name' => '<%- meta_field.id %>_coordinates[]', 'value' => "<%= meta_child_value.coordinates %>", 'xtra' => "class='maps_coordinates'"))
+																				.show_textfield(array('name' => '<%- meta_field.id %>_location[]', 'value' => "<%= meta_child_value.location %>", 'xtra_class' => "maps_location", 'maxlength' => 50, 'placeholder' => __("Street 123, City", 'lang_rentals')))
 																			."</div>
 																			<% if(Object.keys(meta_child_value.fields).length > 0)
 																			{
@@ -2265,11 +2265,11 @@ class mf_rentals
 
 																						case 'date': %>
 																							<div class='flex_flow tight'>"
-																								.show_textfield(array('type' => 'date', 'name' => '<%= meta_field.id %>_start_date[]', 'text' => __("Start Date", 'lang_rentals'), 'value' => "<%= meta_child_value.start_date %>", 'xtra_class' => "start_date", 'placeholder' => date("Y-m-d")))
-																								.show_textfield(array('type' => 'time', 'name' => '<%= meta_field.id %>_start_time[]', 'text' => __("Time", 'lang_rentals'), 'value' => "<%= meta_child_value.start_time %>", 'xtra_class' => "start_time", 'placeholder' => date("H:00")))
-																								.show_textfield(array('type' => 'date', 'name' => '<%= meta_field.id %>_end_date[]', 'text' => __("End Date", 'lang_rentals'), 'value' => "<%= meta_child_value.end_date %>", 'placeholder' => date("Y-m-d")))
-																								.show_textfield(array('type' => 'time', 'name' => '<%= meta_field.id %>_end_time[]', 'text' => __("Time", 'lang_rentals'), 'value' => "<%= meta_child_value.end_time %>", 'placeholder' => date("H:00")))
-																								.input_hidden(array('name' => '<%= meta_field.id %>_id[]', 'value' => "<%= meta_child_key %>"))
+																								.show_textfield(array('type' => 'date', 'name' => '<%- meta_field.id %>_start_date[]', 'text' => __("Start Date", 'lang_rentals'), 'value' => "<%= meta_child_value.start_date %>", 'xtra_class' => "start_date", 'placeholder' => date("Y-m-d")))
+																								.show_textfield(array('type' => 'time', 'name' => '<%- meta_field.id %>_start_time[]', 'text' => __("Time", 'lang_rentals'), 'value' => "<%= meta_child_value.start_time %>", 'xtra_class' => "start_time", 'placeholder' => date("H:00")))
+																								.show_textfield(array('type' => 'date', 'name' => '<%- meta_field.id %>_end_date[]', 'text' => __("End Date", 'lang_rentals'), 'value' => "<%= meta_child_value.end_date %>", 'placeholder' => date("Y-m-d")))
+																								.show_textfield(array('type' => 'time', 'name' => '<%- meta_field.id %>_end_time[]', 'text' => __("Time", 'lang_rentals'), 'value' => "<%= meta_child_value.end_time %>", 'placeholder' => date("H:00")))
+																								.input_hidden(array('name' => '<%- meta_field.id %>_id[]', 'value' => "<%= meta_child_key %>"))
 																							."</div>
 																						<% break;
 
@@ -2304,7 +2304,7 @@ class mf_rentals
 																					}
 																				});
 																			} %>"
-																			.show_textarea(array('name' => '<%= meta_field.id %>_text[]', 'text' => sprintf(__("Information about %s", 'lang_rentals'), "<%= meta_field.name %>"), 'value' => "<%= meta_child_value.text %>", 'xtra' => " maxlength='250'", 'placeholder' => __("Add important information here", 'lang_rentals')))
+																			.show_textarea(array('name' => '<%- meta_field.id %>_text[]', 'text' => sprintf(__("Information about %s", 'lang_rentals'), "<%= meta_field.name %>"), 'value' => "<%= meta_child_value.text %>", 'xtra' => " maxlength='250'", 'placeholder' => __("Add important information here", 'lang_rentals')))
 																		."</li>
 																	<% }); %>
 																</ul>
@@ -2322,13 +2322,13 @@ class mf_rentals
 													break;
 
 													case 'file_advanced': %>"
-														.get_media_button(array('name' => '<%= meta_field.id %>', 'label' => "<%= meta_field.name %>", 'text' => __("Add", 'lang_rentals'), 'value' => "<%= meta_field.value %>", 'multiple' => true, 'max_file_uploads' => "<%= meta_field.max_file_uploads %>", 'description' => "<%= meta_field.desc %>"))
+														.get_media_button(array('name' => '<%- meta_field.id %>', 'label' => "<%= meta_field.name %>", 'text' => __("Add", 'lang_rentals'), 'value' => "<%= meta_field.value %>", 'multiple' => true, 'max_file_uploads' => "<%= meta_field.max_file_uploads %>", 'description' => "<%= meta_field.desc %>"))
 													."<% break;
 
 													case 'ghost': %>
 														<div class='form_checkbox type_<%= meta_field.type %><%= meta_field.class %>'>
-															<input type='checkbox' name='<%= meta_field.id %>' value='1'<% if(meta_field.value == 1){ %> checked<% } %>/>
-															<label for='<%= meta_field.id %>'><%= meta_field.name %></label>
+															<input type='checkbox' name='<%- meta_field.id %>' value='1'<% if(meta_field.value == 1){ %> checked<% } %>/>
+															<label for='<%- meta_field.id %>'><%= meta_field.name %></label>
 															<% if(meta_field.desc != '')
 															{ %>
 																<p class='description'><%= meta_field.desc %></p>
@@ -2337,25 +2337,25 @@ class mf_rentals
 													<% break;
 
 													case 'gps': %>"
-														.apply_filters('get_map', '', array('input_name' => 'webshop_map_input', 'coordinates_name' => "<%= meta_field.id %>", 'coordinates' => "<%= meta_field.value %>"))
+														.apply_filters('get_map', '', array('input_name' => 'webshop_map_input', 'coordinates_name' => "<%- meta_field.id %>", 'coordinates' => "<%= meta_field.value %>"))
 													."<% break;
 
 													case 'interval': %>"
-														.show_textfield(array('name' => '<%= meta_field.id %>', 'text' => "<%= meta_field.name %>", 'value' => "<%= meta_field.value %>", 'xtra' => " pattern='[\d-]*'", 'xtra' => "<% if(meta_field.attributes.required == true){ %> required<%} %>", 'placeholder' => "<%= meta_field.attributes.placeholder %>", 'description' => "<%= meta_field.desc %>"))
+														.show_textfield(array('name' => '<%- meta_field.id %>', 'text' => "<%= meta_field.name %>", 'value' => "<%= meta_field.value %>", 'xtra' => " pattern='[\d-]*'", 'xtra' => "<% if(meta_field.attributes.required == true){ %> required<%} %>", 'placeholder' => "<%= meta_field.attributes.placeholder %>", 'description' => "<%= meta_field.desc %>"))
 													."<% break;
 
 													case 'phone': %>"
-														.show_textfield(array('type' => 'tel', 'name' => '<%= meta_field.id %>', 'text' => "<%= meta_field.name %>", 'value' => "<%= meta_field.value %>", 'xtra' => " pattern='[\d\s-]*'", 'xtra' => "<% if(meta_field.attributes.required == true){ %> required<%} %>", 'placeholder' => "<%= meta_field.attributes.placeholder %>", 'description' => "<%= meta_field.desc %>"))
+														.show_textfield(array('type' => 'tel', 'name' => '<%- meta_field.id %>', 'text' => "<%= meta_field.name %>", 'value' => "<%= meta_field.value %>", 'xtra' => " pattern='[\d\s-]*'", 'xtra' => "<% if(meta_field.attributes.required == true){ %> required<%} %>", 'placeholder' => "<%= meta_field.attributes.placeholder %>", 'description' => "<%= meta_field.desc %>"))
 													."<% break;
 
 													case 'price':
 													case 'size':
 													case 'stock': %>"
-														.show_textfield(array('type' => 'number', 'name' => '<%= meta_field.id %>', 'text' => "<%= meta_field.name %>", 'value' => "<%= meta_field.value %>", 'xtra' => "<% if(meta_field.attributes.required == true){ %> required<%} %>", 'placeholder' => "<%= meta_field.attributes.placeholder %>", 'description' => "<%= meta_field.desc %>"))
+														.show_textfield(array('type' => 'number', 'name' => '<%- meta_field.id %>', 'text' => "<%= meta_field.name %>", 'value' => "<%= meta_field.value %>", 'xtra' => "<% if(meta_field.attributes.required == true){ %> required<%} %>", 'placeholder' => "<%= meta_field.attributes.placeholder %>", 'description' => "<%= meta_field.desc %>"))
 													."<% break;
 
 													case 'url': %>"
-														.show_textfield(array('type' => 'url', 'name' => '<%= meta_field.id %>', 'text' => "<%= meta_field.name %>", 'value' => "<%= meta_field.value %>", 'xtra' => "<% if(meta_field.attributes.required == true){ %> required<%} %>", 'placeholder' => "<%= meta_field.attributes.placeholder %>", 'description' => "<%= meta_field.desc %>"))
+														.show_textfield(array('type' => 'url', 'name' => '<%- meta_field.id %>', 'text' => "<%= meta_field.name %>", 'value' => "<%= meta_field.value %>", 'xtra' => "<% if(meta_field.attributes.required == true){ %> required<%} %>", 'placeholder' => "<%= meta_field.attributes.placeholder %>", 'description' => "<%= meta_field.desc %>"))
 													."<% break;
 
 													default: %>
